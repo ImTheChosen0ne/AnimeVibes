@@ -20,10 +20,7 @@ function AllPosts() {
                   {/* <NavLink to={`/posts/${post.id}`}> */}
                   <div>
                     <div>{post.caption}</div>
-                    <iframe
-                      src={post.video}
-                      alt="posts"
-                    />
+                    <iframe src={post.video} width="640" height="500" frameborder="0" allow="autoplay; fullscreen" allowfullscreen />
                   {/* </NavLink> */}
                   </div>
               </div>
