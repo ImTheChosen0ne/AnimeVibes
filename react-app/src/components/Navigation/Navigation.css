@@ -1,9 +1,24 @@
-.profile-dropdown {
-  position: absolute;
-}
-
 .hidden {
   display: none;
+}
+
+.profile-dropdown {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  padding: 0;
+  right: 0;
+  text-align: left;
+  list-style-type: none;
+  border: 1px solid black;
+  background-color: white;
+  margin-right: 1.3rem;
+  margin-top: .1rem;
+  padding: 10px;
+}
+
+.profile-dropdown.hidden {
+  display: none
 }
 
 .nav-container {
@@ -29,6 +44,7 @@
 li {
   list-style: none;
 }
+
 .nav-links {
   display: flex;
 }
