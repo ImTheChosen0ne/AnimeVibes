@@ -5,7 +5,12 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
-import AllPosts from "./components/AllPosts";
+import SplashPage from "./pages/SplashPage";
+import SinglePost from "./components/SinglePost";
+import ProtectedRoute from "./components/auth/ProtectedRoute"
+import CreatePostForm from "./components/CreatePost";
+import EditPostForm from "./components/EditPost";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -20,7 +25,19 @@ function App() {
       {isLoaded && (
         <Switch>
           <Route exact path="/" >
-            <AllPosts />
+            <SplashPage />
+          </Route>
+          <ProtectedRoute exact path="/posts/new">
+            <CreatePostForm />
+          </ProtectedRoute>
+          <ProtectedRoute exact path='/posts/:postId/edit'>
+            <EditPostForm />
+          </ProtectedRoute>
+          <Route exact path="/posts/:postId" >
+            <SinglePost />
+          </Route>
+          <Route exact path='/users/profile'>
+            <ProfilePage />
           </Route>
           <Route path="/login" >
             <LoginFormPage />

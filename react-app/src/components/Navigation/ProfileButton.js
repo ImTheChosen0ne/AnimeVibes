@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
@@ -45,6 +46,11 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
+            <li className="profile-page">
+              <NavLink exact to="/users/profile">
+                View Profile
+              </NavLink>
+            </li>
             <li>{user.username}</li>
             <li>{user.email}</li>
             <li>
