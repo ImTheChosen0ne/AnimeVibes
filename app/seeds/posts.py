@@ -8,27 +8,27 @@ def seed_posts():
     post1 = Post(
         userId=1,
         caption="Just finished watching the latest episode of My Hero Academia! The action scenes were mind-blowing. Can't wait for the next one! #anime #MyHeroAcademia",
-        video="https://drive.google.com/file/d/1-PFLpECdS6kw2pQTqfTHBciCFy4VRaxl/preview"
+        video="https://res.cloudinary.com/dtsmhx07q/video/upload/v1686714352/Video_4_dxlpb0.mov"
     )
     post2 = Post(
         userId=1,
         caption="Throwback to one of my all-time favorite anime series, Attack on Titan! The storyline and character development are simply incredible. #anime #AttackOnTitan",
-        video="https://drive.google.com/file/d/1-PFO5cANW_LPhGDtF27Ozt8ih8bukWrx/preview"
+        video="https://res.cloudinary.com/dtsmhx07q/video/upload/v1686714351/Video_3_iegkos.mov"
     )
     post3 = Post(
         userId=2,
         caption="Just started watching Demon Slayer, and I'm already hooked! The animation and fight sequences are stunning. Highly recommend it! #anime #DemonSlayer",
-        video="https://drive.google.com/file/d/1-KvrHDhAyIFgnpm0Y4VwOC6qJBzWHMYD/preview"
+        video="https://res.cloudinary.com/dtsmhx07q/video/upload/v1686714351/Video_2_gpq9hh.mov"
     )
     post4 = Post(
         userId=3,
         caption="Recently discovered One Punch Man, and it's hilarious! Saitama's overpowered character and deadpan humor make it a must-watch. #anime #OnePunchMan",
-        video="https://drive.google.com/file/d/1-Jp5HqQQkVZhTUBAZTWzZoOCd7nIzdRH/preview"
+        video="https://res.cloudinary.com/dtsmhx07q/video/upload/v1686714351/Video_1_s9gzxb.mov"
     )
     post5 = Post(
         userId=3,
         caption="Just binged the entire season of Jujutsu Kaisen, and it blew my mind! The animation, characters, and supernatural elements are top-notch. #anime #JujutsuKaisen",
-        video="https://drive.google.com/file/d/1-AwDk3JVHyHDuoLNdMDqx2kolIuVOZNT/preview"
+        video="https://res.cloudinary.com/dtsmhx07q/video/upload/v1686714351/Video_ntblmx.mov"
     )
 
     all_posts = [post1, post2, post3, post4, post5 ]
