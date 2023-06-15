@@ -63,6 +63,15 @@ const SinglePost = () => {
               <div>
                 <p>{comment.comment}</p>
               </div>
+              <div>
+                {comment.commentReply.map((reply) => (
+                  <div key={reply.id} className="comment-reply">
+                    <div>
+                      <p>{reply.comment}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           ))}
         </div>

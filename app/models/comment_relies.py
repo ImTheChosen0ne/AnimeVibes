@@ -26,11 +26,10 @@ class CommentReply(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "postId": self.postId,
+            "commentId": self.commentId,
             "userId": self.userId,
-            "user": self.user.to_dict_review_user(),
-            "comment": self.user_comment,
-            "comment_rely": self.user_comment_rely,
+            "comment": self.comment,
+            # "comment_rely": self.user_comment_rely,
             "createdAt": self.formatted_createdAt(),
             "updatedAt": self.formatted_updatedAt()
        }

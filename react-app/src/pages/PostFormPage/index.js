@@ -49,9 +49,7 @@ const PostForm = ({ post, formType }) => {
     <div>
       <form onSubmit={handleSubmit} className="post-form">
         <div>
-            <h1>
-              {formType === "CreatePost" ? "Upload video" : "Update Post"}
-            </h1>
+          <h1>{formType === "CreatePost" ? "Upload video" : "Update Post"}</h1>
           <div className={formType === "EditPost" ? "hidden" : ""}>
             <div>
               <h4>Select a video to upload</h4>
@@ -82,14 +80,16 @@ const PostForm = ({ post, formType }) => {
             <button
               className="post-button"
               type="submit"
-              disabled={!!Object.values(errors).length}
+              // disabled={!!Object.values(errors).length}
             >
               {formType === "CreatePost" ? "Post" : "Update Post"}
             </button>
-            <button className="discard-button">Discard</button>
           </div>
         </div>
       </form>
+      <button className="discard-button" onClick={() => history.push("/")}>
+        Discard
+      </button>
     </div>
   );
 };

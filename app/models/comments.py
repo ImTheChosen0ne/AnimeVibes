@@ -32,6 +32,7 @@ class Comment(db.Model):
             "userId": self.userId,
             "user": self.user.to_dict_comment_user(),
             "comment": self.comment,
+            "commentReply": [comment.to_dict() for comment in self.comment_reply],
             "createdAt": self.formatted_createdAt(),
             "updatedAt": self.formatted_updatedAt()
        }
