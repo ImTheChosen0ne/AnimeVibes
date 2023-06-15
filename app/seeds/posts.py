@@ -1,9 +1,7 @@
-from app.models import db, Post, User, environment, SCHEMA
+from app.models import db, Post, environment, SCHEMA
 from sqlalchemy.sql import text
 
 def seed_posts():
-
-    user = User.query.get(1)
 
     post1 = Post(
         userId=1,

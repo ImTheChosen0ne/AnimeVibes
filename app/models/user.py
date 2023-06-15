@@ -15,6 +15,8 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     posts = db.relationship("Post", back_populates="user")
+    comments = db.relationship("Comment", back_populates="user")
+    comment_reply = db.relationship("CommentReply", back_populates="user_comment_reply")
 
     @property
     def password(self):
@@ -32,4 +34,10 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email
+        }
+
+    def to_dict_comment_user(self):
+        return {
+            'id': self.id,
+            'username': self.username
         }

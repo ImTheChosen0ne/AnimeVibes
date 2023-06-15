@@ -3,11 +3,16 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import DeletePost from "../../components/DeletePost";
 import OpenModalButton from "../../components/OpenModalButton";
-
+import "./ProfilePage.css";
 const ProfilePage = () => {
   const posts = Object.values(useSelector((state) => state.posts));
   const sessionUser = useSelector((state) => state.session.user);
   const history = useHistory();
+  const [isPlaying, setIsPlaying] = useState(true);
+
+  const togglePlay = () => {
+    setIsPlaying(!isPlaying);
+  };
 
   const currentUserPosts = posts.filter(
     (post) => post.userId === sessionUser.id
@@ -21,23 +26,30 @@ const ProfilePage = () => {
       <div className="user-videos">
         {currentUserPosts.map((post) => (
           <div key={post.id}>
-            <div>
-              {post.caption}
-              <video src={post.video} width="640" height="500" />
-            </div>
-            <div>
-              <button
-                onClick={() => history.push(`/posts/${post.id}/edit`)}
-                className="edit-post-button"
-              >
-                Update Post
-              </button>
-            </div>
-            <div>
-              <OpenModalButton
-                buttonText="Delete Product"
-                modalComponent={<DeletePost postId={post.id} />}
+            <div className="video">
+              <video
+                src={post?.video}
+                // autoPlay={isPlaying}
+                playsInline={true}
+                controls
+                onClick={togglePlay}
               />
+            </div>
+            <div className="buttons">
+              <div>
+                <button
+                  onClick={() => history.push(`/posts/${post.id}/edit`)}
+                  className="edit-post-button"
+                >
+                  Update Post
+                </button>
+              </div>
+              <div>
+                <OpenModalButton
+                  buttonText="Delete Product"
+                  modalComponent={<DeletePost postId={post.id} />}
+                />
+              </div>
             </div>
           </div>
         ))}

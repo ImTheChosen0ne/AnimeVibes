@@ -7,10 +7,11 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import SplashPage from "./pages/SplashPage";
 import SinglePost from "./components/SinglePost";
-import ProtectedRoute from "./components/auth/ProtectedRoute"
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 import CreatePostForm from "./components/CreatePost";
 import EditPostForm from "./components/EditPost";
 import ProfilePage from "./pages/ProfilePage";
+import SplashSideBar from "./components/SplashSideBar";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,35 +22,40 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route exact path="/" >
-            <SplashPage />
-          </Route>
-          <ProtectedRoute exact path="/posts/new">
-            <CreatePostForm />
-          </ProtectedRoute>
-          <ProtectedRoute exact path='/posts/:postId/edit'>
-            <EditPostForm />
-          </ProtectedRoute>
-          <Route exact path="/posts/:postId" >
-            <SinglePost />
-          </Route>
-          <Route exact path='/users/profile'>
-            <ProfilePage />
-          </Route>
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route>
-            <h1>Page Not Found</h1>
-          </Route>
-        </Switch>
-      )}
+      <div className="content-container">
+        <Navigation isLoaded={isLoaded} />
+        <div className="splash">
+        <SplashSideBar isLoaded={isLoaded} />
+        {isLoaded && (
+          <Switch>
+            <Route exact path="/">
+              <SplashPage />
+            </Route>
+            <ProtectedRoute exact path="/posts/new">
+              <CreatePostForm />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/posts/:postId/edit">
+              <EditPostForm />
+            </ProtectedRoute>
+            <Route exact path="/posts/:postId">
+              <SinglePost />
+            </Route>
+            <Route exact path="/users/profile">
+              <ProfilePage />
+            </Route>
+            <Route path="/login">
+              <LoginFormPage />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+            <Route>
+              <h1>Page Not Found</h1>
+            </Route>
+          </Switch>
+        )}
+        </div>
+      </div>
     </>
   );
 }
