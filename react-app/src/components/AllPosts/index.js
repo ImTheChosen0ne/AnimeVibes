@@ -18,19 +18,26 @@ function AllPosts() {
   }, [dispatch]);
 
   return (
-    <div>
-        <div>
-            {posts.map((post) => (
-              <div key={post.id}>
-                  <NavLink to={`/posts/${post.id}`}>
-                  <div>
-                    <div>{post.caption}</div>
-                    <video src={post.video} width="640" height="500" playsInline={true} controls onClick={togglePlay}/>
-                  </div>
-                  </NavLink>
-              </div>
-            ))}
+    <div className="all-posts">
+      <div>
+        {posts.map((post) => (
+          <div key={post.id} className="post">
+            <NavLink to={`/posts/${post.id}`} className="post-data">
+                <div>
+                  <p>{post.user.username}</p>
+                  <p className="caption">{post.caption}</p>
+                </div>
+                <video
+                  src={post.video}
+                  // autoPlay={isPlaying}
+                  playsInline={true}
+                  controls
+                  onClick={togglePlay}
+                />
+            </NavLink>
           </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,16 +1,13 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 import "./SplashSideBar.css";
 
 const SplashSideBar = () => {
-  const dispatch = useDispatch();
-
   return (
     <div className="side-bar-container">
       <div>
-        <ul className="side-bar">
+        <ul className="side-bar-links">
           <li>
             <NavLink exact to="/">
               For you
@@ -22,6 +19,9 @@ const SplashSideBar = () => {
             </NavLink>
           </li>
         </ul>
+      </div>
+      <div className="followers">
+        <h5>Following accounts</h5>
       </div>
       <div className="footer">
         About info

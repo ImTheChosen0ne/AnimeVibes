@@ -1,4 +1,26 @@
 .splash {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    margin-right: 1vw;
+    align-self: center;
+    width: 100vw;
+    max-width: 100vw;
+    flex: 1 1 auto;
+  }
+
+.splash-posts {
+    margin-right: 24px;
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    min-width: 420px;
+    flex-shrink: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.splash-side-bar {
+    display: flex;
 }
