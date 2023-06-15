@@ -35,7 +35,7 @@ def seed_comment_relpies():
 
 def undo_comment_replies():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.comment_replies RESTART IDENTITY CASCADE;")
+        db.session.execute(f"TRUNCATE table {SCHEMA}.comment_reply RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute(text("DELETE FROM comment_replies"))
+        db.session.execute(text("DELETE FROM comment_reply"))
     db.session.commit()
