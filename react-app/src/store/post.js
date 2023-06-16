@@ -218,6 +218,10 @@ const postsReducer = (state = initialState, action) => {
       newState = { ...state };
       newState[action.editPost.id] = action.editPost;
       return newState;
+    case DELETE_POST:
+      newState = { ...state}
+      delete newState[action.postId]
+      return newState
     case CREATE_COMMENT:
       newState = { ...state };
       postId = action.comment.comment.postId;
@@ -276,16 +280,16 @@ const postsReducer = (state = initialState, action) => {
     //   newPost.comments = [...post.comments];
     //   newPost.comments[index] = action.comment;
     //   return newState;
-    // case DELETE_REPLY_COMMENT:
-    //   newState = { ...state };
-    //   console.log(action.comment)
-    //   postId = action.comment.commentId;
-    //   post = newState[postId];
-    //   newPost = { ...post };
-    //   newState[postId] = newPost;
-    //   index = post.comments.findIndex((reply) => reply.id === action.comment.id);
-    //   newPost.comments = [...post.comments];
-    //   newPost.comments.splice(index, 1);
+    case DELETE_REPLY_COMMENT:
+      newState = { ...state };
+      console.log(action.comment)
+      postId = action.comment.commentId;
+      post = newState[postId];
+      newPost = { ...post };
+      newState[postId] = newPost;
+      index = post.comments.findIndex((reply) => reply.id === action.comment.id);
+      newPost.comments = [...post.comments];
+      newPost.comments.splice(index, 1);
     default:
       return state;
   }
