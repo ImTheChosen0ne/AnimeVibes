@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from "react";
+import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPosts } from "../../store/post";
-import { useHistory, useParams } from "react-router-dom";
+// import { fetchComments } from "../../store/comment";
+import OpenModalButton from "../../components/OpenModalButton";
+import DeleteComment from "../DeleteComment";
+import CreateComment from "../CreateComment";
+import EditComment from "../EditComment";
+import EditReplyComment from "../EditComment/editReplyComment";
+import DeleteReplyComment from "../DeleteComment/deleteReplyComment";
+import CreateReplyComment from "../CreateComment/createReplyComment";
 import "./SinglePost.css";
+import { createPortal } from "react-dom";
 
 const SinglePost = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { postId } = useParams();
   const post = useSelector((state) => state.posts[postId]);
-  const sessionUser = useSelector((state) => state.session.user);
+  // const comments = Object.values(useSelector((state) => state.comments));
+  // const sessionUser = useSelector((state) => state.session.user);
+
+  // const postComments = comments.filter((comment) => String(comment.postId) == postId);
+
   const [isPlaying, setIsPlaying] = useState(true);
   const [comment, setComment] = useState("");
 
@@ -30,6 +43,7 @@ const SinglePost = () => {
 
   useEffect(() => {
     dispatch(fetchPosts());
+    // dispatch(fetchComments());
   }, [dispatch]);
 
   return (
@@ -49,25 +63,64 @@ const SinglePost = () => {
         </div>
         <div>
           {commentsLength()}
-          <label>
-            <input
-              placeholder="Add Comment..."
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-            />
-          </label>
+          <CreateComment postId={postId} />
         </div>
         <div>
           {post?.comments.map((comment) => (
             <div key={comment.id} className="comment">
               <div>
-                <p>{comment.comment}</p>
+                <p>{comment?.comment}</p>
+              </div>
+              <div className="buttons">
+                <div>
+                  <OpenModalButton
+                    buttonText="Edit comment"
+                    modalComponent={
+                      <EditComment postId={postId} comment={comment} />
+                    }
+                  />
+                </div>
+                <div>
+                  <OpenModalButton
+                    buttonText="Delete comment"
+                    modalComponent={
+                      <DeleteComment postId={postId} commentId={comment?.id} />
+                    }
+                  />
+                </div>
               </div>
               <div>
-                {comment.commentReply.map((reply) => (
-                  <div key={reply.id} className="comment-reply">
+                <CreateReplyComment commentId={comment?.id} postId={comment?.postId}/>
+              </div>
+              <div>
+                {comment?.commentReply.map((reply) => (
+                  <div key={reply?.id} className="comment-reply">
                     <div>
-                      <p>{reply.comment}</p>
+                      <p>{reply?.comment}</p>
+                    </div>
+                    <div className="buttons">
+                      <div>
+                        <OpenModalButton
+                          buttonText="Edit comment"
+                          modalComponent={
+                            <EditReplyComment
+                              commentId={reply?.commentId}
+                              comment={reply}
+                            />
+                          }
+                        />
+                      </div>
+                      <div>
+                        <OpenModalButton
+                          buttonText="Delete comment"
+                          modalComponent={
+                            <DeleteReplyComment
+                              commentId={reply?.commentId}
+                              replycommentId={reply?.id}
+                            />
+                          }
+                        />
+                      </div>
                     </div>
                   </div>
                 ))}

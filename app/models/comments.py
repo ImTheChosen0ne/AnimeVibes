@@ -18,7 +18,6 @@ class Comment(db.Model):
     post = db.relationship("Post", back_populates="comments")
     comment_reply = db.relationship("CommentReply", back_populates="comment_reply", cascade="all, delete-orphan")
 
-
     def formatted_updatedAt(self):
         return self.updatedAt.strftime('%B-%d')
 

@@ -29,7 +29,6 @@ class CommentReply(db.Model):
             "commentId": self.commentId,
             "userId": self.userId,
             "comment": self.comment,
-            # "comment_rely": self.user_comment_rely,
             "createdAt": self.formatted_createdAt(),
             "updatedAt": self.formatted_updatedAt()
        }
