@@ -182,9 +182,9 @@ export const editReplyCommentThunk =
   };
 
 export const deleteReplyCommentThunk =
-  (commentId, replyCommentId) => async (dispatch) => {
+  (commentId, postId, replyCommentId) => async (dispatch) => {
     const response = await fetch(
-      `/api/comments/${commentId}/replyComments/${replyCommentId}`,
+      `/api/posts/${postId}/comments/${commentId}/replyComments/${replyCommentId}`,
       {
         method: "DELETE",
       }
@@ -192,7 +192,7 @@ export const deleteReplyCommentThunk =
 
     if (response.ok) {
       const comment = await response.json();
-      dispatch(deleteReplyComment(commentId, comment));
+      dispatch(deleteReplyComment(postId, commentId, comment));
     }
   };
 
@@ -282,14 +282,16 @@ const postsReducer = (state = initialState, action) => {
     //   return newState;
     case DELETE_REPLY_COMMENT:
       newState = { ...state };
-      console.log(action.comment)
-      postId = action.comment.commentId;
-      post = newState[postId];
+      postId = action.comment;
+      post = state[postId];
       newPost = { ...post };
       newState[postId] = newPost;
-      index = post.comments.findIndex((reply) => reply.id === action.comment.id);
+      index = post.comments.findIndex(
+        (comment) => comment.id === action.comment.id
+      );
       newPost.comments = [...post.comments];
       newPost.comments.splice(index, 1);
+      return newState;
     default:
       return state;
   }

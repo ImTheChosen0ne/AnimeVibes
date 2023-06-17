@@ -17,6 +17,18 @@ class Post(db.Model):
     user = db.relationship("User", back_populates="posts")
     comments = db.relationship("Comment", back_populates="post", cascade="all, delete-orphan")
 
+    post_favorites = db.relationship(
+        "User",
+        secondary='favorites',
+        back_populates="user_favorites",
+    )
+
+    post_likes = db.relationship(
+        "User",
+        secondary='likes',
+        back_populates="user_likes",
+    )
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -25,6 +37,25 @@ class Post(db.Model):
             "video": self.video,
             "user": self.user.to_dict(),
             "comments": [comment.to_dict() for comment in self.comments],
+            # "likes": self.post_likes,
+            "createdAt": self.createdAt,
+            "updatedAt": self.updatedAt
+       }
+
+    def to_dict_favorites(self):
+        return {
+            "id": self.id,
+            "userId": self.userId,
+            "video": self.video,
+            "createdAt": self.createdAt,
+            "updatedAt": self.updatedAt
+       }
+
+    def to_dict_likes(self):
+        return {
+            "id": self.id,
+            "userId": self.userId,
+            "video": self.video,
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt
        }

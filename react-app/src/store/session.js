@@ -1,6 +1,12 @@
 // constants
 const SET_USER = "session/SET_USER";
 const REMOVE_USER = "session/REMOVE_USER";
+const ADD_FAVORITE = "session/ADD_FAVORITE"
+const DELETE_FAVORITE = "session/DELETE_FAVORITE"
+const ADD_LIKE = "session/ADD_LIKE"
+const DELETE_LIKE = "session/DELETE_LIKE"
+const ADD_FOLLOWER = "session/ADD_FOLLOWER"
+const REMOVE_FOLLOWER = "session/REMOVE_FOLLOWER"
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -11,7 +17,37 @@ const removeUser = () => ({
 	type: REMOVE_USER,
 });
 
-const initialState = { user: null };
+const addFavorite = (user) => ({
+	type: ADD_FAVORITE,
+	user
+})
+
+const deleteFavorite = (user) => ({
+	type: DELETE_FAVORITE,
+	user
+})
+
+const addLike = (user) => ({
+	type: ADD_LIKE,
+	user
+})
+
+const deleteLike = (user) => ({
+	type: DELETE_LIKE,
+	user
+})
+
+const addFollower = (follower) => ({
+	type: ADD_FOLLOWER,
+	follower
+});
+
+const removeFollower = (follower) => ({
+	type: REMOVE_FOLLOWER,
+	follower
+});
+
+const initialState = { user: null, followers: [], };
 
 export const authenticate = () => async (dispatch) => {
 	const response = await fetch("/api/auth/", {
@@ -94,12 +130,114 @@ export const signUp = (username, email, password) => async (dispatch) => {
 	}
 };
 
+export const addFavoriteThunk = (postId, userId) => async (dispatch) => {
+	const response = await fetch(`/api/users/${userId}/favorites/posts/${postId}`,{
+        method:'PUT',
+        headers:{ "Content-Type" : 'application/json' },
+    })
+    if(response.ok) {
+        const user = await response.json();
+        dispatch(addFavorite(user))
+        return user;
+    };
+}
+
+export const deleteFavoriteThunk = (postId, userId) => async (dispatch) => {
+	const response = await fetch(`/api/users/${userId}/favorites/posts/${postId}`,{
+        method:'DELETE',
+	})
+	if(response.ok) {
+        const user = await response.json();
+        dispatch(deleteFavorite(user))
+        return user;
+    };
+}
+
+export const addLikeThunk = (postId, userId) => async (dispatch) => {
+	const response = await fetch(`/api/users/${userId}/likes/posts/${postId}`,{
+        method:'PUT',
+        headers:{ "Content-Type" : 'application/json' },
+    })
+    if(response.ok) {
+        const user = await response.json();
+        dispatch(addLike(user))
+        return user;
+    };
+}
+
+export const deleteLikeThunk = (postId, userId) => async (dispatch) => {
+	const response = await fetch(`/api/users/${userId}/likes/posts/${postId}`,{
+        method:'DELETE',
+	})
+	if(response.ok) {
+        const user = await response.json();
+        dispatch(deleteLike(user))
+        return user;
+    };
+}
+
+export const addFollowerThunk = (userId, followerId) => async (dispatch) => {
+	const response = await fetch(`/api/users/${userId}/followers/${followerId}`, {
+		method: "POST",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	});
+
+	if (response.ok) {
+		const user = await response.json();
+		dispatch(addFollower(user));
+		return user;
+	}
+};
+
+export const removeFollowerThunk = (userId, followerId) => async (dispatch) => {
+	const response = await fetch(`/api/users/${userId}/followers/${followerId}`, {
+		method: "DELETE",
+		headers: {
+			"Content-Type": "application/json",
+		},
+	});
+
+	if (response.ok) {
+		const user = await response.json();
+		dispatch(removeFollower(user));
+		return user;
+	}
+};
+
+
 export default function reducer(state = initialState, action) {
+	let newState = {};
+
 	switch (action.type) {
 		case SET_USER:
 			return { user: action.payload };
 		case REMOVE_USER:
 			return { user: null };
+		case ADD_FAVORITE:
+			return { ...action.user}
+		case DELETE_FAVORITE:
+			return { ...action.user}
+		case ADD_LIKE:
+			return { ...action.user}
+		case DELETE_LIKE:
+			return { ...action.user}
+		case ADD_FOLLOWER:
+			newState = { ...state, user: { ...state.user, followers: [...state.user.followers, action.follower.user]}};
+			return newState;
+			case REMOVE_FOLLOWER:
+				const updatedFollowers = state.user.followers.filter(
+				  (follower) => follower.id !== action.follower.user.id
+				);
+
+				return {
+				  ...state,
+				  user: {
+					...state.user,
+					followers: updatedFollowers
+				  }
+				};
 		default:
 			return state;
 	}

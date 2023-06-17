@@ -6,12 +6,13 @@
 
 .side-bar-links {
     padding-bottom: 8px;
+    border-bottom: 1px solid black;
+
 }
 
 .followers {
     padding: 16px 0;
     position: relative;
-    border-top: 1px solid black;
 }
 
 .footer {

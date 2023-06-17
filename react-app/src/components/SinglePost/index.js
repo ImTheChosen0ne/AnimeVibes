@@ -117,6 +117,7 @@ const SinglePost = () => {
                             <DeleteReplyComment
                               commentId={reply?.commentId}
                               replycommentId={reply?.id}
+                              postId={postId}
                             />
                           }
                         />

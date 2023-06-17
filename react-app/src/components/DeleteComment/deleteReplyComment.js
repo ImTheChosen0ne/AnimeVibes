@@ -5,14 +5,14 @@ import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 // import './DeleteReview.css'
 
-const DeleteReplyComment = ({replycommentId, commentId}) => {
+const DeleteReplyComment = ({postId, replycommentId, commentId}) => {
     const history = useHistory()
     const dispatch = useDispatch()
     const {closeModal} =  useModal();
 
     const handleSubmityes = async (e) => {
       e.preventDefault();
-      await dispatch(deleteReplyCommentThunk(replycommentId, commentId))
+      await dispatch(deleteReplyCommentThunk(postId, replycommentId, commentId))
       await closeModal()
     }
 

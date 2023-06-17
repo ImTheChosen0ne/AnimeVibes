@@ -135,7 +135,7 @@ def update_reply_comment(commentId, replyCommentId):
         print(form.errors)
 
 @post_routes.route('/<int:postId>/comments/<int:commentId>/replyComments/<int:replyCommentId>', methods = ["DELETE"])
-def delete_reply_comment(commentId, replyCommentId):
+def delete_reply_comment(postId, replyCommentId, commentId):
     commentReply = CommentReply.query.get(replyCommentId)
     deleted_comment_reply = {'commentReply': commentReply.to_dict()}
     db.session.delete(commentReply)
