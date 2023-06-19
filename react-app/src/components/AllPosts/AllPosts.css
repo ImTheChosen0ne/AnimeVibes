@@ -3,30 +3,174 @@
     flex-direction: row;
     align-items: flex-start;
     max-width: 692px;
-    height: 100vh;
+    height: unset;
     width: unset;
     padding: 20px 0;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(189, 188, 188);
+    position: relative;
 }
 
 .post-data {
     margin-left: 12px;
     width: 624px;
-    flex: 1 1 624px;
     height: 100%;
+    display: flex;
     flex-direction: column;
-    text-decoration: none;
-    color: black;
 }
 
 .caption {
-    font-size: 16px;
-    line-height: 22px;
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: unset;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-decoration: none;
+
 }
 
 .post-data video {
     display: block;
     width: 100%;
-    height: 90%;
+    height: 100%;
     object-fit: cover;
+}
+
+.avatar-img {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+}
+
+.span {
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 32px;
+    border-radius: 50%;
+    border-color: rgba(22, 24, 35, .12);
+    border-width: 0.5px;
+    cursor: pointer;
+    background-color: rgba(136, 136, 136, 0.5);
+}
+
+.splash-profile-pic{
+    /* width: 100%;
+    height: 100%; */
+    object-fit: cover;
+    /* max-width: 100%; */
+    display: block;
+}
+
+.information {
+    margin-right: 114px;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+.user-name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.follow-button {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    color: rgba(254, 44, 85, 1);
+    border-color: rgba(254, 44, 85, 1);
+    background-color: rgba(255, 255, 255, 1);
+    min-height: 28px;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    right: 0;
+    position: absolute;
+    top: 28px;
+    min-width: 88px;
+    padding: 0 10px;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    height: 100%;
+    margin: unset;
+}
+
+.video {
+    position: relative;
+    box-sizing: border-box;
+    -webkit-background-size: cover;
+    background-size: cover;
+    cursor: pointer;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-right: 20px;
+}
+
+
+.post-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.like-button, .favorite-button, .comment-button {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+
+.heart, .favorite, .comment-button  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+    border-radius: 50%;
+    transition: all ease-in-out 200ms;
+    background-color: rgba(22, 24, 35, .06);
+    margin-top: 8px;
+    margin-bottom: 6px;
+}
+
+.redheart {
+    color: rgb(222, 0, 0);
+}
+
+
+
+.yellowFavorite {
+    color: rgb(235, 203, 76);
 }

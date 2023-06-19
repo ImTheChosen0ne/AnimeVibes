@@ -25,7 +25,7 @@ const FollowButton = ({ sessionUser, post }) => {
   };
 
   return (
-    <button onClick={handleFollow}>
+    <button className="follow-button" onClick={handleFollow}>
       {!sessionUser ? "Follow" : followers?.some((follower) => follower.id === post.user.id) ? "Following" : "Follow"}
     </button>
   );
