@@ -26,6 +26,7 @@ const SplashSideBar = () => {
         <h5>Following accounts</h5>
         {sessionUser?.followers.slice(0, 10).map((user) => (
           <div key={user.id} className="followers">
+            <img src={user.profile_pic} />
             {user.username}
           </div>
         ))}

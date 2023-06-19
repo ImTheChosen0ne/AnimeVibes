@@ -41,10 +41,10 @@ const SinglePost = () => {
     return "New";
   };
 
-  useEffect(() => {
-    dispatch(fetchPosts());
-    // dispatch(fetchComments());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchPosts());
+  //   // dispatch(fetchComments());
+  // }, [dispatch]);
 
   return (
     <div className="single-post">
