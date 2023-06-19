@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-
+import { useHistory } from 'react-router-dom'
 import { addLikeThunk, deleteLikeThunk } from "../../store/session";
 
 
 
 const LikeButton = ({sessionUser, post }) => {
     const dispatch = useDispatch();
-
+    const history = useHistory()
     let [heartColor, setHeartColor] = useState("")
 
     if(!sessionUser) heartColor=""
@@ -18,14 +18,14 @@ const LikeButton = ({sessionUser, post }) => {
         }
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-      }, [heartColor]);
+    //   }, [heartColor]);
 
 
     const handleFavorite = async () => {
         if(!sessionUser){
-            window.alert("Please log in")
+            history.push("/login")
         }
 
         if(heartColor === "redheart"){

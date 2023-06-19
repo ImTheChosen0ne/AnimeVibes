@@ -7,6 +7,7 @@ const ADD_LIKE = "session/ADD_LIKE"
 const DELETE_LIKE = "session/DELETE_LIKE"
 const ADD_FOLLOWER = "session/ADD_FOLLOWER"
 const REMOVE_FOLLOWER = "session/REMOVE_FOLLOWER"
+const EDIT_PROFILE = "session/EDIT_PROFILE";
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -46,6 +47,11 @@ const removeFollower = (follower) => ({
 	type: REMOVE_FOLLOWER,
 	follower
 });
+
+const editProfile = (user) => ({
+	type: EDIT_PROFILE,
+	user,
+  });
 
 const initialState = { user: null, followers: [], };
 
@@ -206,6 +212,20 @@ export const removeFollowerThunk = (userId, followerId) => async (dispatch) => {
 	}
 };
 
+export const editProfileThunk = (user) => async (dispatch) => {
+	const response = await fetch(`/api/users/${user.id}`, {
+	  method: "PUT",
+	  headers: { "Content-Type": "application/json" },
+	  body: JSON.stringify(user),
+	});
+
+	if (response.ok) {
+	  const editedProfile = await response.json();
+	  dispatch(editProfile(editedProfile));
+	  return editedProfile;
+	}
+  };
+
 
 export default function reducer(state = initialState, action) {
 	let newState = {};
@@ -226,18 +246,13 @@ export default function reducer(state = initialState, action) {
 		case ADD_FOLLOWER:
 			newState = { ...state, user: { ...state.user, followers: [...state.user.followers, action.follower.user]}};
 			return newState;
-			case REMOVE_FOLLOWER:
-				const updatedFollowers = state.user.followers.filter(
-				  (follower) => follower.id !== action.follower.user.id
-				);
-
-				return {
-				  ...state,
-				  user: {
-					...state.user,
-					followers: updatedFollowers
-				  }
-				};
+		case REMOVE_FOLLOWER:
+			const updatedFollowers = state.user.followers.filter(
+				  (follower) => follower.id !== action.follower.user.id);
+			return { ...state, user: { ...state.user, followers: updatedFollowers}};
+		case EDIT_PROFILE:
+			case EDIT_PROFILE:
+				return { ...action.user }
 		default:
 			return state;
 	}

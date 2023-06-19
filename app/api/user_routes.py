@@ -1,6 +1,7 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import User, db, Post
+from app.forms import ProfileForm
 
 user_routes = Blueprint('users', __name__)
 
@@ -88,3 +89,22 @@ def remove_follower(userId, followerId):
         db.session.commit()
 
     return {'user': follower.to_dict()}
+
+@user_routes.route('/<int:userId>', methods=["PUT"])
+def edit_profile(userId):
+    user = User.query.get(userId)
+    form = ProfileForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        if form.data["name"]:
+            user.name = form.data["name"]
+        if form.data["profile_pic"]:
+            user.profile_pic = form.data["profile_pic"]
+        if form.data["bio"]:
+            user.bio = form.data["bio"]
+        db.session.commit()
+        return {'user': user.to_dict()}
+
+    if form.errors:
+        print(form.errors)

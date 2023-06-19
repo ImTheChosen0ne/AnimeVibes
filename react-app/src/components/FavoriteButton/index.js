@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-
+import { useHistory } from 'react-router-dom';
 import { addFavoriteThunk, deleteFavoriteThunk } from "../../store/session";
 
 
 const FavoriteButton = ({ sessionUser, post }) => {
     const dispatch = useDispatch();
+    const history = useHistory()
 
     let [favoriteColor, setfavoriteColor] = useState("")
 
@@ -17,14 +18,14 @@ const FavoriteButton = ({ sessionUser, post }) => {
         }
     }
 
-    useEffect(() => {
+    // useEffect(() => {
 
-      }, [favoriteColor]);
+    //   }, [favoriteColor]);
 
 
     const handleFavorite = async () => {
         if(!sessionUser){
-            window.alert("Please log in")
+            history.push("/login")
         }
 
         if(favoriteColor === "yellowFavorite"){

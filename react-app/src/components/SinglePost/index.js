@@ -89,7 +89,7 @@ const SinglePost = () => {
                   />
                 </div>
               </div>
-              <div>
+              {/* <div>
                 <CreateReplyComment commentId={comment?.id} postId={comment?.postId}/>
               </div>
               <div>
@@ -125,7 +125,7 @@ const SinglePost = () => {
                     </div>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
           ))}
         </div>

@@ -9,11 +9,11 @@ def seed_users():
     user_3 = User.query.get(3)
 
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
+        username='Demo', email='demo@aa.io', password='password', bio='testing')
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
+        username='marnie', email='marnie@aa.io', password='password', bio='testing', name="marnie")
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        username='bobbie', email='bobbie@aa.io', password='password', bio='testing', name="bobbie")
 
     demo.followers.append(marnie)
     demo.followers.append(bobbie)

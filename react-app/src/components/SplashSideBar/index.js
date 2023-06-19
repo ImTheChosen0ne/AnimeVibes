@@ -24,7 +24,7 @@ const SplashSideBar = () => {
       </div>
       <div className="followers">
         <h5>Following accounts</h5>
-        {sessionUser?.followers.map((user) => (
+        {sessionUser?.followers.slice(0, 10).map((user) => (
           <div key={user.id} className="followers">
             {user.username}
           </div>

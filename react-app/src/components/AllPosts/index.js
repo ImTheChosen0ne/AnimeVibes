@@ -26,12 +26,10 @@ function AllPosts() {
       <div>
         {posts.map((post) => (
           <div key={post?.id} className="post">
-         {!sessionUser ? (
-            <FollowButton post={post} sessionUser={sessionUser} />
-          ) : sessionUser.id !== post.user?.id && (
-            <FollowButton post={post} sessionUser={sessionUser} />
-          )}
             <NavLink to={`/posts/${post.id}`} className="post-data">
+              <div>
+                <img src={post.user.profile_pic}/>
+              </div>
               <div>
                 <p>{post.user.username}</p>
                 <p className="caption">{post.caption}</p>
@@ -42,9 +40,14 @@ function AllPosts() {
                 playsInline={true}
                 controls
                 onClick={togglePlay}
-              />
+                />
             </NavLink>
             <div>
+                {!sessionUser ? (
+                   <FollowButton post={post} sessionUser={sessionUser} />
+                 ) : sessionUser.id !== post.user?.id && (
+                   <FollowButton post={post} sessionUser={sessionUser} />
+                 )}
               <div>
                 <LikeButton sessionUser={sessionUser} post={post} />
               </div>

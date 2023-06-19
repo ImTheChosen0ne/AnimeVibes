@@ -16,6 +16,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    profile_pic = db.Column(db.String, default="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+    bio = db.Column(db.String(255), default="No bio yet.")
+    name = db.Column(db.String(100), default="Set a profile name.")
 
     posts = db.relationship("Post", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
@@ -60,6 +63,9 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
+            'profile_pic': self.profile_pic,
+            'bio': self.bio,
+            'name': self.name,
             'user_favorites': [favorite.to_dict_favorites() for favorite in self.user_favorites],
             'user_likes': [like.to_dict_likes() for like in self.user_likes],
             'followers': self.followers_to_dict()

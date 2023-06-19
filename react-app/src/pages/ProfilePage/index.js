@@ -7,7 +7,7 @@ import UserPosts from "../../components/UserPosts";
 import UserFavorties from "../../components/FavortiePosts";
 import UserLikes from "../../components/LikesPosts";
 import { fetchPosts } from "../../store/post";
-
+import EditProfile from "../../components/EditProfile";
 import "./ProfilePage.css";
 
 const ProfilePage = () => {
@@ -24,6 +24,7 @@ const ProfilePage = () => {
     setActiveTab(tab);
   };
 
+
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
@@ -32,6 +33,15 @@ const ProfilePage = () => {
     <div>
       <div className="user-info">
         <h1>{sessionUser.username}</h1>
+        <div>{sessionUser.name}</div>
+        <img src={sessionUser.profile_pic} alt="profile picture" />
+        <div>{sessionUser.bio}</div>
+        <div>
+          <OpenModalButton
+            buttonText="Edit profile"
+            modalComponent={<EditProfile sessionUser={sessionUser} />}
+          />
+        </div>
       </div>
       <div className="user-videos">
         <button onClick={() => handleTabClick("videos")}>Videos</button>
