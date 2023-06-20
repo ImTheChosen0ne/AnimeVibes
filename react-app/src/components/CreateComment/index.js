@@ -3,9 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createCommentThunk } from "../../store/post";
 // import { createCommentThunk } from "../../store/comment";
-
+import "./CreateComment.css";
 import { useModal } from "../../context/Modal";
-
 
 const CreateComment = ({ postId }) => {
   const dispatch = useDispatch();
@@ -30,32 +29,34 @@ const CreateComment = ({ postId }) => {
 
     const errors = {};
     if (comment === "") {
-      errors.comment = "Review is required";
+      errors.comment = "Comment is required";
     }
+    setErrors(errors);
+
     setComment("");
     await dispatch(createCommentThunk(Createdcomment, postId));
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <h4 className="formErrors">{errors.comment}</h4>
-          <input
-              placeholder="Add Comment..."
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-          />
-        </label>
-
+      <form onSubmit={handleSubmit} className="comment-form">
+        <input
+          className="input"
+          placeholder={sessionUser ? "Add Comment..." : "Log in to comment"}
+          value={comment}
+          onChange={(e) => setComment(e.target.value)}
+          disabled={!sessionUser}
+        />
         <button
-          className="createbutton-product"
+          className="post-comment"
           type="submit"
-        //   disabled={!!Object.values(errors).length}
+          //   disabled={!!Object.values(errors).length}
+          disabled={!sessionUser}
         >
-          Add a comment...
+          Post
         </button>
       </form>
+        <h5 className="formErrors">{errors.comment}</h5>
     </div>
   );
 };

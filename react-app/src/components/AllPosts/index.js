@@ -21,6 +21,8 @@ function AllPosts() {
     dispatch(fetchPosts());
   }, [dispatch]);
 
+  posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  
   return (
     <div className="all-posts">
       <div>
@@ -73,11 +75,11 @@ function AllPosts() {
                       <FavoriteButton sessionUser={sessionUser} post={post} />
                     </div>
                     <div className="comment-button">
-                      {/* <NavLink to={`/posts/${post.id}`}> */}
+                      <NavLink to={`/posts/${post.id}`}>
                       <button className="comment-button">
                         <i className="fa-sharp fa-solid fa-comment-dots"></i>
                       </button>
-                      {/* </NavLink> */}
+                      </NavLink>
                     </div>
                   </div>
                 </div>

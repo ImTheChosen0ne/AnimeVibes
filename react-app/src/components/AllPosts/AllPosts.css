@@ -28,7 +28,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     text-decoration: none;
-
+    margin-top: 4px;
+    margin-bottom: 12px;
 }
 
 .post-data video {

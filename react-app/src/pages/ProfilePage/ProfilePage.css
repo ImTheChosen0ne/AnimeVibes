@@ -3,3 +3,133 @@ img {
     width: 50px;
     border-radius: 100%;
 }
+
+.profile-page {
+    display: flex;
+    padding: 32px 24px 36px;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: calc(-59px + 100vh);
+    margin: 0px auto;
+    box-sizing: content-box;
+}
+
+.user-info {
+    position: relative;
+    flex: 0 0 auto;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    max-width: 624px;
+    padding-right: 92px;
+}
+
+.user-data {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.user-img {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: inline-block;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    color: #fff;
+    white-space: nowrap;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 32px;
+    border-radius: 50%;
+    background-color: rgba(136, 136, 136, 0.5);
+    border-color: rgba(255, 255, 255, .12);
+    border-width: 0.5px;
+    cursor: pointer;
+    background-color: rgba(136, 136, 136, 0.5);
+}
+
+.user-img img {
+    object-fit: cover;
+    max-width: 100%;
+    display: block;
+    width: 116px;
+    height: 116px;
+}
+
+.user-text {
+    flex: 1 1 0%;
+    cursor: pointer;
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 20px;
+}
+
+.user-text h1 {
+    font-weight: 700;
+    font-size: 32px;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-align: left;
+}
+
+.user-text h5 {
+    font-weight: 600;
+    font-size: 18px;
+    height: 25px;
+    overflow: hidden;
+    max-width: 450px;
+    white-space: nowrap;
+    display: flex;
+    align-items: flex-end;
+}
+
+.edit-profile {
+    position: relative;
+    width: 136px;
+    height: 36px;
+    padding: 0px;
+    margin: 16px 0px 0px;
+}
+
+.edit-profile button {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    color: rgb(22, 24, 35);
+    border-color: rgba(22, 24, 35, 0.12);
+    background-color: rgb(255, 255, 255);
+    min-height: 36px;
+    font-weight: 600;
+    position: relative;
+    justify-content: center;
+    cursor: pointer;
+    box-sizing: border-box;
+    height: 36px;
+    font-size: 14.5px;
+    display: flex;
+    align-items: center;
+    padding: 0px 16px;
+    min-width: 136px;
+    line-height: 24px;
+    margin-right: 8px;
+}
+
+.edit-profile i {
+    width: 20px;
+    height: 20px;
+    color: rgb(22, 24, 35);
+    margin-right: 6px;
+}
+
+.button-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

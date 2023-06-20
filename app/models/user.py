@@ -75,6 +75,7 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
+            'profile_pic': self.profile_pic,
         }
 
     def followers_to_dict(self):

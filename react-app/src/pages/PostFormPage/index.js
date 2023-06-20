@@ -41,7 +41,11 @@ const PostForm = ({ post, formType }) => {
     if (video === "") {
       errors.video = "Video is required";
     }
-
+    if (
+      video &&
+      !video.endsWith(".mp4")
+    )
+      errors.video = "Video URL must end in .mp4";
     setErrors(errors);
   };
 
@@ -63,10 +67,9 @@ const PostForm = ({ post, formType }) => {
                 onChange={(e) => setVideo(e.target.value)}
               />
             </label>
-            <div></div>
+          </div>
             <h4>Caption</h4>
             <h4 className="formErrors">{errors?.caption}</h4>
-          </div>
           <label>
             <textarea
               rows="4"
