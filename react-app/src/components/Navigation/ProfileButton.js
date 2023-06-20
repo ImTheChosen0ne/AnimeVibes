@@ -52,7 +52,7 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li className="profile-page">
+            <li className="profile-page-button">
               <NavLink exact to="/users/profile">
                 View Profile
               </NavLink>

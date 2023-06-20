@@ -24,31 +24,48 @@ const ProfilePage = () => {
     setActiveTab(tab);
   };
 
+  // const numFollowing = () => {
+  //   return sessionUser.followers.length
+  // }
 
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="profile-page">
       <div className="user-info">
-        <h1>{sessionUser.username}</h1>
-        <div>{sessionUser.name}</div>
-        <img src={sessionUser.profile_pic} alt="profile picture" />
-        <div>{sessionUser.bio}</div>
-        <div>
-          <OpenModalButton
-            buttonText="Edit profile"
-            modalComponent={<EditProfile sessionUser={sessionUser} />}
-          />
+        <div className="user-data">
+          <div className="user-img">
+            <img src={sessionUser.profile_pic} alt="profile picture" />
+          </div>
+          <div className="user-text">
+            <h1>{sessionUser.username}</h1>
+            <h5>{sessionUser.name}</h5>
+            <div className="edit-profile">
+              <OpenModalButton
+                buttonText={
+                  <div className="button-text">
+                    <i className="fa-regular fa-pen-to-square"></i> Edit profile
+                  </div>
+                }
+                modalComponent={<EditProfile sessionUser={sessionUser} />}
+                className="edit-profile-button"
+              />
+            </div>
+          </div>
         </div>
+        {/* <div>{numFollowing()} Following</div> */}
+        <div>{sessionUser.bio}</div>
       </div>
       <div className="user-videos">
         <button onClick={() => handleTabClick("videos")}>Videos</button>
         <button onClick={() => handleTabClick("favorites")}>Favorites</button>
         <button onClick={() => handleTabClick("likes")}>Likes</button>
         {activeTab === "videos" && <UserPosts posts={currentUserPosts} />}
-        {activeTab === "favorites" && <UserFavorties sessionUser={sessionUser} />}
+        {activeTab === "favorites" && (
+          <UserFavorties sessionUser={sessionUser} />
+        )}
         {activeTab === "likes" && <UserLikes sessionUser={sessionUser} />}
       </div>
     </div>
