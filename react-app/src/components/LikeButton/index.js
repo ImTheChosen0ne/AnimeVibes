@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, ulRef } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { addLikeThunk, deleteLikeThunk } from "../../store/session";
+import LoginFormModal from "../LoginFormModal";
+import OpenModalButton from "../OpenModalButton";
 
 const LikeButton = ({ sessionUser, post }) => {
   const dispatch = useDispatch();
@@ -16,15 +18,15 @@ const LikeButton = ({ sessionUser, post }) => {
     }
   }
 
-  // useEffect(() => {
+  const [showMenu, setShowMenu] = useState(false);
 
-  //   }, [heartColor]);
+  const closeMenu = (e) => {
+    if (!ulRef.current.contains(e.target)) {
+      setShowMenu(false);
+    }
+  };
 
   const handleFavorite = async () => {
-    if (!sessionUser) {
-      history.push("/login");
-    }
-
     if (heartColor === "redheart") {
       await dispatch(deleteLikeThunk(post?.id, sessionUser?.id));
       setHeartColor("");
@@ -35,13 +37,36 @@ const LikeButton = ({ sessionUser, post }) => {
   };
 
   return (
-    <button onClick={handleFavorite} className={`like-button ${heartColor}`}>
-      <div className="heart">
-        <i
-          className={heartColor ? "fa-solid fa-heart" : "fa-regular fa-heart"}
+    <div className={`like-button ${heartColor}`}>
+      {!sessionUser ? (
+        <OpenModalButton
+          buttonText={
+            <div className="heart">
+              <i
+                className={
+                  heartColor ? "fa-solid fa-heart" : "fa-regular fa-heart"
+                }
+              />
+            </div>
+          }
+          onItemClick={closeMenu}
+          modalComponent={<LoginFormModal />}
         />
-      </div>
-    </button>
+      ) : (
+        <button
+          onClick={handleFavorite}
+          className={`like-button ${heartColor}`}
+        >
+          <div className="heart">
+            <i
+              className={
+                heartColor ? "fa-solid fa-heart" : "fa-regular fa-heart"
+              }
+            />
+          </div>
+        </button>
+      )}
+    </div>
   );
 };
 

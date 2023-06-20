@@ -27,9 +27,9 @@ const DeletePost = ({postId}) => {
 
     return(
 
-      <div className="log-in-modal delete-product-modal">
+      <div className="log-in-modal delete-post-modal">
         <h1>Confirm Delete</h1>
-        <h4>Are you sure you want to remove this product from the listings?</h4>
+        <h4>Are you sure you want to remove this post?</h4>
         <form>
           <div className="delete-buttons">
             <button  onClick={handleSubmityes}>Yes </button>

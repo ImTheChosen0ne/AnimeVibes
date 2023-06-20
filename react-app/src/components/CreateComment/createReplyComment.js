@@ -28,7 +28,7 @@ const CreateReplyComment = ({postId, commentId }) => {
 
     const errors = {};
     if (comment === "") {
-      errors.comment = "Review is required";
+      errors.comment = "Comment is required";
     }
     setComment("");
     await dispatch(createReplyCommentThunk(postId, commentId, createdRelyComment));
@@ -48,7 +48,7 @@ const CreateReplyComment = ({postId, commentId }) => {
         </label>
 
         <button
-          className="createbutton-product"
+          className="createbutton-post"
           type="submit"
         //   disabled={!!Object.values(errors).length}
         >

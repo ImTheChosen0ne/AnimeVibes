@@ -1,21 +1,20 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom'
+import React, { useState, ulRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { addFollowerThunk, removeFollowerThunk } from "../../store/session";
-import { fetchPosts } from '../../store/post';
+import { fetchPosts } from "../../store/post";
+import LoginFormModal from "../LoginFormModal";
+import OpenModalButton from "../OpenModalButton";
 
 const FollowButton = ({ sessionUser, post }) => {
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
   const followers = useSelector((state) => state.session.user?.followers);
   const isFollowing = sessionUser?.followers.find(
     (follower) => follower.id === post.user.id
   );
 
   const handleFollow = () => {
-    if (!sessionUser) {
-      history.push("/login")
-      return;
-    }
 
     if (isFollowing) {
       dispatch(removeFollowerThunk(sessionUser.id, post.user.id));
@@ -24,10 +23,38 @@ const FollowButton = ({ sessionUser, post }) => {
     }
   };
 
+  const [showMenu, setShowMenu] = useState(false);
+
+  const closeMenu = (e) => {
+    if (!ulRef.current.contains(e.target)) {
+      setShowMenu(false);
+    }
+  };
+
   return (
-    <button className="follow-button" onClick={handleFollow}>
-      {!sessionUser ? "Follow" : followers?.some((follower) => follower.id === post.user.id) ? "Following" : "Follow"}
-    </button>
+    <div className="follow-button">
+      {!sessionUser ? (
+        <OpenModalButton
+          buttonText={
+            !sessionUser
+              ? "Follow"
+              : followers?.find((follower) => follower.id === post.user.id)
+              ? "Following"
+              : "Follow"
+          }
+          onItemClick={closeMenu}
+          modalComponent={<LoginFormModal />}
+        />
+      ) : (
+        <button onClick={handleFollow}>
+          {!sessionUser
+            ? "Follow"
+            : followers?.find((follower) => follower.id === post.user.id)
+            ? "Following"
+            : "Follow"}
+        </button>
+      )}
+    </div>
   );
 };
 

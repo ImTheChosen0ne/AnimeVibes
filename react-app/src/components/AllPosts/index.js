@@ -5,24 +5,27 @@ import { fetchPosts } from "../../store/post";
 import LikeButton from "../LikeButton";
 import FavoriteButton from "../FavoriteButton";
 import FollowButton from "../FollowButton";
+import { fetchUsers } from "../../store/user";
 import "./AllPosts.css";
 
 function AllPosts() {
   const dispatch = useDispatch();
   const posts = Object.values(useSelector((state) => state.posts));
-  const [isPlaying, setIsPlaying] = useState(true);
   const sessionUser = useSelector((state) => state.session.user);
+  const [isPlaying, setIsPlaying] = useState(true);
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
   };
 
+
   useEffect(() => {
     dispatch(fetchPosts());
+    dispatch(fetchUsers());
   }, [dispatch]);
 
   posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-  
+
   return (
     <div className="all-posts">
       <div>
@@ -32,10 +35,12 @@ function AllPosts() {
               <div className="avatar">
                 <div className="avatar-img">
                   <span className="span">
-                    <img
-                      className="splash-profile-pic"
-                      src={post.user.profile_pic}
-                    />
+                    <NavLink to={sessionUser && sessionUser.id === post.userId ? "/users/profile" : `/users/profile/${post.user.id}`}>
+                      <img
+                        className="splash-profile-pic"
+                        src={post.user.profile_pic}
+                      />
+                    </NavLink>
                   </span>
                 </div>
               </div>
@@ -76,9 +81,9 @@ function AllPosts() {
                     </div>
                     <div className="comment-button">
                       <NavLink to={`/posts/${post.id}`}>
-                      <button className="comment-button">
-                        <i className="fa-sharp fa-solid fa-comment-dots"></i>
-                      </button>
+                        <button className="comment-button">
+                          <i className="fa-sharp fa-solid fa-comment-dots"></i>
+                        </button>
                       </NavLink>
                     </div>
                   </div>

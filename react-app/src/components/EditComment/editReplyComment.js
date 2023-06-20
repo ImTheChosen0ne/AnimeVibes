@@ -38,7 +38,6 @@ const EditReplyComment = ({ commentId, comment }) => {
       <form onSubmit={handleSubmit}>
         <div>
           <label>
-            Review
             <h4 className="formErrors">{errors?.comments}</h4>
             <textarea
               placeholder="Enter your comment here"
@@ -47,7 +46,7 @@ const EditReplyComment = ({ commentId, comment }) => {
             />
           </label>
           <button
-            className="createbutton-product"
+            className="createbutton-post"
             type="submit"
             // disabled={!!Object.values(errors).length}
           >

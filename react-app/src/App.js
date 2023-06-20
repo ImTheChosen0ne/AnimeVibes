@@ -12,6 +12,7 @@ import CreatePostForm from "./components/CreatePost";
 import EditPostForm from "./components/EditPost";
 import ProfilePage from "./pages/ProfilePage";
 import SplashSideBar from "./components/SplashSideBar";
+import UserProfilePage from "./pages/ProfilePage/UserProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,8 +41,11 @@ function App() {
             <Route exact path="/posts/:postId">
               <SinglePost />
             </Route>
-            <Route exact path="/users/profile">
+            <Route exact path="/users/profile/">
               <ProfilePage />
+            </Route>
+            <Route exact path="/users/profile/:userId">
+              <UserProfilePage />
             </Route>
             <Route path="/login">
               <LoginFormPage />

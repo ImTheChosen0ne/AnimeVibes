@@ -10,8 +10,14 @@ const EditProfile = ({ sessionUser }) => {
   const { closeModal } = useModal();
 
   const [profilePic, setProfilePic] = useState(sessionUser.profile_pic);
-  const [name, setName] = useState(sessionUser.name);
+  const [name, setName] = useState(sessionUser.name); // Updated here
   const [bio, setBio] = useState(sessionUser.bio);
+
+
+  useEffect(() => {
+    setName(sessionUser.name || "");
+    setBio(sessionUser.bio || "");
+  }, [sessionUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,13 +72,13 @@ const EditProfile = ({ sessionUser }) => {
             />
           </label>
           <button
-            className="createbutton-product"
+            className="createbutton-post"
             type="submit"
             // disabled={!!Object.values(errors).length}
           >
             Save
           </button>
-          <button onClick={() => closeModal}>
+          <button onClick={() => closeModal()}>
             Cancel
           </button>
         </div>
