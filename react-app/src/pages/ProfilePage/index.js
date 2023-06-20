@@ -25,18 +25,20 @@ const ProfilePage = () => {
   };
 
   const numFollowing = () => {
-    return sessionUser.followers.length
-  }
+    return sessionUser.followers.length;
+  };
 
   useEffect(() => {
     dispatch(fetchPosts());
   }, [dispatch]);
 
-  currentUserPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  currentUserPosts.sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
 
   return (
     <div className="profile-page">
-      <div className="user-info">
+      <div className="user-info-profile">
         <div className="user-data">
           <div className="user-img">
             <img src={sessionUser.profile_pic} alt="profile picture" />
@@ -61,14 +63,35 @@ const ProfilePage = () => {
         <div>{sessionUser.bio}</div>
       </div>
       <div className="user-videos">
-        <button onClick={() => handleTabClick("videos")}>Videos</button>
-        <button onClick={() => handleTabClick("favorites")}>Favorites</button>
-        <button onClick={() => handleTabClick("likes")}>Likes</button>
-        {activeTab === "videos" && <UserPosts posts={currentUserPosts} />}
-        {activeTab === "favorites" && (
-          <UserFavorties sessionUser={sessionUser} />
-        )}
-        {activeTab === "likes" && <UserLikes sessionUser={sessionUser} />}
+        <div className="user-profile-buttons">
+          <button
+            onClick={() => handleTabClick("videos")}
+            className={activeTab === "videos" ? "active" : ""}
+          >
+            Videos
+          </button>
+          <button
+            onClick={() => handleTabClick("favorites")}
+            className={activeTab === "favorites" ? "active" : ""}
+          >
+            Favorites
+          </button>
+          <button
+            onClick={() => handleTabClick("likes")}
+            className={activeTab === "likes" ? "active" : ""}
+          >
+            Likes
+          </button>
+        </div>
+        <div className="all-user-vids">
+          <div>
+          {activeTab === "videos" && <UserPosts posts={currentUserPosts} />}
+          {activeTab === "favorites" && (
+            <UserFavorties sessionUser={sessionUser} />
+          )}
+          {activeTab === "likes" && <UserLikes sessionUser={sessionUser} />}
+          </div>
+        </div>
       </div>
     </div>
   );

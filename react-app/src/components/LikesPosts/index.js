@@ -14,10 +14,10 @@ const UserLikes = ({ sessionUser }) => {;
 
   return (
     <div>
-      <div className="user-videos">
+      <div className="all-user-videos">
         {sessionUser?.user_likes?.map((post) => (
           <div key={post.id}>
-            <div className="video">
+            <div className="profile-video">
               <video
                 src={post?.video}
                 // autoPlay={isPlaying}

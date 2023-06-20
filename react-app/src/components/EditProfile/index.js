@@ -1,23 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { editProfileThunk } from "../../store/session";
-import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
-
 
 const EditProfile = ({ sessionUser }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
   const [profilePic, setProfilePic] = useState(sessionUser.profile_pic);
-  const [name, setName] = useState(sessionUser.name); // Updated here
+  const [name, setName] = useState(sessionUser.name);
   const [bio, setBio] = useState(sessionUser.bio);
-
-
-  useEffect(() => {
-    setName(sessionUser.name || "");
-    setBio(sessionUser.bio || "");
-  }, [sessionUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
