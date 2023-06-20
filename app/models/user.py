@@ -74,8 +74,9 @@ class User(db.Model, UserMixin):
     def to_dict_comment_user(self):
         return {
             'id': self.id,
-            'username': self.username
+            'username': self.username,
+            'profile_pic': self.profile_pic,
         }
 
     def followers_to_dict(self):
-        return [{'id': follower.id, 'username': follower.username} for follower in self.followers]
+        return [{'id': follower.id, 'username': follower.username, 'profile_pic': follower.profile_pic,} for follower in self.followers]

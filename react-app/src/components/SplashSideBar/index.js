@@ -25,14 +25,15 @@ const SplashSideBar = () => {
       <div className="followers">
         <h5>Following accounts</h5>
         {sessionUser?.followers.slice(0, 10).map((user) => (
-          <div key={user.id} className="followers">
+          <div key={user.id} className="follower">
+            <div className="splash-img">
+              <img src={user.profile_pic} className="side-img"/>
+            </div>
             {user.username}
           </div>
         ))}
       </div>
-      <div className="footer">
-        About info
-      </div>
+      <div className="footer">About info</div>
     </div>
   );
 };

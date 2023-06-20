@@ -6,17 +6,63 @@
 
 .side-bar-links {
     padding-bottom: 8px;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid rgb(182, 180, 180);
+}
 
+.side-bar-links li {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .followers {
     padding: 16px 0;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
     position: relative;
 }
 
 .footer {
     position: relative;
     padding-top: 16px;
-    border-top: 1px solid black;
+    border-top: 1px solid rgb(181, 181, 181);
+}
+
+.followers h5 {
+    padding: 0 8px;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 14px;
+    color: rgba(22, 24, 35, .75);
+}
+
+.follower {
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    border-radius: 4px;
+}
+
+.splash-img {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+}
+
+.side-img {
+    object-fit: cover;
+    display: block;
+    width: 32px;
+    height: 32px;
 }

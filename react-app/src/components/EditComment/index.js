@@ -5,7 +5,6 @@ import { editCommentThunk } from "../../store/post";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 
-
 const EditComment = ({ postId, comment }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
@@ -39,7 +38,6 @@ const EditComment = ({ postId, comment }) => {
       <form onSubmit={handleSubmit}>
         <div>
           <label>
-            Review
             <h4 className="formErrors">{errors?.comments}</h4>
             <textarea
               placeholder="Enter your comment here"
