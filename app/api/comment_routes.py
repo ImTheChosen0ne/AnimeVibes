@@ -39,7 +39,7 @@
 
 #     if form.validate_on_submit():
 #         if form.data["comment"]:
-#             comment.review = form.data["comment"]
+#             comment.comment = form.data["comment"]
 
 #         db.session.commit()
 #         return {'comment': comment.to_dict()}

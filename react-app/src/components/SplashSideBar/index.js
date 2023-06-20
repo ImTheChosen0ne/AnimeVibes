@@ -38,12 +38,14 @@ const SplashSideBar = () => {
             <h5>Following accounts</h5>
             {sessionUser.followers.length > 0 ? (
               sessionUser.followers.slice(0, 10).map((user) => (
-                <div key={user.id} className="follower">
-                  <div className="splash-img">
-                    <img src={user.profile_pic} className="side-img" />
+                <NavLink to={`/users/profile/${user.id}`}>
+                  <div key={user.id} className="follower">
+                    <div className="splash-img">
+                      <img src={user.profile_pic} className="side-img" />
+                    </div>
+                    {user.username}
                   </div>
-                  {user.username}
-                </div>
+                </NavLink>
               ))
             ) : (
               <div>Start following users today!</div>

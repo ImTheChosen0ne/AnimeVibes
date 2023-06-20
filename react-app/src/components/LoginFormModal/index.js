@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, ulRef } from "react";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
+import SignupFormModal from "../SignupFormModal";
+import OpenModalButton from "../OpenModalButton";
 import "./LoginForm.css";
 
 function LoginFormModal() {
@@ -9,6 +11,7 @@ function LoginFormModal() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [showMenu, setShowMenu] = useState(false);
   const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
@@ -18,6 +21,12 @@ function LoginFormModal() {
       setErrors(data);
     } else {
       closeModal();
+    }
+  };
+
+  const closeMenu = (e) => {
+    if (!ulRef.current.contains(e.target)) {
+      setShowMenu(false);
     }
   };
 
@@ -69,6 +78,14 @@ function LoginFormModal() {
           </button>
         </div>
       </form>
+      <div>
+        <p>Dont have an account?</p>
+        <OpenModalButton
+              buttonText="Sign Up"
+              onItemClick={closeMenu}
+              modalComponent={<SignupFormModal />}
+            />
+      </div>
     </>
   );
 }

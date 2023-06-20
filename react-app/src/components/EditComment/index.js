@@ -46,7 +46,7 @@ const EditComment = ({ postId, comment }) => {
             />
           </label>
           <button
-            className="createbutton-product"
+            className="createbutton-post"
             type="submit"
             // disabled={!!Object.values(errors).length}
           >

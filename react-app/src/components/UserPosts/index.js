@@ -18,36 +18,39 @@ const UserPosts = ({ posts }) => {;
       <div className="user-videos">
         {posts.map((post) => (
           <div key={post.id}>
-            <div className="video">
-              <video
-                src={post?.video}
-                // autoPlay={isPlaying}
-                playsInline={true}
-                controls
-                onClick={togglePlay}
-              />
-            </div>
-            <div className="buttons">
-              <div>
-                <button
-                  onClick={() => history.push(`/posts/${post.id}/edit`)}
-                  className="edit-post-button"
-                >
-                  Update Post
-                </button>
-              </div>
-              <div>
-                <OpenModalButton
-                  buttonText="Delete Product"
-                  modalComponent={<DeletePost postId={post.id} />}
-                />
-              </div>
-            </div>
+                <div className="video">
+                  <video
+                    src={post?.video}
+                    // autoPlay={isPlaying}
+                    playsInline={true}
+                    controls
+                    onClick={togglePlay}
+                  />
+                </div>
+            {sessionUser && sessionUser.id === post.user.id ? (
+              <>
+                <div className="buttons">
+                  <div>
+                    <button
+                      onClick={() => history.push(`/posts/${post.id}/edit`)}
+                      className="edit-post-button"
+                    >
+                      Update Post
+                    </button>
+                  </div>
+                  <div>
+                    <OpenModalButton
+                      buttonText="Delete Post"
+                      modalComponent={<DeletePost postId={post.id} />}
+                    />
+                  </div>
+                </div>
+              </>
+            ) : null}
           </div>
         ))}
       </div>
     </div>
   );
-};
-
+            }
 export default UserPosts;

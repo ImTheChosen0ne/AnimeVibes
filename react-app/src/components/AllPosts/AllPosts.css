@@ -93,7 +93,7 @@ a {
     font-size: 20px;
 }
 
-.follow-button {
+.follow-button button {
     border-width: 1px;
     border-style: solid;
     border-radius: 4px;
@@ -140,7 +140,7 @@ a {
     flex-direction: column;
 }
 
-.like-button, .favorite-button, .comment-button {
+.like-button button, .favorite-button button, .comment-button {
     border: none;
     background: none;
     outline: none;

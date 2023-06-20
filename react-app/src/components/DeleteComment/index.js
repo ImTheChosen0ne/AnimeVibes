@@ -4,7 +4,7 @@ import { deleteCommentThunk } from "../../store/post"
 // import { deleteCommentThunk } from "../../store/comment"
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
-// import './DeleteReview.css'
+
 
 const DeleteComment = ({postId, commentId}) => {
     const history = useHistory()
@@ -23,9 +23,9 @@ const DeleteComment = ({postId, commentId}) => {
     }
 
   return(
-    <div className="log-in-modal delete-review-modal">
+    <div className="log-in-modal delete-comment-modal">
       <h1>Confirm Delete</h1>
-      <h4>Are you sure you want to remove this review?</h4>
+      <h4>Are you sure you want to remove this comment?</h4>
       <form>
         <div className="delete-buttons">
           <button  onClick={handleSubmityes}>Yes </button>

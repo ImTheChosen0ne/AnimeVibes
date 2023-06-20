@@ -251,8 +251,7 @@ export default function reducer(state = initialState, action) {
 				  (follower) => follower.id !== action.follower.user.id);
 			return { ...state, user: { ...state.user, followers: updatedFollowers}};
 		case EDIT_PROFILE:
-			case EDIT_PROFILE:
-				return { ...action.user }
+				return { ...action.user };
 		default:
 			return state;
 	}
