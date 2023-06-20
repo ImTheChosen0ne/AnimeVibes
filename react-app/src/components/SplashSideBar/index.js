@@ -33,13 +33,6 @@ const SplashSideBar = () => {
         </ul>
       </div>
       <div className="followers">
-<<<<<<< HEAD
-        <h5>Following accounts</h5>
-        {sessionUser?.followers.slice(0, 10).map((user) => (
-          <div key={user.id} className="followers">
-            <img src={user.profile_pic} />
-            {user.username}
-=======
         {sessionUser ? (
           <div>
             <h5>Following accounts</h5>
@@ -55,7 +48,6 @@ const SplashSideBar = () => {
             ) : (
               <div>Start following users today!</div>
             )}
->>>>>>> dev
           </div>
         ) : (
           <OpenModalButton
