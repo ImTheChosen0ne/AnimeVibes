@@ -2,16 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPosts } from "../../store/post";
-// import { fetchComments } from "../../store/comment";
 import OpenModalButton from "../../components/OpenModalButton";
 import DeleteComment from "../DeleteComment";
 import CreateComment from "../CreateComment";
 import EditComment from "../EditComment";
-import EditReplyComment from "../EditComment/editReplyComment";
-import DeleteReplyComment from "../DeleteComment/deleteReplyComment";
-import CreateReplyComment from "../CreateComment/createReplyComment";
 import "./SinglePost.css";
-import { createPortal } from "react-dom";
 
 const SinglePost = () => {
   const dispatch = useDispatch();
@@ -41,10 +36,9 @@ const SinglePost = () => {
     return "New";
   };
 
-  // useEffect(() => {
-  //   dispatch(fetchPosts());
-  //   // dispatch(fetchComments());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchPosts());
+  }, [dispatch]);
 
   return (
     <div className="single-post">
@@ -77,7 +71,7 @@ const SinglePost = () => {
                 <img
                   src={
                     sessionUser && sessionUser.profile_pic
-                      ? sessionUser.profile_pic
+                      ? sessionUser?.profile_pic
                       : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                   }
                   className="comment-img"

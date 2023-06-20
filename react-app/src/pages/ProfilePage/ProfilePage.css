@@ -9,12 +9,11 @@ img {
     padding: 32px 24px 36px;
     flex-direction: column;
     flex: 1 1 auto;
-    min-height: calc(-59px + 100vh);
     margin: 0px auto;
     box-sizing: content-box;
 }
 
-.user-info {
+.user-info-profile {
     position: relative;
     flex: 0 0 auto;
     margin-bottom: 20px;
@@ -132,4 +131,79 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+
+.user-profile-buttons {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    justify-content: stretch;
+    width: 100%;
+    height: 44px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgb(212, 212, 212);
+}
+
+.user-profile-buttons button {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 25px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    height: 44px;
+    padding: 0px 32px;
+    cursor: pointer;
+    text-align: center;
+    color: rgb(166, 166, 166);
+    background-color: transparent;
+    border: none;
+  }
+
+.user-profile-buttons button.active {
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+.user-profile-buttons button:hover {
+    border-bottom: 1px solid black;
+}
+
+
+.all-user-vids {
+    width: 100%;
+}
+
+.all-user-videos {
+    display: grid;
+    gap: 24px 16px;
+    grid-template-columns: repeat(auto-fill, minmax(184px, 1fr));
+}
+
+.profile-video {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    position: relative;
+    background-color: rgba(22, 24, 35, 0.06);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.profile-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    max-width: 100%;
+    display: block;
+    border-radius: 4px;
 }
