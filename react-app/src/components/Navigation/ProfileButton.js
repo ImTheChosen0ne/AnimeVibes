@@ -37,7 +37,7 @@ function ProfileButton({ user }) {
     e.preventDefault();
     dispatch(logout());
     history.push("/")
-    // closeMenu();
+    closeMenu();
   };
 
 

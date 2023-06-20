@@ -73,11 +73,11 @@ function AllPosts() {
                       <FavoriteButton sessionUser={sessionUser} post={post} />
                     </div>
                     <div className="comment-button">
-                      {/* <NavLink to={`/posts/${post.id}`}> */}
+                      <NavLink to={`/posts/${post.id}`}>
                       <button className="comment-button">
                         <i className="fa-sharp fa-solid fa-comment-dots"></i>
                       </button>
-                      {/* </NavLink> */}
+                      </NavLink>
                     </div>
                   </div>
                 </div>
