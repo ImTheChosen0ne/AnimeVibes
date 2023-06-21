@@ -1,6 +1,6 @@
 import React, { useState, ulRef } from "react";
 import { NavLink } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import LoginFormModal from "../LoginFormModal";
 import OpenModalButton from "../OpenModalButton";
 
@@ -41,7 +41,7 @@ const SplashSideBar = () => {
                 <NavLink to={`/users/profile/${user.id}`}>
                   <div key={user.id} className="follower">
                     <div className="splash-img">
-                      <img src={user.profile_pic} className="side-img" />
+                      <img src={user.profile_pic} className="side-img" alt="user"/>
                     </div>
                     <div className="sidebar-name">
                       <div className="username">{user.username}</div>

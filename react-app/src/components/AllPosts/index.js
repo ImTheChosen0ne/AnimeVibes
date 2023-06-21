@@ -39,6 +39,7 @@ function AllPosts() {
                       <img
                         className="splash-profile-pic"
                         src={post.user.profile_pic}
+                        alt="user"
                       />
                     </NavLink>
                   </span>

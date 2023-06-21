@@ -32,7 +32,7 @@ const CreateReplyComment = ({postId, commentId }) => {
     }
     setComment("");
     await dispatch(createReplyCommentThunk(postId, commentId, createdRelyComment));
-    await dispatch(fetchPosts());
+    // await dispatch(fetchPosts());
   };
 
   return (

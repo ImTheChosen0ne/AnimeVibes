@@ -1,6 +1,5 @@
 import React, { useState, ulRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { addFollowerThunk, removeFollowerThunk } from "../../store/session";
 import LoginFormModal from "../LoginFormModal";
 import OpenModalButton from "../OpenModalButton";
@@ -12,12 +11,12 @@ const FollowButton = ({ sessionUser, post }) => {
     (follower) => follower.id === post?.user.id
   );
 
-  const handleFollow = () => {
+  const handleFollow = async () => {
 
     if (isFollowing) {
-      dispatch(removeFollowerThunk(sessionUser.id, post.user.id));
+      await dispatch(removeFollowerThunk(sessionUser.id, post.user.id));
     } else {
-      dispatch(addFollowerThunk(sessionUser.id, post.user.id));
+      await dispatch(addFollowerThunk(sessionUser.id, post.user.id));
     }
   };
 

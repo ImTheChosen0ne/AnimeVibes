@@ -68,7 +68,7 @@ class User(db.Model, UserMixin):
             'name': self.name,
             'user_favorites': [favorite.to_dict_favorites() for favorite in self.user_favorites],
             'user_likes': [like.to_dict_likes() for like in self.user_likes],
-            'followers': self.followers_to_dict()
+            'followers': self.followers_to_dict(),
         }
 
     def to_dict_comment_user(self):
