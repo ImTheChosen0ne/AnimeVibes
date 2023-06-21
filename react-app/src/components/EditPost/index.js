@@ -9,9 +9,7 @@ function EditPostForm() {
   const post = useSelector((state) => state.posts[postId]);
 
   return (
-    <div>
       <PostForm post={post} formType="EditPost" />
-    </div>
   );
 }
 

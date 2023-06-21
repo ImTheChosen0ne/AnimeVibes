@@ -9,7 +9,7 @@ const FollowButton = ({ sessionUser, post }) => {
   const dispatch = useDispatch();
   const followers = useSelector((state) => state.session.user?.followers);
   const isFollowing = sessionUser?.followers.find(
-    (follower) => follower.id === post.user.id
+    (follower) => follower.id === post?.user.id
   );
 
   const handleFollow = () => {
@@ -47,7 +47,7 @@ const FollowButton = ({ sessionUser, post }) => {
         <button onClick={handleFollow}>
           {!sessionUser
             ? "Follow"
-            : followers?.find((follower) => follower.id === post.user.id)
+            : followers?.find((follower) => follower.id === post?.user.id)
             ? "Following"
             : "Follow"}
         </button>

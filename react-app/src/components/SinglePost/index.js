@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchPosts } from "../../store/post";
 import OpenModalButton from "../../components/OpenModalButton";
@@ -8,17 +8,14 @@ import CreateComment from "../CreateComment";
 import EditComment from "../EditComment";
 import LikeButton from "../LikeButton";
 import FavoriteButton from "../FavoriteButton";
+import FollowButton from "../FollowButton";
 import "./SinglePost.css";
 
 const SinglePost = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { postId } = useParams();
   const post = useSelector((state) => state.posts[postId]);
-  // const comments = Object.values(useSelector((state) => state.comments));
   const sessionUser = useSelector((state) => state.session.user);
-
-  // const postComments = comments.filter((comment) => String(comment.postId) == postId);
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [comment, setComment] = useState("");
@@ -55,10 +52,23 @@ const SinglePost = () => {
         <div className="detail-caption">{post?.caption}</div>
         <div className="user-info">
           <div className="detail-pro-img">
-            <img src={post?.user.profile_pic} className="detail-img" />
+            <NavLink
+              to={
+                sessionUser && sessionUser.id === post.userId
+                  ? "/users/profile"
+                  : `/users/profile/${post.user.id}`
+              }
+            >
+              <img src={post?.user.profile_pic} className="detail-img" />
+            </NavLink>
             <div className="post-info">
-              <div>{post?.user.username}</div>
-              <div>{post?.createdAt}</div>
+              <div className="post-name-date">
+                <div>{post?.user.username}</div>
+                <div>{post?.createdAt}</div>
+              </div>
+              {sessionUser?.id !== post?.user.id ? (
+                <FollowButton sessionUser={sessionUser} post={post} />
+              ) : null}
             </div>
             <div className="fav-like-container">
               <div className="like-button">

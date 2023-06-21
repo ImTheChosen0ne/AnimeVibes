@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createPostThunk, editPostThunk } from "../../store/post";
-
+import "./PostForm.css";
 const PostForm = ({ post, formType }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -32,10 +32,10 @@ const PostForm = ({ post, formType }) => {
     if (video === "") {
       errors.video = "Video is required";
     }
-    if (video && !video.endsWith(".mp4")){
+    if (video && !video.endsWith(".mp4")) {
       errors.video = "Video URL must end in .mp4";
     }
-    if (video && !video.startsWith("http")){
+    if (video && !video.startsWith("http")) {
       errors.video = "Video must be in URL Format";
     }
 
@@ -54,53 +54,65 @@ const PostForm = ({ post, formType }) => {
         }
       }
     }
-
   };
 
   return (
-    <div>
+    <div className="create-update">
       <form onSubmit={handleSubmit} className="post-form">
         <div>
           <h1>{formType === "CreatePost" ? "Upload video" : "Update Post"}</h1>
-          <div className={formType === "EditPost" ? "hidden" : ""}>
-            <div>
-              <h4>Select a video to upload</h4>
-              <h4 className="formErrors">{errors.video}</h4>
+          <h3>
+            {formType === "CreatePost"
+              ? "Post a video to your account"
+              : "Update a video in your account"}
+          </h3>
+          <div className="form">
+            <div className={formType === "EditPost" ? "hidden" : ""}>
+              <div>
+                <h4>Select a video to upload</h4>
+                <h4 className="formErrors">{errors.video}</h4>
+              </div>
+              <label>
+                <input
+                  type="text"
+                  placeholder="Video"
+                  value={video}
+                  onChange={(e) => setVideo(e.target.value)}
+                />
+              </label>
             </div>
-            <label>
-              <input
-                type="test"
-                placeholder="Video"
-                value={video}
-                onChange={(e) => setVideo(e.target.value)}
-              />
-            </label>
-          </div>
             <h4>Caption</h4>
             <h4 className="formErrors">{errors?.caption}</h4>
-          <label>
-            <textarea
-              rows="4"
-              cols="44"
-              placeholder="Caption"
-              value={caption}
-              onChange={(e) => setCaption(e.target.value)}
-            />
-          </label>
-          <div>
-            <button
-              className="post-button"
-              type="submit"
-              // disabled={!!Object.values(errors).length}
-            >
-              {formType === "CreatePost" ? "Post" : "Update Post"}
-            </button>
+            <label>
+              <textarea
+                rows="4"
+                cols="44"
+                placeholder="Caption"
+                value={caption}
+                onChange={(e) => setCaption(e.target.value)}
+              />
+            </label>
+            <div className="form-buttons">
+              <div className="post-button">
+                <button
+                  className="post-button"
+                  type="submit"
+                >
+                  {formType === "CreatePost" ? "Post" : "Update Post"}
+                </button>
+              </div>
+              <div className="discard-button">
+                <button
+                  className="discard-button"
+                  onClick={() => history.push("/")}
+                >
+                  Discard
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </form>
-      <button className="discard-button" onClick={() => history.push("/")}>
-        Discard
-      </button>
     </div>
   );
 };

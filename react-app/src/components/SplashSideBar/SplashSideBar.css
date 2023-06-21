@@ -79,3 +79,37 @@
 .username {
     font-size: 16px;
 }
+
+.sidebar-login {
+    position: relative;
+    padding: 20px 8px 24px 8px;
+    margin: 0;
+}
+
+.sidebar-login p {
+    color: rgba(22, 24, 35, .5);
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.sidebar-login button {
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 4px;
+    color: rgba(254, 44, 85, 1);
+    border-color: rgba(254, 44, 85, 1);
+    background-color: rgba(255, 255, 255, 1);
+    min-width: 168px;
+    min-height: 48px;
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: 600;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 8px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+}
