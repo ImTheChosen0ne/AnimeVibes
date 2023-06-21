@@ -43,7 +43,14 @@ const SplashSideBar = () => {
                     <div className="splash-img">
                       <img src={user.profile_pic} className="side-img" />
                     </div>
-                    {user.username}
+                    <div className="sidebar-name">
+                      <div className="username">
+                      {user.username}
+                      </div>
+                      <div className="name">
+                      {user.name === "Set a profile name." ? "" : user.name}
+                      </div>
+                    </div>
                   </div>
                 </NavLink>
               ))
@@ -52,11 +59,16 @@ const SplashSideBar = () => {
             )}
           </div>
         ) : (
-          <OpenModalButton
-            buttonText="Log In"
-            onItemClick={closeMenu}
-            modalComponent={<LoginFormModal />}
-          />
+          <div>
+            <div>
+              <p>Log in to follow creators, like videos, and view comments</p>
+            </div>
+            <OpenModalButton
+              buttonText="Log In"
+              onItemClick={closeMenu}
+              modalComponent={<LoginFormModal />}
+            />
+          </div>
         )}
       </div>
       <div className="footer">About info</div>

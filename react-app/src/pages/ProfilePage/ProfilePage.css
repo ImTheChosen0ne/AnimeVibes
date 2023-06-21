@@ -17,7 +17,6 @@ img {
     position: relative;
     flex: 0 0 auto;
     margin-bottom: 20px;
-    box-sizing: border-box;
     max-width: 624px;
     padding-right: 92px;
 }
@@ -34,7 +33,6 @@ img {
     align-items: center;
     justify-content: center;
     display: inline-block;
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
     position: relative;
@@ -73,14 +71,13 @@ img {
 .user-text h1 {
     font-weight: 700;
     font-size: 32px;
-    margin-bottom: 4px;
     overflow: hidden;
     text-align: left;
 }
 
 .user-text h5 {
     font-weight: 600;
-    font-size: 18px;
+    font-size: 16px;
     height: 25px;
     overflow: hidden;
     max-width: 450px;
@@ -109,7 +106,6 @@ img {
     position: relative;
     justify-content: center;
     cursor: pointer;
-    box-sizing: border-box;
     height: 36px;
     font-size: 14.5px;
     display: flex;
@@ -173,7 +169,6 @@ img {
     border-bottom: 1px solid black;
 }
 
-
 .all-user-vids {
     width: 100%;
 }
@@ -206,4 +201,19 @@ img {
     max-width: 100%;
     display: block;
     border-radius: 4px;
+}
+
+.profile-follow {
+    display: flex;
+    position: absolute;
+    opacity: 1;
+    min-height: 28px;
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    min-width: 88px;
+    padding: 0 10px;
+    align-items: center;
+    transform: translate(5%, 150%);
 }

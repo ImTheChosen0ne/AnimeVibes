@@ -17,8 +17,8 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_pic = db.Column(db.String, default="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
-    bio = db.Column(db.String(255), default="No bio yet.")
-    name = db.Column(db.String(100), default="Set a profile name.")
+    bio = db.Column(db.String(50), default="No bio yet.")
+    name = db.Column(db.String(25), default="Set a profile name.")
 
     posts = db.relationship("Post", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
@@ -79,4 +79,4 @@ class User(db.Model, UserMixin):
         }
 
     def followers_to_dict(self):
-        return [{'id': follower.id, 'username': follower.username, 'profile_pic': follower.profile_pic,} for follower in self.followers]
+        return [{'id': follower.id, 'username': follower.username, 'profile_pic': follower.profile_pic, 'name': follower.name} for follower in self.followers]

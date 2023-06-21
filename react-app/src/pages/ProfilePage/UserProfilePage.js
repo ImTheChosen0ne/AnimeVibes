@@ -4,13 +4,15 @@ import { useParams } from "react-router-dom";
 import UserPosts from "../../components/UserPosts";
 import { fetchPosts } from "../../store/post";
 import { fetchUsers } from "../../store/user";
-import FollowButton from "../../components/FollowButton";
+import FollowButtonUser from "../../components/FollowButton/FollowButtonUser";
 import "./ProfilePage.css";
 
 const UserProfilePage = () => {
   const { userId } = useParams();
   const posts = Object.values(useSelector((state) => state.posts));
   const user = useSelector((state) => state.users[userId]);
+  const sessionUser = useSelector((state) => state.session.user);
+
   const [activeTab, setActiveTab] = useState("videos");
   const dispatch = useDispatch();
 
@@ -43,7 +45,9 @@ const UserProfilePage = () => {
           <div className="user-text">
             <h1>{user?.username}</h1>
             <h5>{user?.name}</h5>
-            <FollowButton />
+            <div className="profile-follow">
+              <FollowButtonUser className="profile-follow-button" sessionUser={sessionUser} user={user}/>
+            </div>
           </div>
         </div>
         <div>{numFollowing()} Following</div>

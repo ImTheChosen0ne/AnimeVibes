@@ -31,6 +31,9 @@ const CreateComment = ({ postId }) => {
     if (comment === "") {
       errors.comment = "Comment is required";
     }
+    if (comment.length > 100) {
+      errors.comment = "Comment can not have more than 100 characters";
+    }
     setErrors(errors);
 
     setComment("");
