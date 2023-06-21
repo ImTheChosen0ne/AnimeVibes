@@ -9,9 +9,7 @@ const CreatePostForm = () => {
   }
 
   return (
-    <div>
         <PostForm post={post} formType="CreatePost"/>
-    </div>
   )
 }
 

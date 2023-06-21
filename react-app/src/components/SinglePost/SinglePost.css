@@ -64,7 +64,7 @@
 
 .post-info {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding-left: 10px;
     margin-right: auto;
 }
@@ -130,4 +130,20 @@
 
 .fav-like-container .favorite-button {
     padding-left: 3px;
+}
+
+.post-info .follow-button{
+    display: flex;
+    align-items: center;
+}
+
+.post-info .follow-button button{
+    position: relative;
+    top: 0;
+    background-color: rgba(254, 44, 85, 1);;
+    color: white;
+}
+
+.post-name-date {
+    margin-right: 15px;
 }

@@ -44,11 +44,9 @@ const SplashSideBar = () => {
                       <img src={user.profile_pic} className="side-img" />
                     </div>
                     <div className="sidebar-name">
-                      <div className="username">
-                      {user.username}
-                      </div>
+                      <div className="username">{user.username}</div>
                       <div className="name">
-                      {user.name === "Set a profile name." ? "" : user.name}
+                        {user.name === "Set a profile name." ? "" : user.name}
                       </div>
                     </div>
                   </div>
@@ -59,7 +57,7 @@ const SplashSideBar = () => {
             )}
           </div>
         ) : (
-          <div>
+          <div className="sidebar-login">
             <div>
               <p>Log in to follow creators, like videos, and view comments</p>
             </div>
