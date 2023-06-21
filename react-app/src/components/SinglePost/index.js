@@ -6,6 +6,8 @@ import OpenModalButton from "../../components/OpenModalButton";
 import DeleteComment from "../DeleteComment";
 import CreateComment from "../CreateComment";
 import EditComment from "../EditComment";
+import LikeButton from "../LikeButton";
+import FavoriteButton from "../FavoriteButton";
 import "./SinglePost.css";
 
 const SinglePost = () => {
@@ -51,13 +53,20 @@ const SinglePost = () => {
           onClick={togglePlay}
         />
         <div className="detail-caption">{post?.caption}</div>
-
         <div className="user-info">
           <div className="detail-pro-img">
             <img src={post?.user.profile_pic} className="detail-img" />
             <div className="post-info">
               <div>{post?.user.username}</div>
               <div>{post?.createdAt}</div>
+            </div>
+            <div className="fav-like-container">
+              <div className="like-button">
+                <LikeButton sessionUser={sessionUser} post={post} />
+              </div>
+              <div className="favorite-button">
+                <FavoriteButton sessionUser={sessionUser} post={post} />
+              </div>
             </div>
           </div>
         </div>

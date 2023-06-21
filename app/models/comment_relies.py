@@ -10,7 +10,7 @@ class CommentReply(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     commentId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('comments.id')), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
-    comment = db.Column(db.String(1000), nullable=False)
+    comment = db.Column(db.String(100), nullable=False)
     createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
     updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
 

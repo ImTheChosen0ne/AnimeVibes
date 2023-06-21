@@ -4,7 +4,6 @@
     flex-direction: row;
     align-items: flex-end;
     background-color: rgba(22, 24, 35, 0.06);
-    box-sizing: border-box;
     border: 1px solid transparent;
     border-radius: 8px;
     padding: 13px;

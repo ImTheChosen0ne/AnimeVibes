@@ -10,25 +10,30 @@ const EditProfile = ({ sessionUser }) => {
   const [profilePic, setProfilePic] = useState(sessionUser.profile_pic);
   const [name, setName] = useState(sessionUser.name);
   const [bio, setBio] = useState(sessionUser.bio);
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = {
       ...sessionUser,
-      profile_pic: profilePic,
-      name,
-      bio
+      profile_pic: profilePic || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+      name: name || "Set a profile name.",
+      bio: bio || "No bio yet.",
     };
 
-    // const errors = {};
-    // if (comments === "") {
-    //   errors.comments = "Comment is required";
-    // }
-    // setErrors(errors);
+    const errors = {};
+    if (name.length > 25) {
+      errors.name = "Name can not have more than 25 characters";
+    }
+    if (bio.length > 50) {
+      errors.name = "Bio can not have more than 50 characters";
+    }
+    setErrors(errors);
 
-    await dispatch(editProfileThunk(user));
-
-    closeModal();
+    if (Object.keys(errors).length === 0) {
+      await dispatch(editProfileThunk(user));
+      closeModal();
+    }
   };
 
   return (
@@ -38,7 +43,6 @@ const EditProfile = ({ sessionUser }) => {
         <div>
           <label>
             Profile Picture
-            {/* <h4 className="formErrors">{errors?.comments}</h4> */}
             <input
               placeholder="Enter your profile picture here"
               value={profilePic}
@@ -47,7 +51,7 @@ const EditProfile = ({ sessionUser }) => {
           </label>
           <label>
             Name
-            {/* <h4 className="formErrors">{errors?.comments}</h4> */}
+            <h4 className="formErrors">{errors?.name}</h4>
             <input
               placeholder="Enter your name"
               value={name}
@@ -56,7 +60,7 @@ const EditProfile = ({ sessionUser }) => {
           </label>
           <label>
             Bio
-            {/* <h4 className="formErrors">{errors?.comments}</h4> */}
+            <h4 className="formErrors">{errors?.bio}</h4>
             <textarea
               placeholder="Enter your bio"
               value={bio}

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 import DeletePost from "../../components/DeletePost";
 import OpenModalButton from "../../components/OpenModalButton";
 
@@ -18,6 +18,7 @@ const UserPosts = ({ posts }) => {;
       <div className="all-user-videos">
         {posts.map((post) => (
           <div key={post.id}>
+             <NavLink to={`/posts/${post.id}`} className="links">
                 <div className="profile-video">
                   <video
                     src={post?.video}
@@ -27,6 +28,7 @@ const UserPosts = ({ posts }) => {;
                     onClick={togglePlay}
                   />
                 </div>
+              </NavLink>
             {sessionUser && sessionUser.id === post.user.id ? (
               <>
                 <div className="buttons">

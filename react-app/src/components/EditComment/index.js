@@ -23,13 +23,17 @@ const EditComment = ({ postId, comment }) => {
 
     const errors = {};
     if (comments === "") {
-      errors.comments = "Comment is required";
+      errors.comment = "Comment is required";
+    }
+    if (comments.length > 100) {
+      errors.comment = "Comment can not have more than 100 characters";
     }
     setErrors(errors);
 
-    await dispatch(editCommentThunk(editComment, postId));
-
-    closeModal();
+    if (Object.keys(errors).length === 0) {
+      await dispatch(editCommentThunk(editComment, postId));
+      closeModal();
+    }
   };
 
   return (
@@ -38,7 +42,7 @@ const EditComment = ({ postId, comment }) => {
       <form onSubmit={handleSubmit}>
         <div>
           <label>
-            <h4 className="formErrors">{errors?.comments}</h4>
+            <h4 className="formErrors">{errors.comment}</h4>
             <textarea
               placeholder="Enter your comment here"
               value={comments}

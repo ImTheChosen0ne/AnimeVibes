@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import DeletePost from "../../components/DeletePost";
-import OpenModalButton from "../../components/OpenModalButton";
+import { NavLink } from "react-router-dom";
 
 const UserLikes = ({ sessionUser }) => {;
-  const history = useHistory();
   const [isPlaying, setIsPlaying] = useState(true);
 
   const togglePlay = () => {
@@ -17,6 +13,7 @@ const UserLikes = ({ sessionUser }) => {;
       <div className="all-user-videos">
         {sessionUser?.user_likes?.map((post) => (
           <div key={post.id}>
+            <NavLink to={`/posts/${post.id}`} className="links">
             <div className="profile-video">
               <video
                 src={post?.video}
@@ -26,6 +23,7 @@ const UserLikes = ({ sessionUser }) => {;
                 onClick={togglePlay}
               />
             </div>
+            </NavLink>
           </div>
         ))}
       </div>
@@ -34,3 +32,4 @@ const UserLikes = ({ sessionUser }) => {;
 };
 
 export default UserLikes;
+ 

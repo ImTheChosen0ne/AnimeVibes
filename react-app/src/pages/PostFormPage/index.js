@@ -22,31 +22,39 @@ const PostForm = ({ post, formType }) => {
       video,
     };
 
-    if (formType === "CreatePost") {
-      let createPost = await dispatch(createPostThunk(post));
-      if (createPost) {
-        history.push(`/posts/${createPost.post.id}`);
-      }
-    } else if (formType === "EditPost") {
-      let editPost = await dispatch(editPostThunk(post));
-      if (editPost) {
-        history.push(`/posts/${post.id}`);
-      }
-    }
-
     const errors = {};
     if (caption === "") {
       errors.caption = "Caption is required";
     }
+    if (caption.length > 255) {
+      errors.caption = "Comment can not have more than 250 characters";
+    }
     if (video === "") {
       errors.video = "Video is required";
     }
-    if (
-      video &&
-      !video.endsWith(".mp4")
-    )
+    if (video && !video.endsWith(".mp4")){
       errors.video = "Video URL must end in .mp4";
+    }
+    if (video && !video.startsWith("http")){
+      errors.video = "Video must be in URL Format";
+    }
+
     setErrors(errors);
+
+    if (Object.keys(errors).length === 0) {
+      if (formType === "CreatePost") {
+        let createPost = await dispatch(createPostThunk(post));
+        if (createPost) {
+          history.push(`/posts/${createPost.post.id}`);
+        }
+      } else if (formType === "EditPost") {
+        let editPost = await dispatch(editPostThunk(post));
+        if (editPost) {
+          history.push(`/posts/${post.id}`);
+        }
+      }
+    }
+
   };
 
   return (
