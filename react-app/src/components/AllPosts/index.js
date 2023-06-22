@@ -28,7 +28,6 @@ function AllPosts() {
 
   return (
     <div className="all-posts">
-      <div>
         {posts.map((post) => (
           <div key={post?.id}>
             <div className="post">
@@ -94,7 +93,6 @@ function AllPosts() {
           </div>
         ))}
       </div>
-    </div>
   );
 }
 

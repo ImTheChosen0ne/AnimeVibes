@@ -13,6 +13,7 @@ import EditPostForm from "./components/EditPost";
 import ProfilePage from "./pages/ProfilePage";
 import SplashSideBar from "./components/SplashSideBar";
 import UserProfilePage from "./pages/ProfilePage/UserProfilePage";
+import FollowersPosts from "./components/SplashPageFollowing";
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +32,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <SplashPage />
+            </Route>
+            <Route exact path="/following">
+              <FollowersPosts />
             </Route>
             <ProtectedRoute exact path="/posts/new">
               <CreatePostForm />

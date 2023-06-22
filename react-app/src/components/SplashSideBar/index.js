@@ -26,7 +26,7 @@ const SplashSideBar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink exact to="/">
+            <NavLink exact to="/following">
               Following
             </NavLink>
           </li>

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createPostThunk, editPostThunk } from "../../store/post";
 import "./PostForm.css";
+
 const PostForm = ({ post, formType }) => {
   const dispatch = useDispatch();
   const history = useHistory();
