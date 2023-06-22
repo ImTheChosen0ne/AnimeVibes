@@ -12,7 +12,8 @@ const UserProfilePage = () => {
   const posts = Object.values(useSelector((state) => state.posts));
   const user = useSelector((state) => state.users[userId]);
   const sessionUser = useSelector((state) => state.session.user);
-
+  const users = useSelector((state) => state.users);
+  const [followersCount, setFollowersCount] = useState("");
   const [activeTab, setActiveTab] = useState("videos");
   const dispatch = useDispatch();
 
@@ -26,10 +27,32 @@ const UserProfilePage = () => {
     return user?.followers.length;
   };
 
+  const calculateFollowersCount = () => {
+    let totalFollowersCount = 0;
+
+    Object.values(users).forEach((user) => {
+      const followers = user.followers;
+      followers.forEach((follower) => {
+        if (follower.id === parseInt(userId)) {
+          totalFollowersCount += 1;
+        }
+      });
+    });
+
+    setFollowersCount(totalFollowersCount);
+  };
+
+  useEffect(() => {
+    calculateFollowersCount();
+  }, [calculateFollowersCount]);
+
   useEffect(() => {
     dispatch(fetchPosts());
-    dispatch(fetchUsers());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchUsers());
+  }, [dispatch, sessionUser]);
 
   currentUserPosts.sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
@@ -40,18 +63,29 @@ const UserProfilePage = () => {
       <div className="user-info-profile">
         <div className="user-data">
           <div className="user-img">
-            <img src={user?.profile_pic} alt="profile picture" />
+            <img src={user?.profile_pic} alt="profile" />
           </div>
           <div className="user-text">
             <h1>{user?.username}</h1>
             <h5>{user?.name}</h5>
             <div className="profile-follow">
-              <FollowButtonUser className="profile-follow-button" sessionUser={sessionUser} user={user}/>
+              <FollowButtonUser
+                className="profile-follow-button"
+                sessionUser={sessionUser}
+                user={user}
+              />
             </div>
           </div>
         </div>
-        <div>{numFollowing()} Following</div>
-        <div>{user?.bio}</div>
+        <div className="followes-numbers">
+          <div className="following">
+            {numFollowing()} <p>Following</p>
+          </div>
+          <div className="follower-num">
+            {followersCount} <p>Followers</p>
+          </div>
+        </div>
+        <div className="bio">{user?.bio}</div>
       </div>
       <div className="user-videos">
         <div className="user-profile-buttons">

@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { createCommentThunk } from "../../store/post";
 // import { createCommentThunk } from "../../store/comment";
 import "./CreateComment.css";
-import { useModal } from "../../context/Modal";
 
 const CreateComment = ({ postId }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const sessionUser = useSelector((state) => state.session.user);
 
@@ -17,7 +14,7 @@ const CreateComment = ({ postId }) => {
 
   useEffect(() => {
     setErrors(errors);
-  }, [comment]);
+  }, [errors]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

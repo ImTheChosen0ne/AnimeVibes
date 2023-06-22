@@ -75,8 +75,8 @@ export const fetchPosts = () => async (dispatch) => {
 export const createPostThunk = (post) => async (dispatch) => {
   const response = await fetch("/api/posts/new", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(post),
+    // headers: { "Content-Type": "application/json" },
+    body: post,
   });
 
   if (response.ok) {
@@ -86,11 +86,15 @@ export const createPostThunk = (post) => async (dispatch) => {
   }
 };
 
+
 export const editPostThunk = (post) => async (dispatch) => {
+  const formData = new FormData();
+  formData.append("caption", post?.caption);
+  formData.append("video", post?.video);
+
   const response = await fetch(`/api/posts/${post.id}`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(post),
+    body: formData,
   });
 
   if (response.ok) {
@@ -99,6 +103,19 @@ export const editPostThunk = (post) => async (dispatch) => {
     return editedPost;
   }
 };
+// export const editPostThunk = (post) => async (dispatch) => {
+//   const response = await fetch(`/api/posts/${post.id}`, {
+//     method: "PUT",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(post),
+//   });
+
+//   if (response.ok) {
+//     const editedPost = await response.json();
+//     dispatch(editPost(editedPost));
+//     return editedPost;
+//   }
+// };
 
 export const deletePostThunk = (postId) => async (dispatch) => {
   const response = await fetch(`/api/posts/${postId}`, {

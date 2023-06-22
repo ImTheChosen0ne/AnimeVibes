@@ -18,7 +18,7 @@ const SinglePost = () => {
   const sessionUser = useSelector((state) => state.session.user);
 
   const [isPlaying, setIsPlaying] = useState(true);
-  const [comment, setComment] = useState("");
+  // const [comment, setComment] = useState("");
 
   const togglePlay = () => {
     setIsPlaying(!isPlaying);
@@ -54,12 +54,12 @@ const SinglePost = () => {
           <div className="detail-pro-img">
             <NavLink
               to={
-                sessionUser && sessionUser.id === post.userId
+                sessionUser && sessionUser?.id === post?.userId
                   ? "/users/profile"
-                  : `/users/profile/${post.user.id}`
+                  : `/users/profile/${post?.user.id}`
               }
             >
-              <img src={post?.user.profile_pic} className="detail-img" />
+              <img src={post?.user.profile_pic} className="detail-img" alt="user"/>
             </NavLink>
             <div className="post-info">
               <div className="post-name-date">
@@ -94,6 +94,7 @@ const SinglePost = () => {
                       : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                   }
                   className="comment-img"
+                  alt="user"
                 />
               </div>
               <div className="input-comment">
@@ -105,7 +106,7 @@ const SinglePost = () => {
             <div key={comment.id} className="comment">
               <div className="user-comment">
                 <div className="comment-pro-img">
-                  <img src={comment.user.profile_pic} className="comment-img" />
+                  <img src={comment.user.profile_pic} className="comment-img" alt="user"/>
                 </div>
                 <div className="detail-comment">
                   <div className="user-name">{comment.user.username}</div>

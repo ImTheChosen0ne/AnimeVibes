@@ -1,4 +1,4 @@
-const GET_USER = "session/GET_USER";
+const GET_USER = "users/GET_USER";
 
 const getUsers = (users) => ({
   type: GET_USER,

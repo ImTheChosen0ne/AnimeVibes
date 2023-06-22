@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { editCommentThunk } from "../../store/post";
 // import { editCommentThunk } from "../../store/comment";
-import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 
 const EditComment = ({ postId, comment }) => {

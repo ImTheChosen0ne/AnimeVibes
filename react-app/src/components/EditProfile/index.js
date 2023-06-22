@@ -28,6 +28,13 @@ const EditProfile = ({ sessionUser }) => {
     if (bio.length > 50) {
       errors.name = "Bio can not have more than 50 characters";
     }
+    if (
+      profilePic &&
+      !profilePic.endsWith(".png") &&
+      !profilePic.endsWith(".jpg") &&
+      !profilePic.endsWith(".jpeg")
+    )
+      errors.profilePic = "Image URL must end in .png, .jpg, or .jpeg";
     setErrors(errors);
 
     if (Object.keys(errors).length === 0) {
@@ -42,8 +49,10 @@ const EditProfile = ({ sessionUser }) => {
       <form onSubmit={handleSubmit}>
         <div>
           <label>
-            Profile Picture
+            Profile Picture URL
+            <h4 className="formErrors">{errors?.profilePic}</h4>
             <input
+              type="url"
               placeholder="Enter your profile picture here"
               value={profilePic}
               onChange={(e) => setProfilePic(e.target.value)}

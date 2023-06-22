@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import DeletePost from "../../components/DeletePost";
 import OpenModalButton from "../../components/OpenModalButton";
 import UserPosts from "../../components/UserPosts";
 import UserFavorties from "../../components/FavortiePosts";
 import UserLikes from "../../components/LikesPosts";
 import { fetchPosts } from "../../store/post";
+import { fetchUsers } from "../../store/user";
 import EditProfile from "../../components/EditProfile";
 import "./ProfilePage.css";
 
@@ -15,7 +14,7 @@ const ProfilePage = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const [activeTab, setActiveTab] = useState("videos");
   const dispatch = useDispatch();
-
+  const users = useSelector((state) => state.users);
   const currentUserPosts = posts.filter(
     (post) => post.userId === sessionUser.id
   );
@@ -28,9 +27,26 @@ const ProfilePage = () => {
     return sessionUser.followers.length;
   };
 
+  function calculateFollowersCount() {
+    let totalFollowersCount = 0;
+
+    Object.values(users).forEach((user) => {
+      const followers = user.followers || [];
+      followers.forEach((follower) => {
+        if (follower.id === sessionUser.id) {
+          totalFollowersCount += 1;
+        }
+      });
+    });
+
+    return totalFollowersCount;
+  }
+
   useEffect(() => {
     dispatch(fetchPosts());
+    dispatch(fetchUsers());
   }, [dispatch]);
+
 
   currentUserPosts.sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
@@ -41,7 +57,7 @@ const ProfilePage = () => {
       <div className="user-info-profile">
         <div className="user-data">
           <div className="user-img">
-            <img src={sessionUser.profile_pic} alt="profile picture" />
+            <img src={sessionUser.profile_pic} alt="user" />
           </div>
           <div className="user-text">
             <h1>{sessionUser.username}</h1>
@@ -59,8 +75,16 @@ const ProfilePage = () => {
             </div>
           </div>
         </div>
-        <div>{numFollowing()} Following</div>
-        <div>{sessionUser.bio}</div>
+        <div className="followes-numbers">
+          <div className="following">
+            {numFollowing()} <p>Following</p>
+          </div>
+          <div className="follower-num">
+            {calculateFollowersCount()} <p>Followers</p>
+          </div>
+          </div>
+
+        <div className="bio">{sessionUser.bio}</div>
       </div>
       <div className="user-videos">
         <div className="user-profile-buttons">

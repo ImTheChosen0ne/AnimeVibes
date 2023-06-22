@@ -1,13 +1,11 @@
 import React, { useState, ulRef } from "react";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { addFavoriteThunk, deleteFavoriteThunk } from "../../store/session";
 import LoginFormModal from "../LoginFormModal";
 import OpenModalButton from "../OpenModalButton";
 
 const FavoriteButton = ({ sessionUser, post }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
 
   let [favoriteColor, setfavoriteColor] = useState("");
 

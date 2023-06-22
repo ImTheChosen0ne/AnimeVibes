@@ -11,6 +11,7 @@ img {
     flex: 1 1 auto;
     margin: 0px auto;
     box-sizing: content-box;
+    height: 89vh;
 }
 
 .user-info-profile {
@@ -203,17 +204,55 @@ img {
     border-radius: 4px;
 }
 
-.profile-follow {
+
+.profile-follow button{
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(254, 44, 85);
+    min-height: 36px;
+    font-size: 18px;
+    font-weight: 600;
     display: flex;
-    position: absolute;
-    opacity: 1;
-    min-height: 28px;
-    display: flex;
-    justify-content: center;
-    cursor: pointer;
-    position: absolute;
-    min-width: 88px;
-    padding: 0 10px;
+    position: relative;
     align-items: center;
-    transform: translate(5%, 150%);
+    justify-content: center;
+    padding: 6px 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+    min-width: 208px;
+    line-height: 22px;
+    transform: translateY(-50%);
+}
+
+.followes-numbers {
+    display: flex;
+    margin-top: 20px;
+}
+
+.following {
+    margin-right: 10px;
+    display: flex;
+    font-weight: 600;
+}
+
+.following p {
+    margin-left: 5px;
+    display: flex;
+    font-weight: 100;
+}
+
+.follower-num {
+    margin-right: 10px;
+    display: flex;
+    font-weight: 600;
+}
+
+.follower-num p {
+    margin-left: 5px;
+    display: flex;
+    font-weight: 100;
+}
+
+.bio {
+    margin-top: 20px;
 }

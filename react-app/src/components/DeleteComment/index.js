@@ -1,13 +1,11 @@
 import React from "react";
-import { useSelector,useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { deleteCommentThunk } from "../../store/post"
 // import { deleteCommentThunk } from "../../store/comment"
-import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 
 
 const DeleteComment = ({postId, commentId}) => {
-    const history = useHistory()
     const dispatch = useDispatch()
     const {closeModal} =  useModal();
 

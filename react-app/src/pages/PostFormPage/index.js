@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createPostThunk, editPostThunk } from "../../store/post";
@@ -10,11 +10,18 @@ const PostForm = ({ post, formType }) => {
 
   const [caption, setCaption] = useState(post?.caption);
   const [video, setVideo] = useState(post?.video);
-
+  const [videoLoading, setVideoLoading] = useState(false);
   const [errors, setErrors] = useState({});
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    formData.append("userId", sessionUser.id);
+    formData.append("video", video);
+    formData.append("caption", caption);
+
+    setVideoLoading(true);
+
     post = {
       ...post,
       userId: sessionUser.id,
@@ -32,18 +39,18 @@ const PostForm = ({ post, formType }) => {
     if (video === "") {
       errors.video = "Video is required";
     }
-    if (video && !video.endsWith(".mp4")) {
-      errors.video = "Video URL must end in .mp4";
-    }
-    if (video && !video.startsWith("http")) {
-      errors.video = "Video must be in URL Format";
-    }
+    // if (video && !video.endsWith(".mp4")) {
+    //   errors.video = "Video URL must end in .mp4";
+    // }
+    // if (video && !video.startsWith("http")) {
+    //   errors.video = "Video must be in URL Format";
+    // }
 
     setErrors(errors);
 
     if (Object.keys(errors).length === 0) {
       if (formType === "CreatePost") {
-        let createPost = await dispatch(createPostThunk(post));
+        let createPost = await dispatch(createPostThunk(formData));
         if (createPost) {
           history.push(`/posts/${createPost.post.id}`);
         }
@@ -58,7 +65,11 @@ const PostForm = ({ post, formType }) => {
 
   return (
     <div className="create-update">
-      <form onSubmit={handleSubmit} className="post-form">
+      <form
+        onSubmit={handleSubmit}
+        encType="multipart/form-data"
+        className="post-form"
+      >
         <div>
           <h1>{formType === "CreatePost" ? "Upload video" : "Update Post"}</h1>
           <h3>
@@ -67,17 +78,22 @@ const PostForm = ({ post, formType }) => {
               : "Update a video in your account"}
           </h3>
           <div className="form">
-            <div className={formType === "EditPost" ? "hidden" : ""}>
+            <div>
               <div>
-                <h4>Select a video to upload</h4>
+                <h4>
+                  {formType === "CreatePost"
+                    ? "Select a video to upload"
+                    : "Select a video to update current post"}
+                </h4>
                 <h4 className="formErrors">{errors.video}</h4>
               </div>
               <label>
                 <input
-                  type="text"
+                  type="file"
                   placeholder="Video"
-                  value={video}
-                  onChange={(e) => setVideo(e.target.value)}
+                  accept="video/*"
+                  // value={video}
+                  onChange={(e) => setVideo(e.target.files[0])}
                 />
               </label>
             </div>
@@ -94,10 +110,7 @@ const PostForm = ({ post, formType }) => {
             </label>
             <div className="form-buttons">
               <div className="post-button">
-                <button
-                  className="post-button"
-                  type="submit"
-                >
+                <button className="post-button" type="submit">
                   {formType === "CreatePost" ? "Post" : "Update Post"}
                 </button>
               </div>
