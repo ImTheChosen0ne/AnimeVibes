@@ -24,6 +24,7 @@
     display: block;
     float: left;
     overflow: hidden;
+    position: relative;
 }
 
 .user-post img {
@@ -37,7 +38,23 @@
 }
 
 .user-post p {
-    z-index:7;
-    color: black;
-    transform: translateY(100%);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    width: 100%;
+    padding: 10px;
+    z-index: 1;
+    text-align: center;
+}
+
+.user-post .follow-button {
+    width: 100%;
+}
+
+.user-post button {
+    left: 0;
+    margin: 200px 20px 0 20px;
+    color: white;
+    background-color: rgba(254, 44, 85, 1);;
 }
