@@ -6,6 +6,6 @@ from app.api.aws_helpers import ALLOWED_EXTENSIONS
 
 class PostForm(FlaskForm):
     caption = StringField("Caption", validators=[DataRequired(), Length(min=1,max=255)])
-    video = StringField("Video", validators=[DataRequired()])
-    # video = FileField("Video File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    # video = StringField("Video", validators=[DataRequired()])
+    video = FileField("Video File", validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
     submit = SubmitField("Submit")

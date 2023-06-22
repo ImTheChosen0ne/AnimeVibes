@@ -54,9 +54,9 @@ const SinglePost = () => {
           <div className="detail-pro-img">
             <NavLink
               to={
-                sessionUser && sessionUser.id === post.userId
+                sessionUser && sessionUser?.id === post?.userId
                   ? "/users/profile"
-                  : `/users/profile/${post.user.id}`
+                  : `/users/profile/${post?.user.id}`
               }
             >
               <img src={post?.user.profile_pic} className="detail-img" alt="user"/>
