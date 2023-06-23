@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-right: 1vw;
     align-self: center;
     /* width: 100vw; */
     max-width: 100vw;

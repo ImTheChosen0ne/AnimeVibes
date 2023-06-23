@@ -120,8 +120,7 @@ const SinglePost = () => {
                   <div className="name-ellipse">
                     <div className="user-name">{comment.user.username}</div>
                     {sessionUser &&
-                      sessionUser.id === comment.user.id &&
-                      sessionUser.id === post.userId && (
+                      sessionUser.id === comment.user.id && (
                         <div className="ellipse-pulldown">
                           <div className="main-button">⋯</div>
                           <div className="dropdown-content">
@@ -141,7 +140,7 @@ const SinglePost = () => {
                                 buttonText="Delete comment"
                                 modalComponent={
                                   <DeleteComment
-                                    postId={postId}
+                                    postId={post.id}
                                     commentId={comment?.id}
                                   />
                                 }

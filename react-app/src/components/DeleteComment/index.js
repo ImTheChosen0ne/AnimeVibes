@@ -1,7 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { deleteCommentThunk } from "../../store/post"
-// import { deleteCommentThunk } from "../../store/comment"
 import { useModal } from "../../context/Modal";
 
 

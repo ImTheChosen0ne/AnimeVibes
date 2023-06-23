@@ -146,45 +146,45 @@ def delete_comment(postId, commentId):
     db.session.commit()
     return deleted_comment
 
-@post_routes.route('/<int:postId>/comments/<int:commentId>/replyComments',methods =['POST'])
-def create_reply_comment(commentId, postId):
-    form = CommentForm()
+# @post_routes.route('/<int:postId>/comments/<int:commentId>/replyComments',methods =['POST'])
+# def create_reply_comment(commentId, postId):
+#     form = CommentForm()
 
-    form['csrf_token'].data = request.cookies['csrf_token']
+#     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.validate_on_submit():
-        commentReply = CommentReply(
-            commentId = commentId,
-            userId=current_user.id,
-            comment=form.data["comment"],
-        )
-        db.session.add(commentReply)
-        db.session.commit()
+#     if form.validate_on_submit():
+#         commentReply = CommentReply(
+#             commentId = commentId,
+#             userId=current_user.id,
+#             comment=form.data["comment"],
+#         )
+#         db.session.add(commentReply)
+#         db.session.commit()
 
-        return {'commentReply': commentReply.to_dict()}
-    else:
-        print(form.errors)
+#         return {'commentReply': commentReply.to_dict()}
+#     else:
+#         print(form.errors)
 
-@post_routes.route('/<int:postId>/comments/<int:commentId>/replyComments/<int:replyCommentId>', methods = ["PUT"])
-def update_reply_comment(commentId, replyCommentId):
-    commentReply = CommentReply.query.get(replyCommentId)
-    form = CommentForm()
+# @post_routes.route('/<int:postId>/comments/<int:commentId>/replyComments/<int:replyCommentId>', methods = ["PUT"])
+# def update_reply_comment(commentId, replyCommentId):
+#     commentReply = CommentReply.query.get(replyCommentId)
+#     form = CommentForm()
 
-    form['csrf_token'].data = request.cookies['csrf_token']
+#     form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.validate_on_submit():
-        if form.data["comment"]:
-            commentReply.comment = form.data["comment"]
+#     if form.validate_on_submit():
+#         if form.data["comment"]:
+#             commentReply.comment = form.data["comment"]
 
-        db.session.commit()
-        return {'commentReply': commentReply.to_dict()}
-    else:
-        print(form.errors)
+#         db.session.commit()
+#         return {'commentReply': commentReply.to_dict()}
+#     else:
+#         print(form.errors)
 
-@post_routes.route('/<int:postId>/comments/<int:commentId>/replyComments/<int:replyCommentId>', methods = ["DELETE"])
-def delete_reply_comment(postId, replyCommentId, commentId):
-    commentReply = CommentReply.query.get(replyCommentId)
-    deleted_comment_reply = {'commentReply': commentReply.to_dict()}
-    db.session.delete(commentReply)
-    db.session.commit()
-    return deleted_comment_reply
+# @post_routes.route('/<int:postId>/comments/<int:commentId>/replyComments/<int:replyCommentId>', methods = ["DELETE"])
+# def delete_reply_comment(postId, replyCommentId, commentId):
+#     commentReply = CommentReply.query.get(replyCommentId)
+#     deleted_comment_reply = {'commentReply': commentReply.to_dict()}
+#     db.session.delete(commentReply)
+#     db.session.commit()
+#     return deleted_comment_reply
