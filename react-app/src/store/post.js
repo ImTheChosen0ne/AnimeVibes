@@ -5,9 +5,9 @@ const DELETE_POST = "posts/DELETE_POST";
 const CREATE_COMMENT = "posts/CREATE_COMMENT";
 const EDIT_COMMENT = "posts/EDIT_COMMENT";
 const DELETE_COMMENT = "posts/DELETE_COMMENT";
-const CREATE_REPLY_COMMENT = "posts/CREATE_REPLY_COMMENT";
-const EDIT_REPLY_COMMENT = "posts/EDIT_REPLY_COMMENT";
-const DELETE_REPLY_COMMENT = "posts/DELETE_REPLY_COMMENT";
+// const CREATE_REPLY_COMMENT = "posts/CREATE_REPLY_COMMENT";
+// const EDIT_REPLY_COMMENT = "posts/EDIT_REPLY_COMMENT";
+// const DELETE_REPLY_COMMENT = "posts/DELETE_REPLY_COMMENT";
 
 //action creator
 const getPosts = (posts) => ({
@@ -40,27 +40,28 @@ const editComment = (comment) => ({
   comment,
 });
 
-const deleteComment = (comment) => ({
+const deleteComment = (commentId, postId) => ({
   type: DELETE_COMMENT,
-  comment,
-});
-
-const createReplyComment = (comment, postId, commentId) => ({
-  type: CREATE_REPLY_COMMENT,
-  comment,
-  postId,
   commentId,
+  postId
 });
 
-const editReplyComment = (comment) => ({
-  type: EDIT_REPLY_COMMENT,
-  comment,
-});
+// const createReplyComment = (comment, postId, commentId) => ({
+//   type: CREATE_REPLY_COMMENT,
+//   comment,
+//   postId,
+//   commentId,
+// });
 
-const deleteReplyComment = (comment) => ({
-  type: DELETE_REPLY_COMMENT,
-  comment,
-});
+// const editReplyComment = (comment) => ({
+//   type: EDIT_REPLY_COMMENT,
+//   comment,
+// });
+
+// const deleteReplyComment = (comment) => ({
+//   type: DELETE_REPLY_COMMENT,
+//   comment,
+// });
 
 //Thunk Action Creators
 export const fetchPosts = () => async (dispatch) => {
@@ -161,57 +162,60 @@ export const deleteCommentThunk = (postId, commentId) => async (dispatch) => {
 
   if (response.ok) {
     const comment = await response.json();
-    dispatch(deleteComment(postId, comment));
+    // console.log("comment", comment)
+    // console.log("commentid", commentId)
+    // console.log("postId", postId)
+    dispatch(deleteComment(commentId, postId));
   }
 };
 
-export const createReplyCommentThunk =
-  (postId, commentId, comment) => async (dispatch) => {
-    const response = await fetch(`/api/posts/${postId}/comments/${commentId}/replyComments`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(comment),
-    });
+// export const createReplyCommentThunk =
+//   (postId, commentId, comment) => async (dispatch) => {
+//     const response = await fetch(`/api/posts/${postId}/comments/${commentId}/replyComments`, {
+//       method: "POST",
+//       headers: { "Content-Type": "application/json" },
+//       body: JSON.stringify(comment),
+//     });
 
-    if (response.ok) {
-      const newComment = await response.json();
-      await dispatch(createReplyComment(newComment, postId, commentId));
-      return newComment;
-    }
-  };
+//     if (response.ok) {
+//       const newComment = await response.json();
+//       await dispatch(createReplyComment(newComment, postId, commentId));
+//       return newComment;
+//     }
+//   };
 
 
-export const editReplyCommentThunk =
-  (comment, commentId) => async (dispatch) => {
-    const response = await fetch(
-      `/api/comments/${commentId}/replyComments/${comment.id}`,
-      {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(comment),
-      }
-    );
-    if (response.ok) {
-      const editedComment = await response.json();
-      dispatch(editReplyComment(editedComment.commentReply));
-      return editedComment.commentReply;
-    }
-  };
+// export const editReplyCommentThunk =
+//   (comment, commentId) => async (dispatch) => {
+//     const response = await fetch(
+//       `/api/comments/${commentId}/replyComments/${comment.id}`,
+//       {
+//         method: "PUT",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify(comment),
+//       }
+//     );
+//     if (response.ok) {
+//       const editedComment = await response.json();
+//       dispatch(editReplyComment(editedComment.commentReply));
+//       return editedComment.commentReply;
+//     }
+//   };
 
-export const deleteReplyCommentThunk =
-  (commentId, postId, replyCommentId) => async (dispatch) => {
-    const response = await fetch(
-      `/api/posts/${postId}/comments/${commentId}/replyComments/${replyCommentId}`,
-      {
-        method: "DELETE",
-      }
-    );
+// export const deleteReplyCommentThunk =
+//   (commentId, postId, replyCommentId) => async (dispatch) => {
+//     const response = await fetch(
+//       `/api/posts/${postId}/comments/${commentId}/replyComments/${replyCommentId}`,
+//       {
+//         method: "DELETE",
+//       }
+//     );
 
-    if (response.ok) {
-      const comment = await response.json();
-      dispatch(deleteReplyComment(postId, commentId, comment));
-    }
-  };
+//     if (response.ok) {
+//       const comment = await response.json();
+//       dispatch(deleteReplyComment(postId, commentId, comment));
+//     }
+//   };
 
 const initialState = {};
 
@@ -261,28 +265,28 @@ const postsReducer = (state = initialState, action) => {
       return newState;
     case DELETE_COMMENT:
       newState = { ...state };
-      postId = action.comment;
+      postId = action.postId;
       post = state[postId];
       newPost = { ...post };
       newState[postId] = newPost;
       index = post.comments.findIndex(
-        (comment) => comment.id === action.comment.id
+        (comment) => comment.id === action.commentId
       );
       newPost.comments = [...post.comments];
       newPost.comments.splice(index, 1);
       return newState;
-    case CREATE_REPLY_COMMENT:
-      newState = { ...state };
-      postId = action.postId;
-      post = newState[postId];
+    // case CREATE_REPLY_COMMENT:
+    //   newState = { ...state };
+    //   postId = action.postId;
+    //   post = newState[postId];
 
-      const commentIndex = post.comments.findIndex(
-          (comment) => comment.id === action.commentId)
+    //   const commentIndex = post.comments.findIndex(
+    //       (comment) => comment.id === action.commentId)
 
-      const comment = post.comments[commentIndex];
-      comment.commentReply.push(action.comment.commentReply);
+    //   const comment = post.comments[commentIndex];
+    //   comment.commentReply.push(action.comment.commentReply);
 
-      return newState;
+    //   return newState;
     // case EDIT_REPLY_COMMENT:
     //   newState = { ...state };
     //   commentId = action.comment.commentId;
@@ -297,18 +301,18 @@ const postsReducer = (state = initialState, action) => {
     //   newPost.comments = [...post.comments];
     //   newPost.comments[index] = action.comment;
     //   return newState;
-    case DELETE_REPLY_COMMENT:
-      newState = { ...state };
-      postId = action.comment;
-      post = state[postId];
-      newPost = { ...post };
-      newState[postId] = newPost;
-      index = post.comments.findIndex(
-        (comment) => comment.id === action.comment.id
-      );
-      newPost.comments = [...post.comments];
-      newPost.comments.splice(index, 1);
-      return newState;
+    // case DELETE_REPLY_COMMENT:
+    //   newState = { ...state };
+    //   postId = action.comment;
+    //   post = state[postId];
+    //   newPost = { ...post };
+    //   newState[postId] = newPost;
+    //   index = post.comments.findIndex(
+    //     (comment) => comment.id === action.comment.id
+    //   );
+    //   newPost.comments = [...post.comments];
+    //   newPost.comments.splice(index, 1);
+    //   return newState;
     default:
       return state;
   }

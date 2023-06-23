@@ -140,7 +140,7 @@ const SinglePost = () => {
                                 buttonText="Delete comment"
                                 modalComponent={
                                   <DeleteComment
-                                    postId={postId}
+                                    postId={post.id}
                                     commentId={comment?.id}
                                   />
                                 }
