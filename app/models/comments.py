@@ -19,10 +19,10 @@ class Comment(db.Model):
     comment_reply = db.relationship("CommentReply", back_populates="comment_reply", cascade="all, delete-orphan")
 
     def formatted_updatedAt(self):
-        return self.updatedAt.strftime('%B-%d')
+        return self.updatedAt.strftime('%-m-%d')
 
     def formatted_createdAt(self):
-        return self.createdAt.strftime('%B-%d')
+        return self.createdAt.strftime('%-m-%d')
 
     def to_dict(self):
         return {

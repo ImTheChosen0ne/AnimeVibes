@@ -36,10 +36,10 @@ const EditComment = ({ postId, comment }) => {
   };
 
   return (
-    <div className="log-in-modal">
+    <div className="edit-modal">
       <h1>Edit your Comment</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="edit-comment-input">
           <label>
             <h4 className="formErrors">{errors.comment}</h4>
             <textarea
