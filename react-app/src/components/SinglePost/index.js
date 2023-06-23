@@ -59,7 +59,11 @@ const SinglePost = () => {
                   : `/users/profile/${post?.user.id}`
               }
             >
-              <img src={post?.user.profile_pic} className="detail-img" alt="user"/>
+              <img
+                src={post?.user.profile_pic}
+                className="detail-img"
+                alt="user"
+              />
             </NavLink>
             <div className="post-info">
               <div className="post-name-date">
@@ -106,36 +110,50 @@ const SinglePost = () => {
             <div key={comment.id} className="comment">
               <div className="user-comment">
                 <div className="comment-pro-img">
-                  <img src={comment.user.profile_pic} className="comment-img" alt="user"/>
+                  <img
+                    src={comment.user.profile_pic}
+                    className="comment-img"
+                    alt="user"
+                  />
                 </div>
                 <div className="detail-comment">
-                  <div className="user-name">{comment.user.username}</div>
+                  <div className="name-ellipse">
+                    <div className="user-name">{comment.user.username}</div>
+                    {sessionUser &&
+                      sessionUser.id === comment.user.id &&
+                      sessionUser.id === post.userId && (
+                        <div className="ellipse-pulldown">
+                          <div className="main-button">⋯</div>
+                          <div className="dropdown-content">
+                            <div className="edit-button">
+                              <OpenModalButton
+                                buttonText="Edit comment"
+                                modalComponent={
+                                  <EditComment
+                                    postId={postId}
+                                    comment={comment}
+                                  />
+                                }
+                              />
+                            </div>
+                            <div>
+                              <OpenModalButton
+                                buttonText="Delete comment"
+                                modalComponent={
+                                  <DeleteComment
+                                    postId={postId}
+                                    commentId={comment?.id}
+                                  />
+                                }
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                  </div>
                   <p>{comment?.comment}</p>
                 </div>
               </div>
-              {sessionUser && sessionUser.id === comment.user.id && (
-                <div className="buttons">
-                  <div>
-                    <OpenModalButton
-                      buttonText="Edit comment"
-                      modalComponent={
-                        <EditComment postId={postId} comment={comment} />
-                      }
-                    />
-                  </div>
-                  <div>
-                    <OpenModalButton
-                      buttonText="Delete comment"
-                      modalComponent={
-                        <DeleteComment
-                          postId={postId}
-                          commentId={comment?.id}
-                        />
-                      }
-                    />
-                  </div>
-                </div>
-              )}
               {/* <div>
                 <CreateReplyComment commentId={comment?.id} postId={comment?.postId}/>
                 </div>

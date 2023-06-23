@@ -108,13 +108,11 @@ const ProfilePage = () => {
           </button>
         </div>
         <div className="all-user-vids">
-          <div>
           {activeTab === "videos" && <UserPosts posts={currentUserPosts} />}
           {activeTab === "favorites" && (
             <UserFavorties sessionUser={sessionUser} />
           )}
           {activeTab === "likes" && <UserLikes sessionUser={sessionUser} />}
-          </div>
         </div>
       </div>
     </div>

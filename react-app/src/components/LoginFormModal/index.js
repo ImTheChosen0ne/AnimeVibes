@@ -1,4 +1,5 @@
-import React, { useState, ulRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -10,6 +11,7 @@ import "./LoginForm.css";
 function LoginFormModal() {
   const dispatch = useDispatch();
   const history = useHistory()
+  const ulRef = useRef();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -27,11 +29,21 @@ function LoginFormModal() {
     history.push("/")
   };
 
-  const closeMenu = (e) => {
-    if (!ulRef.current.contains(e.target)) {
-      setShowMenu(false);
-    }
-  };
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
+  const closeMenu = () => setShowMenu(false);
 
   const handleDemoLogin = async (e) => {
     e.preventDefault();
@@ -45,7 +57,8 @@ function LoginFormModal() {
   };
 
   return (
-    <>
+    <div className="login-modal">
+      <div className="login-container">
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul className="formErrors">
@@ -53,24 +66,27 @@ function LoginFormModal() {
             <li key={idx}>{error}</li>
           ))}
         </ul>
+          <p>Email</p>
         <label>
-          Email
           <input
+            placeholder="Email"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
         </label>
+        <p>Password</p>
         <label>
-          Password
           <input
+          placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </label>
+        <div>
         <button type="submit">Log In</button>
         <div className="demo-user">
           <button
@@ -81,8 +97,10 @@ function LoginFormModal() {
             Log in as Demo User
           </button>
         </div>
+        </div>
       </form>
-      <div>
+      </div>
+      <div className="sign-up">
         <p>Dont have an account?</p>
         <OpenModalButton
               buttonText="Sign Up"
@@ -90,7 +108,7 @@ function LoginFormModal() {
               modalComponent={<SignupFormModal />}
             />
       </div>
-    </>
+    </div>
   );
 }
 

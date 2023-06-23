@@ -1,4 +1,4 @@
-import React, { useState, ulRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { addLikeThunk, deleteLikeThunk } from "../../store/session";
 import LoginFormModal from "../LoginFormModal";
@@ -6,6 +6,8 @@ import OpenModalButton from "../OpenModalButton";
 
 const LikeButton = ({ sessionUser, post }) => {
   const dispatch = useDispatch();
+  const ulRef = useRef();
+
   let [heartColor, setHeartColor] = useState("");
 
   if (!sessionUser) heartColor = "";
@@ -18,11 +20,21 @@ const LikeButton = ({ sessionUser, post }) => {
 
   const [showMenu, setShowMenu] = useState(false);
 
-  const closeMenu = (e) => {
-    if (!ulRef.current.contains(e.target)) {
-      setShowMenu(false);
-    }
-  };
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
+  const closeMenu = () => setShowMenu(false);
 
   const handleFavorite = async () => {
     if (heartColor === "redheart") {

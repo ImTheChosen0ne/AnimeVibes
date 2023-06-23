@@ -83,7 +83,7 @@
 .sidebar-login {
     position: relative;
     padding: 20px 8px 24px 8px;
-    margin: 0;
+    margin-right: 10px;
 }
 
 .sidebar-login p {

@@ -51,9 +51,6 @@
 
 .span {
     display: inline-block;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
     position: relative;
     overflow: hidden;
     color: #fff;
@@ -123,8 +120,6 @@ a {
 
 .video {
     position: relative;
-    box-sizing: border-box;
-    -webkit-background-size: cover;
     background-size: cover;
     cursor: pointer;
     border-radius: 8px;

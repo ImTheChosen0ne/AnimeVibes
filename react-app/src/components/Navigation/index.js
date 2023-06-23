@@ -17,7 +17,7 @@ function Navigation({ isLoaded }) {
       <ul className="nav">
         <li>
           <NavLink exact to="/">
-            Home
+            AnimeVibes
           </NavLink>
         </li>
 		<div className="nav-links">

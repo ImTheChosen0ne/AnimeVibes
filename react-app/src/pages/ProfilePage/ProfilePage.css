@@ -10,8 +10,7 @@ img {
     flex-direction: column;
     flex: 1 1 auto;
     margin: 0px auto;
-    box-sizing: content-box;
-    height: 89vh;
+    height: 100vh;
 }
 
 .user-info-profile {
@@ -34,8 +33,6 @@ img {
     align-items: center;
     justify-content: center;
     display: inline-block;
-    margin: 0;
-    padding: 0;
     position: relative;
     overflow: hidden;
     color: #fff;
@@ -178,6 +175,7 @@ img {
     display: grid;
     gap: 24px 16px;
     grid-template-columns: repeat(auto-fill, minmax(184px, 1fr));
+    position: relative;
 }
 
 .profile-video {
@@ -218,7 +216,6 @@ img {
     justify-content: center;
     padding: 6px 8px;
     cursor: pointer;
-    box-sizing: border-box;
     min-width: 208px;
     line-height: 22px;
     transform: translateY(-50%);

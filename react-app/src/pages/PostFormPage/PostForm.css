@@ -24,20 +24,17 @@
 }
 
 .post-form h1{
-    box-sizing: border-box;
     line-height: 1.5;
     display: block;
     padding-top: 40px;
 }
 
 .post-form h3{
-    box-sizing: border-box;
     line-height: 1.5;
     display: block;
 }
 
 .post-form h4{
-    box-sizing: border-box;
     line-height: 1.5;
     display: block;
     padding-top: 10px;
@@ -61,7 +58,6 @@
 }
 
 .form-buttons button{
-    box-sizing: border-box;
     appearance: none;
     min-width: 96px;
     display: flex;

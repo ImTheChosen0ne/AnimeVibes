@@ -1,0 +1,71 @@
+.ellipse-pulldown-post {
+    position: relative;
+    display: inline-block;
+    visibility: hidden;
+}
+
+.user-video:hover .ellipse-pulldown-post {
+    visibility: visible;
+}
+
+.main-button-post{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ffffffd7;
+    font-size: 20px;
+    color: rgba(254, 44, 86, 0.678);
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.dropdown-content-post {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    flex: 0 0 24px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+    padding: 8px 16px;
+    min-width: 180px;
+    background-color: #f9f9f9e9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    display: none;
+    border-radius: 4px;
+}
+
+.ellipse-pulldown-post:hover .dropdown-content-post {
+    display: block;
+}
+
+.name-ellipse-post {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 1;
+    position: absolute;
+    top: 10px;
+    margin-left: 10px;
+    z-index: 1;
+}
+
+.dropdown-content-post button {
+    position: relative;
+    padding: 13px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.dropdown-content-post .edit-button-post {
+    border-bottom: 1px solid rgba(22, 24, 35, 0.12);
+
+}
