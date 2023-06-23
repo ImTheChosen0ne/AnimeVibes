@@ -85,3 +85,52 @@ li {
   margin-left: 16px;
   min-width: 40px;
 }
+
+.nav-search {
+  margin-right: 10px;
+  position: relative;
+}
+
+.nav-search form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px 14px;
+  background: rgba(22, 24, 35, 0.06);
+  border-radius: 92px;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-search input {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  border: none;
+  background: transparent;
+  outline: none;
+  width: 431px;
+}
+
+.nav-search button {
+  padding: 10px 15px 10px 11px;
+  margin: -11px -15px -11px 0px;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: transparent;
+  color: rgba(18, 18, 19, 0.525);
+  border-left: 1.5px solid rgba(178, 177, 177, 0.498);
+}
+
+.dropdown {
+  position: absolute;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}

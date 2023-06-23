@@ -20,12 +20,12 @@ const DeleteComment = ({postId, commentId}) => {
     }
 
   return(
-    <div className="log-in-modal delete-comment-modal">
+    <div className="delete-modal">
       <h1>Confirm Delete</h1>
       <h4>Are you sure you want to remove this comment?</h4>
       <form>
         <div className="delete-buttons">
-          <button  onClick={handleSubmityes}>Yes </button>
+          <button  onClick={handleSubmityes} className="yes">Yes </button>
           <button  onClick={handleSubmitno}> No </button>
         </div>
       </form>

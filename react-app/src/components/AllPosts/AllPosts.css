@@ -47,9 +47,6 @@
     justify-content: center;
     width: 56px;
     height: 56px;
-}
-
-.span {
     display: inline-block;
     position: relative;
     overflow: hidden;
@@ -62,8 +59,9 @@
     border-color: rgba(22, 24, 35, .12);
     border-width: 0.5px;
     cursor: pointer;
-    background-color: rgba(136, 136, 136, 0.5);
 }
+
+
 
 .splash-profile-pic{
     object-fit: cover;
@@ -136,7 +134,6 @@ a {
     border: none;
     background: none;
     outline: none;
-    padding: 0;
     position: relative;
     display: flex;
     align-items: center;

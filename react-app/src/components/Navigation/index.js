@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
@@ -7,9 +7,24 @@ import "./Navigation.css";
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector((state) => state.session.user);
   const history = useHistory();
+  const [searchValue, setSearchValue] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const handleCreatePost = () => {
     history.push("/posts/new");
+  };
+
+  const handleSearchInputChange = (e) => {
+    const value = e.target.value;
+    setSearchValue(value);
+    setShowDropdown(value.length > 0);
+  };
+
+  const displayDropdownMessage = () => {
+    if (showDropdown) {
+      return <div className="dropdown">Feature Coming Soon!</div>;
+    }
+    return null;
   };
 
   return (
@@ -20,16 +35,32 @@ function Navigation({ isLoaded }) {
             AnimeVibes
           </NavLink>
         </li>
-		<div className="nav-links">
-        <li className={sessionUser ? "" : "hidden"}>
-            <button className="upload" onClick={handleCreatePost}>+ Upload</button>
+        <li className="nav-search">
+          <form>
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchValue}
+              onChange={handleSearchInputChange}
+            />
+            <button disabled={true}>
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+          {displayDropdownMessage()}
         </li>
-        {isLoaded && (
-          <li>
-            <ProfileButton user={sessionUser} />
+        <div className="nav-links">
+          <li className={sessionUser ? "" : "hidden"}>
+            <button className="upload" onClick={handleCreatePost}>
+              + Upload
+            </button>
           </li>
-        )}
-		</div>
+          {isLoaded && (
+            <li>
+              <ProfileButton user={sessionUser} />
+            </li>
+          )}
+        </div>
       </ul>
     </div>
   );

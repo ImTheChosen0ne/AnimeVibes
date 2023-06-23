@@ -27,6 +27,6 @@
   margin: auto;
   position: relative;
   max-height: 693px;
-  height: 80%;
+  height: auto;
   overflow: hidden;
 }

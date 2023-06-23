@@ -1,12 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 const UserFavorties = ({ sessionUser }) => {;
-  const [isPlaying, setIsPlaying] = useState(true);
+  // const [isPlaying, setIsPlaying] = useState(true);
 
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying);
-  };
+  // const togglePlay = () => {
+  //   setIsPlaying(!isPlaying);
+  // };
 
   return (
     <div>
@@ -19,8 +19,8 @@ const UserFavorties = ({ sessionUser }) => {;
                 src={post?.video}
                 // autoPlay={isPlaying}
                 playsInline={true}
-                controls
-                onClick={togglePlay}
+                // controls
+                // onClick={togglePlay}
               />
             </div>
             </NavLink>

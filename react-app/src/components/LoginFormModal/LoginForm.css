@@ -11,8 +11,8 @@
     overflow: auto;
     width: 375px;
     margin: auto;
-    padding: unset;
     flex-direction: column;
+    padding-bottom: 60px;
 }
 
 .login-container h1 {
@@ -59,7 +59,6 @@
     justify-content: center;
     padding: 6px 8px;
     cursor: pointer;
-    box-sizing: border-box;
     width: 100%;
     margin-top: 21px;
 }

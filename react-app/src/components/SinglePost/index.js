@@ -67,8 +67,8 @@ const SinglePost = () => {
             </NavLink>
             <div className="post-info">
               <div className="post-name-date">
-                <div>{post?.user.username}</div>
-                <div>{post?.createdAt}</div>
+                <div className="detail-username">{post?.user.username}</div>
+                <div className="date">{post?.createdAt}</div>
               </div>
               {sessionUser?.id !== post?.user.id ? (
                 <FollowButton sessionUser={sessionUser} post={post} />
@@ -151,6 +151,7 @@ const SinglePost = () => {
                       )}
                   </div>
                   <p>{comment?.comment}</p>
+                  <p className="date">{comment.createdAt}</p>
                 </div>
               </div>
               {/* <div>

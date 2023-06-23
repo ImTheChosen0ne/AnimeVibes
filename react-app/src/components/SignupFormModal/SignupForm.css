@@ -11,8 +11,8 @@
     overflow: auto;
     width: 375px;
     margin: auto;
-    padding: unset;
     flex-direction: column;
+    padding-bottom: 60px;
 }
 
 .sign-container h1 {

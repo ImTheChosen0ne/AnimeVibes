@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import { useHistory, NavLink } from "react-router-dom";
 import DeletePost from "../../components/DeletePost";
@@ -6,12 +6,12 @@ import OpenModalButton from "../../components/OpenModalButton";
 import "./UserPosts.css";
 const UserPosts = ({ posts }) => {
   const history = useHistory();
-  const [isPlaying, setIsPlaying] = useState(true);
+  // const [isPlaying, setIsPlaying] = useState(true);
   const sessionUser = useSelector((state) => state.session.user);
 
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying);
-  };
+  // const togglePlay = () => {
+  //   setIsPlaying(!isPlaying);
+  // };
 
   return (
       <div className="all-user-videos">
@@ -23,8 +23,8 @@ const UserPosts = ({ posts }) => {
                   src={post?.video}
                   // autoPlay={isPlaying}
                   playsInline={true}
-                  controls
-                  onClick={togglePlay}
+                  // controls
+                  // onClick={togglePlay}
                 />
               </div>
             </NavLink>

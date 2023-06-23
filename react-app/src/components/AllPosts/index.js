@@ -31,9 +31,7 @@ function AllPosts() {
         {posts.map((post) => (
           <div key={post?.id}>
             <div className="post">
-              <div className="avatar">
                 <div className="avatar-img">
-                  <span className="span">
                     <NavLink to={sessionUser && sessionUser.id === post.userId ? "/users/profile" : `/users/profile/${post.user.id}`}>
                       <img
                         className="splash-profile-pic"
@@ -41,9 +39,7 @@ function AllPosts() {
                         alt="user"
                       />
                     </NavLink>
-                  </span>
                 </div>
-              </div>
               <div className="post-data">
                 <div className="information">
                   <div>

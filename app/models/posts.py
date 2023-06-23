@@ -29,6 +29,12 @@ class Post(db.Model):
         back_populates="user_likes",
     )
 
+    def formatted_updatedAt(self):
+        return self.updatedAt.strftime('%-m-%d')
+
+    def formatted_createdAt(self):
+        return self.createdAt.strftime('%-m-%d')
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -38,8 +44,8 @@ class Post(db.Model):
             "user": self.user.to_dict(),
             "comments": [comment.to_dict() for comment in self.comments],
             # "likes": self.post_likes,
-            "createdAt": self.createdAt,
-            "updatedAt": self.updatedAt
+            "createdAt": self.formatted_createdAt(),
+            "updatedAt": self.formatted_updatedAt()
        }
 
     def to_dict_favorites(self):
