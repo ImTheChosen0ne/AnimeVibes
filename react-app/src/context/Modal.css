@@ -17,10 +17,16 @@
   left: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.7);
-
 }
 
 #modal-content {
   position: absolute;
   background-color:white;
+  border-radius: 8px;
+  transform: none;
+  margin: auto;
+  position: relative;
+  max-height: 693px;
+  height: 80%;
+  overflow: hidden;
 }

@@ -1,4 +1,4 @@
-import React, { useState, ulRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { addFavoriteThunk, deleteFavoriteThunk } from "../../store/session";
 import LoginFormModal from "../LoginFormModal";
@@ -6,6 +6,7 @@ import OpenModalButton from "../OpenModalButton";
 
 const FavoriteButton = ({ sessionUser, post }) => {
   const dispatch = useDispatch();
+  const ulRef = useRef();
 
   let [favoriteColor, setfavoriteColor] = useState("");
 
@@ -19,11 +20,21 @@ const FavoriteButton = ({ sessionUser, post }) => {
 
   const [showMenu, setShowMenu] = useState(false);
 
-  const closeMenu = (e) => {
-    if (!ulRef.current.contains(e.target)) {
-      setShowMenu(false);
-    }
-  };
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
+  const closeMenu = () => setShowMenu(false);
 
   const handleFavorite = async () => {
     if (favoriteColor === "yellowFavorite") {

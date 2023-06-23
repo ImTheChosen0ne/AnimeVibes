@@ -1,4 +1,4 @@
-import React, { useState, ulRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LoginFormModal from "../LoginFormModal";
@@ -7,14 +7,25 @@ import OpenModalButton from "../OpenModalButton";
 import "./SplashSideBar.css";
 
 const SplashSideBar = () => {
+  const ulRef = useRef();
   const sessionUser = useSelector((state) => state.session.user);
   const [showMenu, setShowMenu] = useState(false);
 
-  const closeMenu = (e) => {
-    if (!ulRef.current.contains(e.target)) {
-      setShowMenu(false);
-    }
-  };
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener("click", closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
+  const closeMenu = () => setShowMenu(false);
 
   return (
     <div className="side-bar-container">
@@ -69,7 +80,37 @@ const SplashSideBar = () => {
           </div>
         )}
       </div>
-      <div className="footer">About info</div>
+      <div className="footer">
+      <div className="about">
+          <h3>
+            <i className="fa-regular fa-copyright"></i>2023 AnimeVibes inspired by TikTok
+          </h3>
+        </div>
+          <div>
+            <p>Matthew Almeida</p>
+            <a href="https://github.com/ImTheChosen0ne">
+              <i className="fa-brands fa-github"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/matthew-almeida-103425183/">
+              <i className="fa-brands fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+      <div>
+        <div>
+        <div>
+          <div>Made with:</div>
+          <div className="madeIcons">
+            <i className="fa-brands fa-react"></i>
+            <i className="fa-brands fa-html5"></i>
+            <i className="fa-brands fa-css3-alt"></i>
+            <i className="fa-brands fa-square-js"></i>
+            <i className="fa-brands fa-python"></i>
+          </div>
+        </div>
+      </div>
+
+      </div>
     </div>
   );
 };
