@@ -6,6 +6,9 @@
     /* width: 100vw; */
     max-width: 100vw;
     flex: 1 1 auto;
+    /* background-image: url("https://img.freepik.com/free-vector/hand-drawn-zoom-effect-background_23-2149810737.jpg?w=1380&t=st=1687610951~exp=1687611551~hmac=5bc08be88cd93c644179561e91c138c00afe4816296b20529c55fefd72ff715a");
+    background-size: cover;
+    background-attachment: fixed; */
 }
 
 .splash-posts {

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
+import animevibesLogo from "./AnimeVibesnewnoTM.jpg"
 import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
@@ -32,7 +33,7 @@ function Navigation({ isLoaded }) {
       <ul className="nav">
         <li>
           <NavLink exact to="/">
-            AnimeVibes
+            <img src={animevibesLogo} alt="logo" className="logo"/>
           </NavLink>
         </li>
         <li className="nav-search">

@@ -33,12 +33,12 @@ const SplashSideBar = () => {
         <ul className="side-bar-links">
           <li>
             <NavLink exact to="/">
-              For you
+            <i class="fa-solid fa-house"></i> For you
             </NavLink>
           </li>
           <li>
             <NavLink exact to="/following">
-              Following
+            <i class="fa-solid fa-user-group"></i> Following
             </NavLink>
           </li>
         </ul>
@@ -86,7 +86,7 @@ const SplashSideBar = () => {
             <i className="fa-regular fa-copyright"></i>2023 AnimeVibes inspired by TikTok
           </h3>
         </div>
-          <div>
+          <div className="footer-links">
             <p>Matthew Almeida</p>
             <a href="https://github.com/ImTheChosen0ne">
               <i className="fa-brands fa-github"></i>
@@ -99,7 +99,7 @@ const SplashSideBar = () => {
       <div>
         <div>
         <div>
-          <div>Made with:</div>
+          <div className="made-with">Made with:</div>
           <div className="madeIcons">
             <i className="fa-brands fa-react"></i>
             <i className="fa-brands fa-html5"></i>
