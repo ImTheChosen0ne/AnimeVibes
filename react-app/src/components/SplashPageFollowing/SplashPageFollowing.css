@@ -11,7 +11,7 @@
 }
 
 .logged-out-following {
-    width: 720px;
+    width: 735px;
     padding-top: 20px;
     height: 94.5vh;
 }
@@ -42,11 +42,17 @@
     position: absolute;
     top: 50%;
     left: 0;
-    transform: translate(0, -50%);
+    transform: translate(0, 50%);
     width: 100%;
     padding: 10px;
     z-index: 1;
     text-align: center;
+    font-weight: 900;
+    color: white;
+    font-size: 20px;
+    font-family:'Nunito Sans', sans-serif;
+
+    ;
 }
 
 .user-post .follow-button {
@@ -57,5 +63,5 @@
     left: 0;
     margin: 200px 20px 0 20px;
     color: white;
-    background-color: rgba(254, 44, 85, 1);;
+    background-color: rgba(254, 44, 85, 1);
 }
