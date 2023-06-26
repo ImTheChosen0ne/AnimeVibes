@@ -8,6 +8,9 @@
     height: calc(100vh - 60px);
     overflow-y: auto;
     box-shadow: 0 1px 10px rgb(187, 187, 187);
+    align-items: stretch;
+    min-height: 100%;
+
 }
 
 .side-bar-links {
@@ -32,7 +35,7 @@
     font-size: 14px;
     line-height: 20px;
     position: relative;
-    height: 75%;
+    /* height: 75%; */
 }
 
 .footer {
