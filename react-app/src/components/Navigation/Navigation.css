@@ -23,8 +23,8 @@
   border-style: solid;
   border-radius: 4px;
   color: white;
-  border-color: rgba(254, 44, 85, 1);
-  background-color: rgba(254, 44, 85, 1);
+  border-color: rgba(254, 44, 85);
+  background-color: rgba(254, 44, 85);
   min-height: 28px;
   font-size: 16px;
   line-height: 22px;
@@ -48,7 +48,7 @@
 .profile-page-button a {
   line-height: 2px;
   text-decoration: underline;
-  color: rgba(254, 44, 85, 1);
+  color: rgb(254, 44, 85);
 }
 
 .profile-dropdown li {
@@ -101,15 +101,15 @@ li {
   justify-content: center;
   font-weight: 600;
   font-size: 16px;
-  background: rgba(255, 255, 255, 1);
+  background: white;
   cursor: pointer;
 }
 
 .login-button {
   border-radius: 4px;
   border: none;
-  color: rgba(255, 255, 255, 1);
-  background-color: rgba(254, 44, 85, 1);
+  color: white;
+  background-color: rgba(254, 44, 85);
   min-height: 36px;
   display: flex;
   position: relative;
@@ -133,7 +133,7 @@ li {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 10px 14px;
+  padding: 11px 14px;
   background: rgba(22, 24, 35, 0.06);
   border-radius: 92px;
   position: relative;
@@ -142,12 +142,12 @@ li {
 
 .nav-search input {
   font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
+  font-size: 17px;
+  line-height: 23px;
   border: none;
   background: transparent;
   outline: none;
-  width: 431px;
+  width: 432px;
 }
 
 .nav-search button {

@@ -45,7 +45,7 @@ function Navigation({ isLoaded }) {
               onChange={handleSearchInputChange}
             />
             <button disabled={true}>
-              <i class="fa-solid fa-magnifying-glass"></i>
+              <i className="fa-solid fa-magnifying-glass"></i>
             </button>
           </form>
           {displayDropdownMessage()}

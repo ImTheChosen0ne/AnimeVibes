@@ -33,12 +33,12 @@ const SplashSideBar = () => {
         <ul className="side-bar-links">
           <li>
             <NavLink exact to="/">
-            <i class="fa-solid fa-house"></i> For you
+              <i className="fa-solid fa-house"></i> For you
             </NavLink>
           </li>
           <li>
             <NavLink exact to="/following">
-            <i class="fa-solid fa-user-group"></i> Following
+              <i className="fa-solid fa-user-group"></i> Following
             </NavLink>
           </li>
         </ul>
@@ -49,10 +49,14 @@ const SplashSideBar = () => {
             <h5>Following accounts</h5>
             {sessionUser.followers.length > 0 ? (
               sessionUser.followers.slice(0, 10).map((user) => (
-                <NavLink to={`/users/profile/${user.id}`}>
-                  <div key={user.id} className="follower">
+                <div key={user.id}>
+                  <NavLink to={`/users/profile/${user.id}`} className="follower">
                     <div className="splash-img">
-                      <img src={user.profile_pic} className="side-img" alt="user"/>
+                      <img
+                        src={user.profile_pic}
+                        className="side-img"
+                        alt="user"
+                      />
                     </div>
                     <div className="sidebar-name">
                       <div className="username">{user.username}</div>
@@ -60,8 +64,8 @@ const SplashSideBar = () => {
                         {user.name === "Set a profile name." ? "" : user.name}
                       </div>
                     </div>
-                  </div>
-                </NavLink>
+                  </NavLink>
+                </div>
               ))
             ) : (
               <div>Start following users today!</div>
@@ -81,35 +85,35 @@ const SplashSideBar = () => {
         )}
       </div>
       <div className="footer">
-      <div className="about">
+        <div className="about">
           <h3>
-            <i className="fa-regular fa-copyright"></i>2023 AnimeVibes inspired by TikTok
+            <i className="fa-regular fa-copyright"></i>2023 AnimeVibes inspired
+            by TikTok
           </h3>
         </div>
-          <div className="footer-links">
-            <p>Matthew Almeida</p>
-            <a href="https://github.com/ImTheChosen0ne">
-              <i className="fa-brands fa-github"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/matthew-almeida-103425183/">
-              <i className="fa-brands fa-linkedin"></i>
-            </a>
-          </div>
-        </div>
-      <div>
-        <div>
-        <div>
-          <div className="made-with">Made with:</div>
-          <div className="madeIcons">
-            <i className="fa-brands fa-react"></i>
-            <i className="fa-brands fa-html5"></i>
-            <i className="fa-brands fa-css3-alt"></i>
-            <i className="fa-brands fa-square-js"></i>
-            <i className="fa-brands fa-python"></i>
-          </div>
+        <div className="footer-links">
+          <p>Matthew Almeida</p>
+          <a href="https://github.com/ImTheChosen0ne">
+            <i className="fa-brands fa-github"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/matthew-almeida-103425183/">
+            <i className="fa-brands fa-linkedin"></i>
+          </a>
         </div>
       </div>
-
+      <div>
+        <div>
+          <div>
+            <div className="made-with">Made with:</div>
+            <div className="madeIcons">
+              <i className="fa-brands fa-react"></i>
+              <i className="fa-brands fa-html5"></i>
+              <i className="fa-brands fa-css3-alt"></i>
+              <i className="fa-brands fa-square-js"></i>
+              <i className="fa-brands fa-python"></i>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

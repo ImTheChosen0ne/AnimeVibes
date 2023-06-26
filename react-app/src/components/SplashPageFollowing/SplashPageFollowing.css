@@ -13,7 +13,6 @@
 .logged-out-following {
     width: 735px;
     padding-top: 20px;
-    height: 94.5vh;
 }
 
 .user-post {
@@ -63,5 +62,5 @@
     left: 0;
     margin: 200px 20px 0 20px;
     color: white;
-    background-color: rgba(254, 44, 85, 1);
+    background-color: rgba(254, 44, 85);
 }

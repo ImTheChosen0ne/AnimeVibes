@@ -19,7 +19,7 @@
 }
 
 .post-comment {
-    color: rgba(22, 24, 35, 0.34);
+    color: black;
     font-weight: 600;
     cursor: default;
     flex: 0 0 48px;
