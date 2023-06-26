@@ -149,7 +149,7 @@
 .post-info .follow-button button{
     position: relative;
     top: 0;
-    background-color: rgba(254, 44, 85, 1);
+    background-color: rgb(254, 44, 85);
     color: white;
 }
 
@@ -173,7 +173,7 @@
     height: 20px;
     border-radius: 50%;
     font-size: 20px;
-    color: rgba(254, 44, 85, 1);
+    color: rgb(254, 44, 85);
     font-weight: 900;
     display: flex;
     justify-content: center;
@@ -261,7 +261,7 @@
 .edit-modal button {
     border-radius: 4px;
     border: none;
-    color: rgb(255, 255, 255);
+    color: white;
     background-color: rgb(254, 44, 85);
     font-size: 16px;
     line-height: 22px;
@@ -298,7 +298,7 @@
 .delete-modal button {
     border-radius: 4px;
     border: none;
-    color: rgb(255, 255, 255);
+    color: white;
     background-color: rgb(254, 44, 85);
     font-size: 16px;
     line-height: 22px;

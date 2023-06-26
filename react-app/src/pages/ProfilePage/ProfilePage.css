@@ -41,11 +41,8 @@ img {
     vertical-align: middle;
     line-height: 32px;
     border-radius: 50%;
-    background-color: rgba(136, 136, 136, 0.5);
-    border-color: rgba(255, 255, 255, .12);
     border-width: 0.5px;
     cursor: pointer;
-    background-color: rgba(136, 136, 136, 0.5);
 }
 
 .user-img img {
@@ -96,9 +93,9 @@ img {
     border-width: 1px;
     border-style: solid;
     border-radius: 4px;
-    color: rgb(22, 24, 35);
-    border-color: rgba(22, 24, 35, 0.12);
-    background-color: rgb(255, 255, 255);
+    color: black;
+    border-color: black;
+    background-color: white;
     min-height: 36px;
     font-weight: 600;
     position: relative;
@@ -117,7 +114,7 @@ img {
 .edit-profile i {
     width: 20px;
     height: 20px;
-    color: rgb(22, 24, 35);
+    color: black;
     margin-right: 6px;
 }
 
@@ -174,7 +171,7 @@ img {
 .all-user-videos {
     display: grid;
     gap: 24px 16px;
-    grid-template-columns: repeat(auto-fill, minmax(184px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
     position: relative;
 }
 
@@ -205,7 +202,7 @@ img {
 
 .profile-follow button{
     border-radius: 4px;
-    color: rgb(255, 255, 255);
+    color: white;
     background-color: rgb(254, 44, 85);
     min-height: 36px;
     font-size: 18px;

@@ -2,17 +2,15 @@
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    max-width: 692px;
-    height: unset;
-    width: unset;
-    padding: 20px 0;
+    max-width: 695px;
+    padding: 21px 0;
     border-bottom: 1px solid rgb(189, 188, 188);
     position: relative;
 }
 
 .post-data {
     margin-left: 12px;
-    width: 624px;
+    width: 625px;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -24,19 +22,18 @@
     width: 100%;
     overflow: hidden;
     position: relative;
-    padding-bottom: unset;
     width: 100%;
     overflow: hidden;
     text-overflow: ellipsis;
     text-decoration: none;
-    margin-top: 4px;
+    margin-top: 5px;
     margin-bottom: 12px;
 }
 
 .post-data video {
     display: block;
-    width: 320px;
-    height: 567px;
+    width: 322px;
+    height: 570px;
     object-fit: cover;
 }
 
@@ -56,8 +53,7 @@
     vertical-align: middle;
     line-height: 32px;
     border-radius: 50%;
-    border-color: rgba(22, 24, 35, .12);
-    border-width: 0.5px;
+    /* border-width: 0.5px; */
     cursor: pointer;
 }
 
@@ -69,7 +65,7 @@
 }
 
 .information {
-    margin-right: 114px;
+    margin-right: 115px;
     display: block;
 }
 
@@ -90,9 +86,9 @@ a {
     border-width: 1px;
     border-style: solid;
     border-radius: 4px;
-    color: rgba(254, 44, 85, 1);
-    border-color: rgba(254, 44, 85, 1);
-    background-color: rgba(255, 255, 255, 1);
+    color: rgb(250, 23, 68);
+    border-color: rgb(250, 23, 68);
+    background-color: white;
     min-height: 28px;
     font-size: 16px;
     line-height: 22px;
@@ -113,7 +109,6 @@ a {
     flex-direction: row;
     align-items: flex-end;
     height: 100%;
-    margin: unset;
 }
 
 .video {

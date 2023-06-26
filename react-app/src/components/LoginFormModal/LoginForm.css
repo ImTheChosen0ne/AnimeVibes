@@ -46,7 +46,7 @@
 .login-container button {
     border-radius: 4px;
     border: none;
-    color: rgb(255, 255, 255);
+    color: white;
     background-color: rgb(254, 44, 85);
     min-width: 120px;
     min-height: 46px;
