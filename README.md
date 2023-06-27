@@ -16,13 +16,11 @@ AnimeVibes was written by a Matthew Almeida as a capstone project during my time
  * Comments
  * Favorites
  * Likes
- * Shopping Cart
 
 ## Author
  * Matthew Almeida
    * https://github.com/ImTheChosen0ne
    * https://www.linkedin.com/in/matthew-almeida-103425183/
-
 
 ## Stack
  * React: https://react.dev/
