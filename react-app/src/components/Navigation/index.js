@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileButton from "./ProfileButton";
-import animevibesLogo from "./AnimeVibesnewnoTM.jpg"
+import animevibesLogo from "./AnimeVibesnewnoTM.jpg";
 import "./Navigation.css";
 
 function Navigation({ isLoaded }) {
@@ -33,7 +33,7 @@ function Navigation({ isLoaded }) {
       <ul className="nav">
         <li>
           <NavLink exact to="/">
-            <img src={animevibesLogo} alt="logo" className="logo"/>
+            <img src={animevibesLogo} alt="logo" className="logo" />
           </NavLink>
         </li>
         <li className="nav-search">
@@ -55,6 +55,11 @@ function Navigation({ isLoaded }) {
             <button className="upload" onClick={handleCreatePost}>
               + Upload
             </button>
+          </li>
+          <li className={sessionUser ? "" : "hidden"}>
+            <NavLink exact to={`/users/${sessionUser?.id}/messages`} className="message-icon">
+              <i className="fa-regular fa-message"></i>
+            </NavLink>
           </li>
           {isLoaded && (
             <li>

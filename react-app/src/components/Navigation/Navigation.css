@@ -177,3 +177,21 @@ li {
   width: 100%;
   height: 55px;
 }
+
+.message-icon {
+  margin-left: 16px;
+  cursor: pointer;
+  height: 32px;
+  padding: 3px 3px 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fa-message {
+  font-size: 25px;
+  color: rgba(22, 24, 35, 0.501);
+  /* height: 100%;
+  width: 100%; */
+}
