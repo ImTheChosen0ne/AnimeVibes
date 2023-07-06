@@ -1,0 +1,31 @@
+.user-messages {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    min-width: 420px;
+    flex-shrink: 1;
+    display: flex;
+    margin-left: 40px;
+    margin-top: 40px;
+    width: fit-content;
+    height: fit-content;
+}
+
+.chats {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.chat {
+    display: flex;
+    padding: 7px 0;
+    align-items: center;
+    /* flex-direction: ; */
+}
+
+.messages {
+    margin-left: 15px;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2)
+}

@@ -11,8 +11,8 @@ class Message(db.Model):
     chatId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('chats.id')), nullable=False)
     userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     message = db.Column(db.String(255), nullable=False)
-    createdAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
-    updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.now())
+    createdAt = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    updatedAt = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     chat = db.relationship("Chat", back_populates="messages")
     user = db.relationship("User", back_populates="messages")
@@ -23,7 +23,8 @@ class Message(db.Model):
             'chatId': self.chatId,
             'userId': self.userId,
             'message': self.message,
-            # "user": self.user.to_dict(),
-            'createdAt': self.createdAt,
-            'updatedAt': self.updatedAt
+            'username': self.user.username,
+            'profile_pic': self.user.profile_pic,
+            'createdAt': self.createdAt.strftime("%Y-%m-%d %H:%M:%S"),
+            'updatedAt': self.updatedAt.strftime("%Y-%m-%d %H:%M:%S")
         }

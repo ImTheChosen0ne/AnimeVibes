@@ -8,6 +8,9 @@ const DELETE_LIKE = "session/DELETE_LIKE"
 const ADD_FOLLOWER = "session/ADD_FOLLOWER"
 const REMOVE_FOLLOWER = "session/REMOVE_FOLLOWER"
 const EDIT_PROFILE = "session/EDIT_PROFILE";
+const CREATE_CHAT = "users/CREATE_CHAT"
+const DELETE_CHAT = "users/DELETE_CHAT"
+
 
 const setUser = (user) => ({
 	type: SET_USER,
@@ -51,7 +54,20 @@ const removeFollower = (follower) => ({
 const editProfile = (user) => ({
 	type: EDIT_PROFILE,
 	user,
-  });
+});
+
+const createChat = (newChat, userId) => ({
+	type: CREATE_CHAT,
+	newChat,
+	userId
+});
+
+const deleteChat = (chatId, userId) => ({
+	type: DELETE_CHAT,
+	chatId,
+	userId
+});
+
 
 const initialState = { user: null, followers: [], };
 
@@ -227,6 +243,31 @@ export const editProfileThunk = (user) => async (dispatch) => {
   };
 
 
+  export const createChatThunk = (chat, userId) => async (dispatch) => {
+	const response = await fetch(`/api/users/${userId}/chats`, {
+	  method: "POST",
+	  headers: { "Content-Type": "application/json" },
+	  body: JSON.stringify(chat),
+	});
+
+	if (response.ok) {
+	  const newChat = await response.json();
+	  await dispatch(createChat(newChat, userId));
+	  return newChat;
+	}
+  };
+
+  export const deleteChatThunk = (userId, chatId) => async (dispatch) => {
+	const response = await fetch(`/api/users/${userId}/chats/${chatId}`, {
+	  method: "DELETE",
+	});
+	if (response.ok) {
+	  dispatch(deleteChat(chatId));
+	  return;
+	}
+  };
+
+
 export default function reducer(state = initialState, action) {
 	let newState = {};
 
@@ -252,6 +293,26 @@ export default function reducer(state = initialState, action) {
 			return { ...state, user: { ...state.user, followers: updatedFollowers}};
 		case EDIT_PROFILE:
 			return { ...action.user };
+		case CREATE_CHAT:
+			const updatedUser = { ...state.user };
+			if (action.newChat.chat) {
+				updatedUser.chats.push(action.newChat.chat);
+			} else {
+				updatedUser.chats.push(action.newChat);
+			}
+			return {
+				...state,
+				user: updatedUser,
+			};
+		case DELETE_CHAT:
+			const updatedUserdel = { ...state.user };
+			updatedUserdel.chats = updatedUserdel.chats.filter(
+			  (chat) => chat.id !== action.chatId
+			);
+			return {
+			  ...state,
+			  user: updatedUserdel,
+			};
 		default:
 			return state;
 	}

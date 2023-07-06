@@ -22,7 +22,8 @@ class ChatMember(db.Model):
             'id': self.id,
             'userId': self.userId,
             'chatId': self.chatId,
-            # "user": self.user.to_dict(),
+            'username': self.user.username,
+            'profile_pic': self.user.profile_pic,
             'createdAt': self.createdAt,
             'updatedAt': self.updatedAt
         }

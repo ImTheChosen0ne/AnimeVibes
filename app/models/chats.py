@@ -17,6 +17,7 @@ class Chat(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
+            "chatMembers": [member.to_dict() for member in self.chat_members],
             "createdAt": self.createdAt,
             "updatedAt": self.updatedAt
         }
