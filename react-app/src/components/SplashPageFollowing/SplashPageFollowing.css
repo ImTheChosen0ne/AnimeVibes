@@ -1,18 +1,15 @@
 .following-link {
-    position: relative;
-    margin: 0 auto;
-    width: 100%;
-    min-width: 420px;
-    flex-shrink: 1;
     display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-self: center;
+    flex: 1 1 auto;
 }
 
 .logged-out-following {
     width: 735px;
     padding-top: 20px;
+    margin: 0 auto;
 }
 
 .user-post {

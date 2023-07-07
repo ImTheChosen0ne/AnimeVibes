@@ -10,7 +10,7 @@ def seed_users():
     sasuke = User(
         username='SasukeUchiha', email='sasuke@aa.io', password='password', bio='Vengeful avenger seeking redemption and power.', name="Sasuke", profile_pic="https://cdn.shopify.com/s/files/1/0046/2779/1960/files/sasuke_uchiha.jpg?v=1584818680")
     sakura  = User(
-        username='SakuraHaruno ', email='sakura@aa.io', password='password', bio='Skilled kunoichi with a blossoming inner strength.', name="Sakura", profile_pic="https://cdn-0.practicaltyping.com/wp-content/uploads/2019/07/Sakura.png")
+        username='SakuraHaruno ', email='sakura@aa.io', password='password', bio='Skilled kunoichi with a blossoming inner strength.', name="Sakura", profile_pic="https://cdn.myanimelist.net/images/characters/3/73370.jpg")
     monkey  = User(
         username='MonkeyLuffy', email='monkey@aa.io', password='password', bio='Rubber-bodied pirate on an adventurous quest for freedom.', name="Monkey", profile_pic="https://steemitimages.com/1280x0/http://i50.photobucket.com/albums/f331/venitaaresa/luffy2_zpsytpwrang.jpg")
     tanjiro = User(
