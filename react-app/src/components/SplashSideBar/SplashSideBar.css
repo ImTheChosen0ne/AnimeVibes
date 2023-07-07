@@ -35,7 +35,9 @@
     font-size: 14px;
     line-height: 20px;
     position: relative;
-    height: 75%;
+    height: 55%;
+    margin-bottom: 200px;
+
 }
 
 .footer {
@@ -172,5 +174,4 @@
     cursor: pointer;
     margin-top: 20px;
     width: 100%;
-    margin-bottom: 300%;
 }

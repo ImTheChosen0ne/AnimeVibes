@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editProfileThunk } from "../../store/session";
 import { useModal } from "../../context/Modal";
+import "./EditProfile.css"
 
 const EditProfile = ({ sessionUser }) => {
   const dispatch = useDispatch();
@@ -44,12 +45,11 @@ const EditProfile = ({ sessionUser }) => {
   };
 
   return (
-    <div className="log-in-modal">
+    <div className="edit-profile-modal">
+      <div className="edit-profile-container">
       <h1>Edit your Profile</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>
-            Profile Picture URL
+            <p>Profile Picture URL</p>
             <h4 className="formErrors">{errors?.profilePic}</h4>
             <input
               type="url"
@@ -57,25 +57,20 @@ const EditProfile = ({ sessionUser }) => {
               value={profilePic}
               onChange={(e) => setProfilePic(e.target.value)}
             />
-          </label>
-          <label>
-            Name
+            <p>Name</p>
             <h4 className="formErrors">{errors?.name}</h4>
             <input
               placeholder="Enter your name"
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-          </label>
-          <label>
-            Bio
+            <p>Bio</p>
             <h4 className="formErrors">{errors?.bio}</h4>
             <textarea
               placeholder="Enter your bio"
               value={bio}
               onChange={(e) => setBio(e.target.value)}
             />
-          </label>
           <button
             className="createbutton-post"
             type="submit"
@@ -86,8 +81,8 @@ const EditProfile = ({ sessionUser }) => {
           <button onClick={() => closeModal()}>
             Cancel
           </button>
-        </div>
       </form>
+      </div>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { fetchPosts } from "../../store/post";
@@ -14,16 +14,54 @@ function FollowersPosts() {
   const posts = Object.values(useSelector((state) => state.posts));
   const sessionUser = useSelector((state) => state.session.user);
   const users = Object.values(useSelector((state) => state.users));
-  const [isPlaying, setIsPlaying] = useState(true);
+  // const [isPlaying, setIsPlaying] = useState(true);
+  const videoRefs = useRef([]);
+  const isFirstVideo = useRef(true);
 
-  const togglePlay = () => {
-    setIsPlaying(!isPlaying);
-  };
+  // const togglePlay = () => {
+  //   setIsPlaying(!isPlaying);
+  // };
 
   useEffect(() => {
     dispatch(fetchPosts());
     dispatch(fetchUsers());
   }, [dispatch]);
+
+  useEffect(() => {
+    videoRefs.current = videoRefs.current.slice(0, posts.length);
+  }, [posts]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const isInView = (element) => {
+    const rect = element?.getBoundingClientRect();
+    return (
+      rect?.top >= 0 &&
+      rect?.left >= 0 &&
+      rect?.bottom <= window.innerHeight &&
+      rect?.right <= window.innerWidth
+    );
+  };
+
+  const handleScroll = () => {
+    videoRefs.current.forEach((video, index) => {
+      if ((isFirstVideo.current && index === 0) || isInView(video)) {
+        if (video?.paused) {
+          video?.play();
+        }
+      } else {
+        if (!video?.paused) {
+          video?.pause();
+        }
+      }
+    });
+    isFirstVideo.current = false;
+  };
 
   posts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
@@ -31,14 +69,13 @@ function FollowersPosts() {
     <div className="following-link">
       {sessionUser ? (
         <div className="splash-posts all-posts">
-          {sessionUser.followers.map((follower) => {
+          {sessionUser.followers.map((follower, index) => {
             const followerPosts = posts.filter(
               (post) => post.userId === follower.id
             );
             return followerPosts.map((post) => (
               <div key={post.id}>
                 <div className="post">
-                  <div className="avatar">
                     <div className="avatar-img">
                       <span className="span">
                         <NavLink
@@ -56,7 +93,6 @@ function FollowersPosts() {
                         </NavLink>
                       </span>
                     </div>
-                  </div>
                   <div className="post-data">
                     <div className="information">
                       <div>
@@ -74,11 +110,13 @@ function FollowersPosts() {
                     <div className="content">
                       <div className="video">
                         <video
+                          ref={(ref) => (videoRefs.current[index] = ref)}
                           src={post.video}
-                          // autoPlay={isPlaying}
+                          autoPlay={index === 0}
                           playsInline={true}
                           controls
-                          onClick={togglePlay}
+                          muted
+                          loop
                         />
                       </div>
                       <div className="post-buttons">
