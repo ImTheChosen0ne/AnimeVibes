@@ -78,31 +78,78 @@ function Message() {
     sessionUser && (
       <div className="user-messages">
         <div className="chats">
-          <h1>Messages</h1>
-          <OpenModalButton buttonText="New Chat" modalComponent={<NewChat />} />
-          {sessionUser.chats.map((chat) => {
-            const otherUsers = users.filter((user) =>
-              user.chats.find(
-                (c) => c.id === chat.id && user.id !== sessionUser.id
-              )
-            );
-            return (
-              <div key={chat.id} onClick={() => setActiveChatId(chat.id)}>
-                {otherUsers?.map((user) => (
-                  <div key={user.id} className="chat">
-                    <img src={user.profile_pic} alt="user" />
-                    <div>{user.username}</div>
+          <div className="chat-header">
+            <h1>Messages</h1>
+            <OpenModalButton
+              buttonText="New Chat"
+              modalComponent={<NewChat />}
+            />
+          </div>
+          <div className="all-chats">
+            {sessionUser.chats.map((chat) => {
+              const otherUsers = users.filter((user) =>
+                user.chats.find(
+                  (c) => c.id === chat.id && user.id !== sessionUser.id
+                )
+              );
+              return (
+                <div
+                  key={chat.id}
+                  onClick={() => setActiveChatId(chat.id)}
+                  className="chatter"
+                >
+                  {otherUsers?.map((user) => (
+                    <div key={user.id} className="chat">
+                      <img src={user.profile_pic} alt="user" />
+                      <div className="chat-info">
+                        <p className="message-username">{user.username}</p>
+                        <p className="date-chat">{chat.updatedAt}</p>
+                      </div>
+                    </div>
+                  ))}
+                  <div className="name-ellipse-chat">
+                    <div className="ellipse-pulldown-chat">
+                      <div className="main-button-chat">⋯</div>
+                      <div className="dropdown-content-chat">
+                        <div className="chat-delete-button">
+                          <OpenModalButton
+                            buttonText="Delete"
+                            modalComponent={
+                              <DeleteChat
+                                userId={sessionUser.id}
+                                chatId={chat.id}
+                              />
+                            }
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                ))}
-                <OpenModalButton
-                  buttonText="Delete"
-                  modalComponent={<DeleteChat userId={sessionUser.id} chatId={chat.id}/>}
-                />
-              </div>
-            );
-          })}
+                </div>
+              );
+            })}
+          </div>
         </div>
         <div className="messages">
+        <form onSubmit={sendChat}>
+            <input value={chatInput} onChange={updateChatInput} />
+            <button type="submit">Send</button>
+          </form>
+              <div>
+                {messages
+                  .filter((message) => message.chatId === activeChatId)
+                  .map((message, ind) => (
+                    <div key={ind}>
+                      <img src={message.profile_pic} alt="user"></img>
+                      {message.message}
+                      {sessionUser.id === message.userId && (
+                        <button onClick={() => deleteMessage(message.id)}>
+                          Delete
+                        </button>
+                      )}
+                    </div>
+                  ))}
+              </div>
           <div>
             {activeChatId && (
               <div className="selected-chat">
@@ -118,7 +165,7 @@ function Message() {
                       .flat()
                       .filter((message) => message?.chatId === activeChatId)
                       .sort(
-                        (a, b) => new Date(a.createdAt) -  new Date(b.createdAt)
+                        (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
                       )
                       .map((message) => (
                         <div key={message.id}>
@@ -142,25 +189,6 @@ function Message() {
               </div>
             )}
           </div>
-          <div>
-            {messages
-              .filter((message) => message.chatId === activeChatId)
-              .map((message, ind) => (
-                <div key={ind}>
-                  <img src={message.profile_pic} alt="user"></img>
-                  {message.message}
-                  {sessionUser.id === message.userId && (
-                    <button onClick={() => deleteMessage(message.id)}>
-                      Delete
-                    </button>
-                  )}
-                </div>
-              ))}
-          </div>
-          <form onSubmit={sendChat}>
-            <input value={chatInput} onChange={updateChatInput} />
-            <button type="submit">Send</button>
-          </form>
         </div>
       </div>
     )

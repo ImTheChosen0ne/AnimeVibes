@@ -191,7 +191,35 @@ li {
 
 .fa-message {
   font-size: 25px;
-  color: rgba(22, 24, 35, 0.501);
-  /* height: 100%;
-  width: 100%; */
+  color: rgba(22, 24, 35, 0.913);
+}
+
+.search-user {
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+}
+
+.search-user img {
+  height: 30px;
+  width: 30px;
+  object-fit: cover;
+}
+
+.search-user p {
+  padding-left: 5px;
+}
+
+.search-accounts h4{
+  padding: 10px 0;
+}
+
+.search-value {
+  display: flex;
+  font-size: 15px;
+  align-items: center;
+}
+
+.search-value p {
+  padding-left: 8px;
 }
