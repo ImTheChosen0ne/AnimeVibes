@@ -3,6 +3,9 @@ from .users import seed_users, undo_users
 from .posts import seed_posts, undo_posts
 from .comments import seed_comments, undo_comments
 from .comment_replies import seed_comment_relpies, undo_comment_replies
+from .chat_members import seed_chat_members, undo_chat_members
+from .chats import seed_chats, undo_chats
+from .messages import seed_messages, undo_messages
 
 from app.models.db import db, environment, SCHEMA
 
@@ -23,10 +26,16 @@ def seed():
         undo_posts()
         undo_comments()
         undo_comment_replies()
+        undo_chat_members()
+        undo_chats()
+        undo_messages()
     seed_users()
     seed_posts()
     seed_comments()
     seed_comment_relpies()
+    seed_chat_members()
+    seed_chats()
+    seed_messages()
     # Add other seed functions here
 
 
@@ -37,4 +46,7 @@ def undo():
     undo_posts()
     undo_comments()
     undo_comment_replies()
+    undo_chat_members()
+    undo_chats()
+    undo_messages()
     # Add other undo functions here

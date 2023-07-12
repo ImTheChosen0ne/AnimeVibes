@@ -27,6 +27,7 @@ greenlet = "==2.0.1"
 Mako = "==1.2.4"
 boto3 = "*"
 email-validator = "*"
+flask-socketio = "*"
 
 [dev-packages]
 

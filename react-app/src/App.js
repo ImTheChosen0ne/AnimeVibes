@@ -14,6 +14,8 @@ import ProfilePage from "./pages/ProfilePage";
 import SplashSideBar from "./components/SplashSideBar";
 import UserProfilePage from "./pages/ProfilePage/UserProfilePage";
 import FollowersPosts from "./components/SplashPageFollowing";
+import Message from "./components/Messages";
+import Search from "./components/Search";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +38,9 @@ function App() {
             <Route exact path="/following">
               <FollowersPosts />
             </Route>
+            <Route exact path="/search">
+              <Search />
+            </Route>
             <ProtectedRoute exact path="/posts/new">
               <CreatePostForm />
             </ProtectedRoute>
@@ -51,6 +56,9 @@ function App() {
             <Route exact path="/users/profile/:userId">
               <UserProfilePage />
             </Route>
+            <ProtectedRoute exact path="/users/:userId/messages">
+              <Message />
+            </ProtectedRoute>
             <Route path="/login">
               <LoginFormPage />
             </Route>
