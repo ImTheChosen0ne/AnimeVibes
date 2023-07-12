@@ -3,11 +3,12 @@
     inset: 60px 0px 0px;
     display: flex;
     flex-direction: row;
-    width: 100%;
+    width: 80%;
     height: calc(-60px + 100vh);
     justify-content: center;
     padding: 16px 24px 10px 20px;
     background-color: rgb(248, 248, 248);
+    margin: auto;
 }
 
 .chats {
