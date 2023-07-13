@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createChatThunk } from "../../store/session";
 import { useModal } from "../../context/Modal";
 import { fetchUsers } from "../../store/user";
-const NewChat = () => {
+const NewChat = ({setActiveChatId}) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const sessionUser = useSelector((state) => state.session.user);
@@ -12,11 +12,22 @@ const NewChat = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const newChat = {
-      userIds: [sessionUser.id, selectedUser],
-    };
+    const existingChat = sessionUser.chats.find((chat) => {
+      const otherUser = chat.chatMembers.find((member) => member.userId !== sessionUser.id);
+      return otherUser && otherUser.userId === parseInt(selectedUser);
+    });
 
-    await dispatch(createChatThunk(newChat, sessionUser.id)).then(() => dispatch(fetchUsers()));
+    if (existingChat) {
+      setActiveChatId(existingChat.id);
+    } else {
+      const newChat = {
+        userIds: [sessionUser.id, selectedUser],
+      };
+
+      await dispatch(createChatThunk(newChat, sessionUser.id)).then(() =>
+        dispatch(fetchUsers())
+      );
+    }
     closeModal();
   };
 

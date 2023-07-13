@@ -3,14 +3,14 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { deleteChatThunk } from "../../store/session";
 
-const DeleteChat = ({userId, chatId}) => {
+const DeleteChat = ({userId, chatId, setActiveChat}) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
   const handleSubmityes = async (e) => {
     e.preventDefault();
-
     await dispatch(deleteChatThunk(userId, chatId));
+    setActiveChat(null)
     closeModal();
   };
 
