@@ -26,15 +26,15 @@ def seed():
         undo_posts()
         undo_comments()
         undo_comment_replies()
-        undo_chat_members()
         undo_chats()
+        undo_chat_members()
         undo_messages()
     seed_users()
     seed_posts()
     seed_comments()
     seed_comment_relpies()
-    seed_chat_members()
     seed_chats()
+    seed_chat_members()
     seed_messages()
     # Add other seed functions here
 
@@ -46,7 +46,7 @@ def undo():
     undo_posts()
     undo_comments()
     undo_comment_replies()
-    undo_chat_members()
     undo_chats()
+    undo_chat_members()
     undo_messages()
     # Add other undo functions here
