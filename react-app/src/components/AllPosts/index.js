@@ -79,7 +79,13 @@ function AllPosts() {
             <div className="post-data">
               <div className="information">
                 <div>
-                  <NavLink to={`/posts/${post.id}`} className="links">
+                  <NavLink
+                    to={
+                      sessionUser && sessionUser.id === post.userId
+                        ? "/users/profile"
+                        : `/users/profile/${post.user.id}`
+                    }
+                  >
                     <p className="user-name">{post.user.username}</p>
                   </NavLink>
                   {!sessionUser ? (

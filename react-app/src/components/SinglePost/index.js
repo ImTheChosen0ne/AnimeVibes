@@ -9,6 +9,7 @@ import EditComment from "../EditComment";
 import LikeButton from "../LikeButton";
 import FavoriteButton from "../FavoriteButton";
 import FollowButton from "../FollowButton";
+import BounceLoader from "react-spinners/BounceLoader";
 import "./SinglePost.css";
 
 const SinglePost = () => {
@@ -16,7 +17,7 @@ const SinglePost = () => {
   const { postId } = useParams();
   const post = useSelector((state) => state.posts[postId]);
   const sessionUser = useSelector((state) => state.session.user);
-
+  const [videoLoading, setVideoLoading] = useState(false);
   const [isPlaying, setIsPlaying] = useState(true);
   // const [comment, setComment] = useState("");
 
@@ -39,8 +40,24 @@ const SinglePost = () => {
     dispatch(fetchPosts());
   }, [dispatch]);
 
+  useEffect(() => {
+    setVideoLoading(true);
+    setTimeout(() => {
+      setVideoLoading(false)
+    }, 700)
+  },[])
+
+
   return (
     <div className="single-post">
+      {videoLoading?
+            <BounceLoader
+        color={"rgba(254, 44, 85)"}
+        loading={videoLoading}
+        className="loader"
+      />
+      :
+
       <div className="detail-post">
         <video
           src={post?.video}
@@ -197,7 +214,9 @@ const SinglePost = () => {
           ))}
         </div>
       </div>
+    }
     </div>
+
   );
 };
 

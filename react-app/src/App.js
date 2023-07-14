@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route, Switch } from "react-router-dom";
-// import SignupFormPage from "./components/SignupFormPage";
-// import LoginFormPage from "./components/LoginFormPage";
+import { Route, Switch, useLocation } from "react-router-dom";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import SplashPage from "./pages/SplashPage";
@@ -21,57 +19,56 @@ import PageNotFound from "./components/PageNotFound";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
   }, [dispatch]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
 
   return (
     <>
       <div className="content-container">
         <Navigation isLoaded={isLoaded} />
         <div className="splash">
-        <SplashSideBar isLoaded={isLoaded} />
-        {isLoaded && (
-          <Switch>
-            <Route exact path="/">
-              <SplashPage />
-            </Route>
-            <Route exact path="/following">
-              <FollowersPosts />
-            </Route>
-            <Route exact path="/search">
-              <Search />
-            </Route>
-            <ProtectedRoute exact path="/posts/new">
-              <CreatePostForm />
-            </ProtectedRoute>
-            <ProtectedRoute exact path="/posts/:postId/edit">
-              <EditPostForm />
-            </ProtectedRoute>
-            <Route exact path="/posts/:postId">
-              <SinglePost />
-            </Route>
-            <ProtectedRoute exact path="/users/profile/">
-              <ProfilePage />
-            </ProtectedRoute>
-            <Route exact path="/users/profile/:userId">
-              <UserProfilePage />
-            </Route>
-            <ProtectedRoute exact path="/users/:userId/messages">
-              <Message />
-            </ProtectedRoute>
-            {/* <Route path="/login">
-              <LoginFormPage />
-            </Route>
-            <Route path="/signup">
-              <SignupFormPage />
-            </Route> */}
-            <Route>
-              <PageNotFound />
-            </Route>
-          </Switch>
-        )}
+          <SplashSideBar isLoaded={isLoaded} />
+          {isLoaded && (
+            <Switch>
+              <Route exact path="/">
+                <SplashPage />
+              </Route>
+              <Route exact path="/following">
+                <FollowersPosts />
+              </Route>
+              <Route exact path="/search">
+                <Search />
+              </Route>
+              <ProtectedRoute exact path="/posts/new">
+                <CreatePostForm />
+              </ProtectedRoute>
+              <ProtectedRoute exact path="/posts/:postId/edit">
+                <EditPostForm />
+              </ProtectedRoute>
+              <Route exact path="/posts/:postId">
+                <SinglePost />
+              </Route>
+              <ProtectedRoute exact path="/users/profile/">
+                <ProfilePage />
+              </ProtectedRoute>
+              <Route exact path="/users/profile/:userId">
+                <UserProfilePage />
+              </Route>
+              <ProtectedRoute exact path="/users/:userId/messages">
+                <Message />
+              </ProtectedRoute>
+              <Route>
+                <PageNotFound />
+              </Route>
+            </Switch>
+          )}
         </div>
       </div>
     </>
