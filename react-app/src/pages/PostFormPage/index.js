@@ -13,7 +13,8 @@ const PostForm = ({ post, formType }) => {
   const [video, setVideo] = useState(post?.video);
   const [videoLoading, setVideoLoading] = useState(false);
   const [errors, setErrors] = useState({});
-
+  const [videoName, setVideoName] = useState("");
+  const [videoPreview, setVideoPreview] = useState(null);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
@@ -64,6 +65,35 @@ const PostForm = ({ post, formType }) => {
     }
   };
 
+  const handleFileSelect = (event) => {
+    const file = event.target.files[0];
+    setVideo(file);
+    setVideoName(file.name);
+    const videoObjectURL = URL.createObjectURL(file);
+    setVideoPreview(videoObjectURL);
+  };
+
+  const handleDrop = (event) => {
+    event.preventDefault();
+    const file = event.dataTransfer.files[0];
+    setVideo(file);
+    setVideoName(file.name);
+    const videoObjectURL = URL.createObjectURL(file);
+    setVideoPreview(videoObjectURL);
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+  };
+
+  const clearVideo = () => {
+    const fileInput = document.getElementById("videoInput");
+    fileInput.value = null;
+    setVideo(null);
+    setVideoName("");
+    setVideoPreview(null);
+  };
+
   return (
     <div className="create-update">
       <form
@@ -80,48 +110,79 @@ const PostForm = ({ post, formType }) => {
           </h3>
           <div className="form">
             <div>
-              <div>
+              {/* <div>
                 <h4>
                   {formType === "CreatePost"
                     ? "Select a video to upload"
                     : "Select a video to update current post"}
                 </h4>
                 <h4 className="formErrors">{errors.video}</h4>
-              </div>
+              </div> */}
               <label>
-                <input
-                  type="file"
-                  placeholder="Video"
-                  accept="video/*"
-                  // value={video}
-                  onChange={(e) => setVideo(e.target.files[0])}
-                />
+                <h4 className="formErrors">{errors.video}</h4>
+                <div
+                  className="drop-zone"
+                  onDrop={handleDrop}
+                  onDragOver={handleDragOver}
+                >
+                  {videoPreview ? (
+                    <div>
+                      <video
+                        src={videoPreview}
+                        className="video-preview"
+                        controls
+                        autoPlay
+                        muted
+                      />
+                      <button
+                        className="change-video-button"
+                        onClick={clearVideo}
+                      >
+                        Change Video
+                      </button>
+                    </div>
+                  ) : (
+                    <div>
+                      <p>Drag and drop a video file here</p>
+                      <p className="select-file">or select a file</p>
+                    </div>
+                  )}
+                  <input
+                    type="file"
+                    id="videoInput"
+                    accept="video/*"
+                    style={{ display: "none" }}
+                    onChange={handleFileSelect}
+                  />
+                </div>
               </label>
             </div>
-            <h4>Caption</h4>
-            <h4 className="formErrors">{errors?.caption}</h4>
-            <label>
-              <textarea
-                rows="4"
-                cols="44"
-                placeholder="Caption"
-                value={caption}
-                onChange={(e) => setCaption(e.target.value)}
-              />
-            </label>
-            <div className="form-buttons">
-              <div className="post-button">
-                <button className="post-button" type="submit">
-                  {formType === "CreatePost" ? "Post" : "Update Post"}
-                </button>
-              </div>
-              <div className="discard-button">
-                <button
-                  className="discard-button"
-                  onClick={() => history.push("/")}
-                >
-                  Discard
-                </button>
+            <div className="caption-info">
+              <h4>Caption</h4>
+              <h4 className="formErrors">{errors?.caption}</h4>
+              <label>
+                <textarea
+                  rows="4"
+                  cols="44"
+                  placeholder="Caption"
+                  value={caption}
+                  onChange={(e) => setCaption(e.target.value)}
+                />
+              </label>
+              <div className="form-buttons">
+                <div className="post-button">
+                  <button className="post-button" type="submit">
+                    {formType === "CreatePost" ? "Post" : "Update Post"}
+                  </button>
+                </div>
+                <div className="discard-button">
+                  <button
+                    className="discard-button"
+                    onClick={() => history.push("/")}
+                  >
+                    Discard
+                  </button>
+                </div>
               </div>
             </div>
           </div>

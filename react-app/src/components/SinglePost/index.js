@@ -44,7 +44,7 @@ const SinglePost = () => {
     setVideoLoading(true);
     setTimeout(() => {
       setVideoLoading(false)
-    }, 700)
+    }, 1000)
   },[])
 
 
