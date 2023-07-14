@@ -39,7 +39,6 @@ def seed_users():
     demo.followers.append(goku)
     demo.followers.append(nezuko)
 
-
     sasuke.followers.append(demo)
     sasuke.followers.append(sasuke)
     sasuke.followers.append(nezuko)

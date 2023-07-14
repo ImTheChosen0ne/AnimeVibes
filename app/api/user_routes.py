@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
-from app.models import User, db, Post
-from app.forms import ProfileForm
+from flask_login import login_required, current_user
+from app.models import User, db, Post, Message, ChatMember, Chat
+from app.forms import ProfileForm, MessageForm
 
 user_routes = Blueprint('users', __name__)
 
@@ -108,3 +108,43 @@ def edit_profile(userId):
 
     if form.errors:
         print(form.errors)
+
+@user_routes.route('/<int:userId>/chats', methods=['POST'])
+@login_required
+def create_Chat(userId):
+
+    user_ids = request.json.get('userIds', [])
+
+    chat = Chat()
+    db.session.add(chat)
+    db.session.commit()
+
+    chat_members = []
+    for user_id in user_ids:
+        chat_member = ChatMember(userId=user_id, chatId=chat.id)
+        chat_members.append(chat_member)
+        db.session.add(chat_member)
+
+    db.session.commit()
+
+    return {
+        "chat": chat.to_dict(),
+        "chatMembers": [member.to_dict() for member in chat_members]
+    }
+
+@user_routes.route('/<int:userId>/chats/<int:id>', methods=['DELETE'])
+def delete_Chat(userId, id):
+    chat = Chat.query.get(id)
+    deleted_chat = {'chat': chat.to_dict()}
+    db.session.delete(chat)
+    db.session.commit()
+    return deleted_chat
+
+@user_routes.route('<int:userId>/messages/<int:id>', methods=['DELETE'])
+def delete_message(userId, id):
+    message = Message.query.get(id)
+    deleted_message = {'message': message.to_dict()}
+    db.session.delete(message)
+    db.session.commit()
+
+    return deleted_message

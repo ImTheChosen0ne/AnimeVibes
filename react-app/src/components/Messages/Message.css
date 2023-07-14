@@ -1,0 +1,416 @@
+.user-messages {
+    /* position: absolute; */
+    inset: 60px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    height: calc(-60px + 100vh);
+    justify-content: center;
+    padding: 16px 24px 10px 20px;
+    background-color: rgb(248, 248, 248);
+    margin: auto;
+}
+
+.chats {
+    display: flex;
+    flex-direction: column;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 8px;
+    border-radius: 1%;
+    /* padding: 20px; */
+}
+.chat-header {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    padding: 0px 16px 0px 24px;
+    box-sizing: border-box;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.chat-header button {
+    border-radius: 4px;
+    border: none;
+    color: white;
+    background-color: rgba(254, 44, 85);
+    min-height: 36px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 8px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+}
+
+.chats h1 {
+    width: 230px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    flex-grow: 0;
+    flex-shrink: 0;
+    font-size: 24px;
+    line-height: 28px;
+    color: rgb(22, 24, 35);
+    font-weight: 700;
+}
+
+.chat {
+    position: relative;
+    width: 100%;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    padding: 0px 24px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.messages {
+    z-index: unset;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 8px;
+    border-radius: 8px;
+    margin-left: 16px;
+}
+
+.all-chats {
+    overflow: auto;
+    height: 100%;
+    padding-left: unset;
+    padding-right: 0px;
+}
+
+.chat img {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+}
+
+.message-username {
+    font-size: 16px;
+    line-height: 22px;
+    min-height: 22px;
+    color: rgb(22, 24, 35);
+    max-width: 224px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+.chat-info {
+    padding-left: 12px;
+}
+
+.date-chat {
+    display: inline-block;
+    flex-shrink: 0;
+    line-height: 20px;
+    min-height: 20px;
+    color: rgba(22, 24, 35, 0.645);
+    font-size: 14px;
+}
+
+.name-ellipse-chat {
+    display: flex;
+    transform:translate(220px, -64px);
+    z-index: 1;
+    width: fit-content;
+}
+
+.ellipse-pulldown-chat {
+    position: relative;
+}
+
+
+.dropdown-content-chat {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    transform: translateY(-2px);
+}
+
+.name-ellipse-chat:hover .dropdown-content-chat {
+    display: block;
+}
+
+.ellipse-pulldown-chat {
+    position: relative;
+    display: inline-block;
+    visibility: hidden;
+}
+
+.chatter:hover .ellipse-pulldown-chat {
+    visibility: visible;
+}
+
+.main-button-chat {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ffffffd7;
+    font-size: 20px;
+    color: rgba(254, 44, 86, 0.678);
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.dropdown-content-chat button {
+    position: relative;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.chatter {
+    height: 85px;
+    overflow: hidden;
+}
+
+.messages-input-container {
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    padding: 13px 16px;
+    border: 0.5px solid rgba(22, 24, 35, 0.12);
+    z-index: 1;
+
+}
+
+.messages-input-container input {
+    width: calc(100%);
+    transition: width 150ms cubic-bezier(0.4, 0.14, 0.3, 1) 0s;
+    color: rgb(22, 24, 35);
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.093px;
+    min-height: 17px;
+    max-height: 68px;
+    word-break: break-all;
+    overflow-y: auto;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+.messages-input-container form {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 0%;
+    align-items: center;
+    background-color: rgba(22, 24, 35, 0.06);
+    border: 1px solid transparent;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.messages-input-container button {
+    border: none;
+    cursor: pointer;
+}
+
+.selected-chat-title {
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    height: 80px;
+    padding: 16px 0px 16px 16px;
+    border-bottom: 0.5px solid rgba(22, 24, 35, 0.12);
+    box-shadow: unset;
+    align-items: center;
+}
+.selected-chat-title h2 {
+    padding-left: 10px;
+}
+
+.selected-chat-title img {
+    object-fit: cover;
+}
+
+.sent-messages {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 0%;
+    overflow-y: auto;
+    width: 100%;
+    padding: 24px 0px 16px;
+}
+
+.selected-chat {
+    z-index: unset;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: rgb(255, 255, 255);
+}
+
+.message {
+    display: flex;
+    flex-direction: column;
+}
+
+.message-info {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+    margin: 8px 0px 8px 24px;
+}
+
+.message img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+}
+
+.message p {
+    overflow: hidden;
+    max-width: 360px;
+    padding: 7px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    background: transparent;
+    word-break: break-word;
+    white-space: pre-line;
+    margin-left: 8px;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 0.03px;
+}
+
+.own-message {
+    display: flex;
+    flex-direction: row-reverse;
+    align-self: flex-end;
+    margin: 8px 12px 8px 0px;
+}
+
+.message-info.own-message p{
+    background: rgba(22, 24, 35, 0.06);
+    overflow: hidden;
+    max-width: 360px;
+    padding: 7px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    word-break: break-word;
+    white-space: pre-line;
+    margin-right: 8px;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 0.03px;
+}
+
+.message-end-info {
+    display: flex;
+    flex-direction: row-reverse;
+    align-self: flex-end;
+    margin: 8px 12px 8px 0px;
+}
+
+.message-end img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+}
+
+.message-end p {
+    overflow: hidden;
+    max-width: 360px;
+    padding: 7px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(22, 24, 35, 0.12);
+    word-break: break-word;
+    white-space: pre-line;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 0.03px;
+    background: rgba(22, 24, 35, 0.06);
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+.name-ellipse-message {
+    display: flex;
+    z-index: 1;
+    width: fit-content;
+}
+
+.ellipse-pulldown-message {
+    position: relative;
+}
+
+.dropdown-content-message {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    transform: translateY(-30px);
+}
+
+.name-ellipse-message:hover .dropdown-content-message {
+    display: block;
+}
+
+.ellipse-pulldown-message {
+    position: relative;
+    display: inline-block;
+    visibility: hidden;
+}
+
+.own-message:hover .ellipse-pulldown-message {
+    visibility: visible;
+}
+
+.main-button-message {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ffffffd7;
+    font-size: 20px;
+    color: rgba(254, 44, 86, 0.678);
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: 15px;
+}
+
+.dropdown-content-message button {
+    position: relative;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* .message.own-message {
+    height: 85px;
+    overflow: hidden;
+} */

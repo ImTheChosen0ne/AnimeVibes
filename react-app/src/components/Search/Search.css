@@ -1,0 +1,108 @@
+.search {
+    margin: 0 auto;
+    position: relative;
+    min-width: 420px;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.search h2 {
+    margin-top: 20px;
+}
+
+.search-posts {
+    flex: 1 1 auto;
+    padding: 10px 16px 16px 16px;
+    width: 800px;
+    max-width: 800px;
+}
+
+.posts-from-search {
+    margin-top: 5px;
+    width: calc(100% - 12px);
+}
+
+.video-search {
+    width: 100%;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.video-search video {
+    width: 100%;
+    height: 425px;
+    object-fit: cover;
+}
+
+.search-post {
+    display: block;
+    float: left;
+    border-radius: 2px;
+    margin-right: 2px;
+    width: calc(33.3% - 12px);
+    margin-inline-end: 12px;
+    position: relative;
+}
+
+.search-caption {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-top: 4px;
+    word-break: break-word;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.search-post-info {
+    font-weight: 400;
+    padding-top: 4px;
+    padding-bottom: 20px;
+}
+
+.search-post-user {
+    display: flex;
+    align-items: center;
+}
+
+.search-post-user img{
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+}
+
+.search-post-user p {
+    padding-left: 5px;
+}
+
+.users-from-search {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+}
+
+.users-from-search img {
+    width: 60px;
+    height: 60px;
+    flex: 0 0 64px;
+    margin: 16px;
+    object-fit: cover;
+}
+
+.search-users {
+    flex: 1 1 auto;
+    padding: 10px 16px 16px 16px;
+    width: 800px;
+    max-width: 800px;
+}
+
+.search-follower {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.search-none {
+    padding: 10px 16px 16px 16px;
+    max-width: 800px;
+}

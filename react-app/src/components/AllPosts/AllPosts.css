@@ -156,3 +156,7 @@ a {
 .yellowFavorite {
     color: rgb(235, 203, 76);
 }
+
+.user-name:hover {
+    text-decoration: underline;
+}

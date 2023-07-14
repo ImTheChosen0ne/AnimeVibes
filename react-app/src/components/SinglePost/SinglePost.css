@@ -2,7 +2,7 @@
     margin-right: 24px;
     margin-left: 24px;
     position: relative;
-    width: 100%;
+    width: 85%;
     min-width: 420px;
     flex-shrink: 1;
     display: flex;
@@ -13,8 +13,8 @@
 .detail-post {
     width: 100%;
     position: relative;
-    margin-right: 24px;
-    margin-left: 24px;
+    margin-right: auto;
+    margin-left: auto;
     margin-bottom: 60px;
     padding: 24px 0px;
 }
@@ -311,4 +311,12 @@
 .delete-modal .yes {
     margin-right: 5px;
 
+}
+
+.loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 200px;
 }

@@ -23,6 +23,9 @@ class User(db.Model, UserMixin):
     posts = db.relationship("Post", back_populates="user")
     comments = db.relationship("Comment", back_populates="user")
     comment_reply = db.relationship("CommentReply", back_populates="user_comment_reply")
+    messages = db.relationship("Message", back_populates="user")
+    chat_members = db.relationship("ChatMember", back_populates="user")
+
 
     user_favorites = db.relationship(
         "Post",
@@ -69,6 +72,8 @@ class User(db.Model, UserMixin):
             'user_favorites': [favorite.to_dict_favorites() for favorite in self.user_favorites],
             'user_likes': [like.to_dict_likes() for like in self.user_likes],
             'followers': self.followers_to_dict(),
+            'chats': [chat_member.chat.to_dict() for chat_member in self.chat_members],
+            'messages': [message.to_dict() for message in self.messages]
         }
 
     def to_dict_comment_user(self):
