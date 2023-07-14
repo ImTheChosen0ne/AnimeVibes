@@ -47,6 +47,8 @@ const SinglePost = () => {
           autoPlay={isPlaying}
           playsInline={true}
           controls
+          muted
+          loop
           onClick={togglePlay}
         />
         <div className="detail-caption">{post?.caption}</div>
