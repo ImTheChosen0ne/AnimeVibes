@@ -20,7 +20,13 @@ function SignupFormPage() {
     if (password === confirmPassword) {
         const data = await dispatch(signUp(username, email, password));
         if (data) {
-          setErrors(data)
+          if (email === "" || !email.includes("@")) {
+            errors.email = "Invalid Email";
+          }
+          if (password.length < 8) {
+            errors.password = "Password must be at least 8 characters long.";
+          }
+          setErrors()
         }
     } else {
         setErrors(['Confirm Password field must be the same as the Password field']);

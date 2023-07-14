@@ -109,19 +109,16 @@ def edit_profile(userId):
     if form.errors:
         print(form.errors)
 
-# #post/create a new user conversation
 @user_routes.route('/<int:userId>/chats', methods=['POST'])
 @login_required
 def create_Chat(userId):
-    # Get the user IDs from the request body
+
     user_ids = request.json.get('userIds', [])
 
-    # Create a new chat
     chat = Chat()
     db.session.add(chat)
     db.session.commit()
 
-    # Create chat members for each user in the chat
     chat_members = []
     for user_id in user_ids:
         chat_member = ChatMember(userId=user_id, chatId=chat.id)
@@ -130,14 +127,11 @@ def create_Chat(userId):
 
     db.session.commit()
 
-    # Return the created chat and chat members
     return {
         "chat": chat.to_dict(),
         "chatMembers": [member.to_dict() for member in chat_members]
     }
 
-
-# # delete a user conversation
 @user_routes.route('/<int:userId>/chats/<int:id>', methods=['DELETE'])
 def delete_Chat(userId, id):
     chat = Chat.query.get(id)
