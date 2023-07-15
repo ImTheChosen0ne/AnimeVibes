@@ -74,7 +74,7 @@ function Navigation({ isLoaded }) {
 
     return (
       <ul>
-        <NavLink exact to="/search" className="search-value">
+        <NavLink exact to={`/search?query=${searchValue}`} className="search-value">
         <i className="fa-solid fa-magnifying-glass"></i>
         <p>{searchValue}</p>
         </NavLink>
