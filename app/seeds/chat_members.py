@@ -3,7 +3,7 @@ from sqlalchemy.sql import text
 
 
 def seed_chat_members():
-    for conversationUsers in [
+    for chatMembers in [
         {
             "chatId":1,
             "userId":1
@@ -46,7 +46,7 @@ def seed_chat_members():
         },
 
     ]:
-        db.session.add(ChatMember(**conversationUsers))
+        db.session.add(ChatMember(**chatMembers))
     db.session.commit()
 
 def undo_chat_members():

@@ -2,14 +2,14 @@ from app.models import Chat, db, environment, SCHEMA
 from sqlalchemy.sql import text
 
 def seed_chats():
-    for conversation in [
+    for chat in [
         {},
         {},
         {},
         {},
         {}
     ]:
-        db.session.add(Chat(**conversation))
+        db.session.add(Chat(**chat))
     db.session.commit()
 
 def undo_chats():

@@ -7,57 +7,57 @@ def seed_messages():
         {
             "chatId": 1,
             "userId": 1,
-            "message": "Testing testing"
+            "message": "Hey!!"
         },
             {
             "chatId": 1,
             "userId": 2,
-            "message": "yes yes I hear you"
+            "message": "Whats going on?"
         },
             {
             "chatId": 1,
             "userId": 1,
-            "message": "are you sure though"
+            "message": "Not much just scrolling through AnimeVibes"
         },
             {
             "chatId": 1,
             "userId": 2,
-            "message": "uh yes very sure"
+            "message": "It's one sweet app!"
         },
             {
             "chatId": 2,
             "userId": 1,
-            "message": "sup stranger"
+            "message": "Whats going on!?"
         },
             {
             "chatId": 2,
             "userId": 1,
-            "message": "are you leaving me on read?"
+            "message": "Hellooooo"
         },
             {
             "chatId": 2,
             "userId": 1,
-            "message": ":("
+            "message": "Im sad youre not answering"
         },
             {
             "chatId": 3,
             "userId": 4,
-            "message": "hi best friend"
+            "message": "hi!"
         },
         {
             "chatId": 3,
             "userId": 1,
-            "message": "best friend??"
+            "message": "Hey, what ya doing here?"
         },
         {
             "chatId": 3,
             "userId": 4,
-            "message": "too forward?"
+            "message": "Looking at some cool vids!"
         },
         {
             "chatId": 3,
             "userId": 1,
-            "message": "oof"
+            "message": "Ahh same here!"
         },
     ]:
         db.session.add(Message(**message))
