@@ -26,8 +26,8 @@ const EditProfile = ({ sessionUser }) => {
     if (name.length > 25) {
       errors.name = "Name can not have more than 25 characters";
     }
-    if (bio.length > 50) {
-      errors.name = "Bio can not have more than 50 characters";
+    if (bio.length > 100) {
+      errors.name = "Bio can not have more than 100 characters";
     }
     if (
       profilePic &&
