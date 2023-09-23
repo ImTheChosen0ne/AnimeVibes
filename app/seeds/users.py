@@ -28,7 +28,7 @@ def seed_users():
     toshinori = User(
         username='ToshinoriYagi', email='toshinori@aa.io', password='password', bio='Mighty symbol of peace hiding a heroic secret.', name="All Might", profile_pic="https://freeaddon.com/wp-content/uploads/2018/06/all-might-2.jpg")
     goku = User(
-        username='Goku', email='goku@aa.io', password='password', bio='Legendary Saiyan warrior constantly seeking new challenges.', name="Goku", profile_pic="https://www.skinit.com/media/catalog/product/cache/9dbe6a0c16a5b581719a1aa389879cfc/d/r/drgnbz15_50.jpg")
+        username='Goku', email='goku@aa.io', password='password', bio='Legendary Saiyan warrior constantly seeking new challenges.', name="Goku", profile_pic="https://w0.peakpx.com/wallpaper/797/135/HD-wallpaper-dragon-ball-ultra-instinct-goku-migatte-no-gokui-portrait-mastered-ultra-instinct-dragon-ball-super-super-saiyan-god-dbs-son-goku.jpg")
 
     demo.followers.append(sasuke)
     demo.followers.append(monkey)
