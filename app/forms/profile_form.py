@@ -5,5 +5,5 @@ from app.models import User
 
 class ProfileForm(FlaskForm):
     profile_pic = StringField('profilePic')
-    bio = StringField('bio', validators=[Length(max=50)])
+    bio = StringField('bio', validators=[Length(max=100)])
     name = StringField('name', validators=[Length(max=25)])
