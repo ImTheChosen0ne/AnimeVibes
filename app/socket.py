@@ -8,6 +8,7 @@ socketio = SocketIO()
 if os.environ.get("FLASK_ENV") == "production":
     origins = [
         "http://animevibes.onrender.com",
+        "https://animevibes.onrender.com"
     ]
 else:
     origins = "*"
